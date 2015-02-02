@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.header-bar
+{
+  margin-top: 100px;
+  border-top: 1px solid #cecece;
+}
+
+table.tableSection
+{
+  display: table;
+  width: 100%;
+}
+
+table.tableSection thead, table.tableSection tbody
+{
+  float: left;
+  width: 100%;
+}
+
+table.tableSection tbody
+{
+  overflow: auto;
+  /* Giving height to make the tbscroll */
+  /* Giving height dynamically is recommended */
+  height: 150px;
+}
+
+table.tableSection tr
+{
+  width: 100%;
+  display: table;
+  /* Keeping the texts of both thead and tbody in same alignment */
+  /*text-align: left;*/
+}
+
+/** for older browsers (IE8), if you know number of columns in your table **/
+table.tableSection tr>td:first-child + td + td
+{
+  width : 31%;
+}
+
+.highlight { background-color: DimGray; }
+
+table tbody tr:hover {
+    cursor: pointer;
+}
