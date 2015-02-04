@@ -18,7 +18,7 @@ public class LoadExperimentsAction extends ActionSupport
 	private ExperimentService service;
 	private List <Experiment> experiments;
 	
-	//private ExperimentBean experimentBean;
+	//private Experiment experiment;
 	
 	@Override
 	public String execute()

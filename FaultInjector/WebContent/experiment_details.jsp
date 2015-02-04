@@ -64,13 +64,6 @@
         </style>
 </head>
 <body>
-	<!--<s:form action="login" method="post">
-		<s:text name="Username:" />
-		<s:textfield name="username" /><br>
-        <s:text name="Password:" />
-		<s:textfield name="password" /><br>
-		<s:submit />
-	</s:form>-->
 	<div class="ink-grid">
 
             <!--[if lte IE 9 ]>
@@ -122,13 +115,7 @@
                 <div class="all-20 small-100 tiny-100">
                 </div>
                 <div class="all-40 small-100 tiny-100">
-                    <!--<p><b>Target name:</b> Target #4</p>
-                    <p><b>Workload name:</b> Workload_1</p>
-                    <p><b>Faultload name(s):</b> Spatial_read</p>
-                    <p><b>Output filename:</b> Experiment_3_2_results.csv</p>
-                    <p><b>Description:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit justo, tristique sit amet vestibulum id, molestie in nunc. Maecenas blandit turpis non lectus sollicitudin aliquet. Integer scelerisque at mauris vel porta. Sed luctus, velit nec sodales convallis, purus orci efficitur velit, sed pellentesque dui diam sit amet urna. In eget accumsan justo. Etiam semper elit ut quam blandit rhoncus. Praesent tempor malesuada leo et facilisis. Curabitur nec nunc non ex scelerisque mollis ut at quam. Duis ornare aliquet ligula quis dignissim.</p>-->
-
-                <table class="ink-table grey">
+                	<table class="ink-table grey">
                         <tbody>
                         	<tr>
                                 <td class="all-40"><b>Creator name:</b></td>
@@ -160,13 +147,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!--<ul>
-                        <li><b>Target name:</b> Target #4</li>
-                        <li><b>Workload name:</b> Workload_1</li>
-                        <li><b>Faultload name(s):</b> Spatial_read</li>
-                        <li><b>Output filename:</b> Experiment_3_2_results.csv</li>
-                        <li><b>Description:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit justo, tristique sit amet vestibulum id, molestie in nunc. Maecenas blandit turpis non lectus sollicitudin aliquet. Integer scelerisque at mauris vel porta. Sed luctus, velit nec sodales convallis, purus orci efficitur velit, sed pellentesque dui diam sit amet urna. In eget accumsan justo. Etiam semper elit ut quam blandit rhoncus. Praesent tempor malesuada leo et facilisis. Curabitur nec nunc non ex scelerisque mollis ut at quam. Duis ornare aliquet ligula quis dignissim.</li>
-                    </ul>-->
                 </div>
             </div>
         </div>

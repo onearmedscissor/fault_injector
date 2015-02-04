@@ -9,12 +9,10 @@ import javax.persistence.Persistence;
 import faultinjector.model.Experiment;
 import faultinjector.services.ExperimentService;
 
-public class ShowExperimentAction extends ActionSupport /*implements SessionAware*/
+public class SaveExperimentAction extends ActionSupport
 {
 	private static final long serialVersionUID = 4L;
-
-	/*private Map<String, Object> session;*/
-
+	
 	private ExperimentService service;
 	private Experiment experiment;
 	
@@ -23,12 +21,12 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 	@Override
 	public String execute()
     {
-		System.out.println("Olá!");
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+		//System.out.println("Olá!");
+		/*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
 	   	EntityManager entitymanager = emfactory.createEntityManager();
 		service = new ExperimentService(entitymanager);
 		
-		this.experiment=service.findExperiment(id);
+		this.experiment=service.findExperiment(id);*/
 	   	
 		System.out.println("-----------------------------------");
 		System.out.println("Experiment ID = "+experiment.getEid());
@@ -43,12 +41,6 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 		
         return SUCCESS;
 	}
-	
-	/*@Override
-	public void setSession(Map<String, Object> session)
-	{
-		this.session = session;
-	}*/
 
 	public ExperimentService getService()
 	{
@@ -70,11 +62,11 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 		this.experiment=experiment;
 	}
 	
-	/*public int getId()
+	public int getId()
 	{
 		return id;
-	}*/
-
+	}
+	
 	public void setId(int id)
 	{
 		this.id = id;

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Fault Injector: User main menu</title>
+<title>Fault Injector: Edit experiment</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
@@ -64,13 +64,6 @@
         </style>
 </head>
 <body>
-	<!--<s:form action="login" method="post">
-		<s:text name="Username:" />
-		<s:textfield name="username" /><br>
-        <s:text name="Password:" />
-		<s:textfield name="password" /><br>
-		<s:submit />
-	</s:form>-->
 	<div class="ink-grid">
 
             <!--[if lte IE 9 ]>
@@ -111,8 +104,8 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
-                    <h2>>> User main menu</h2>
-                    <h4 class="top-space">Experiment selection</h4>
+                    <h2>>> Edit experiment</h2>
+                    <h4 class="top-space"><s:property value="experiment.name" /></h4>
                     <hr />
                 </div>
                 <div class="all-40 small-100 tiny-100"></div>
@@ -121,29 +114,59 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100">
                 </div>
-                <div class="all-40 small-100 tiny-100">
-				<s:if test="experiments.size > 0">
-					<table id="experiments" class="ink-table grey tableSection">
-						<thead>
-                            <tr><th colspan="5" class="align-left">Select the experiment to run:</th></tr>
-                        </thead>
+                <div class="all-40 small-100 tiny-100">            
+				
+				<s:form method="post">
+					<s:textfield value="%{experiment.creatorName}"/>
+				</s:form>
+				<s:form method="post">
+					<s:text name="Username:" />
+					<s:textfield name="username" />
+					<br>
+					<s:text name="Password:" />
+					<s:textfield name="password" />
+					<br>
+					<s:submit />
+				</s:form>
+
+				<table class="ink-table grey">
                         <tbody>
-						<s:iterator value="experiments">
-							<tr id="row_<s:property value="i"/>">
-								<td class="all-100"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>"><s:property value="name" /></a></td>
-								<td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">edit</a></td>
-                                <td class="all-5">|</td>
-                                <td class="all-15"><a href="delete_experiment.jsp">delete</a></td>
-                                <td class="all-5"><a href="help.jsp">?</a></td>
-							</tr>
-						</s:iterator>
-						</tbody>
-					</table>
-				</s:if>
-                    <div class="all-50 align-left"><a href="#" class="ink-button" disabled id="run">Run selected experiment</a></div>
-                    <h4 class="top-space">New Experiment</h4>
-                    <hr />
-                    <div class="all-50 align-left"><a href="#" class="ink-button" id="create">Create new experiment...</a></div>
+                        	<tr>
+                                <td class="all-40"><b>Creator name:</b></td>
+                                <!--<td class="all-60"> <s:property value="experiment.creatorName" /></td>-->
+                                <td class="all-60">
+                                <s:form action="saveexperiment" method="post">
+									<s:textfield name="experiment.creatorName" value="%{experiment.creatorName}"/>
+									<s:submit />
+								</s:form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="all-40"><b>Creation date:</b></td>
+                                <td class="all-60"> <s:property value="experiment.creationDate" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-40"><b>Target name:</b></td>
+                                <td class="all-60"> <s:property value="experiment.targetName" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-40"><b>Workload name:</b></td>
+                                <td class="all-60"> <s:property value="experiment.workloadName" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-40"><b>Faultload name(s):</b></td>
+                                <td class="all-60"> <s:property value="experiment.faultloadName" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-40"><b>Output filename:</b></td>
+                                <td class="all-60"> <s:property value="experiment.outputFilename" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-40 align-top"><b>Description:</b></td>
+                                <td class="all-60"> <s:property value="experiment.description" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
