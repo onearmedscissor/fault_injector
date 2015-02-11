@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import faultinjector.model.Experiment;
-import faultinjector.services.ExperimentService;
+import faultinjector.entity.Experiment;
+import faultinjector.service.ExperimentService;
 
 public class ShowExperimentAction extends ActionSupport /*implements SessionAware*/
 {
@@ -24,9 +24,7 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 	public String execute()
     {
 		System.out.println("Olá!");
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-	   	EntityManager entitymanager = emfactory.createEntityManager();
-		service = new ExperimentService(entitymanager);
+		service = new ExperimentService();
 		
 		this.experiment=service.findExperiment(id);
 	   	

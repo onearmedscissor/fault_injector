@@ -2,7 +2,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import faultinjector.model.Experiment;
+import faultinjector.entity.Experiment;
 
 public class CreateDatabase 
 {

@@ -1,34 +1,42 @@
 package faultinjector.action;
 
+import java.util.Map;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import org.apache.struts2.interceptor.SessionAware;
 
-import faultinjector.model.Experiment;
-import faultinjector.services.ExperimentService;
+import faultinjector.entity.Experiment;
+import faultinjector.service.ExperimentService;
 
-public class EditExperimentAction extends ActionSupport
+public class EditExperimentAction extends ActionSupport implements SessionAware
 {
 	private static final long serialVersionUID = 4L;
 	
-	private ExperimentService service;
+	private Map<String, Object> session;
 	private Experiment experiment;
-	
+	//private ExperimentService service;
 	private int id;
 	
 	@Override
 	public String execute()
     {
 		//System.out.println("Olá!");
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-	   	EntityManager entitymanager = emfactory.createEntityManager();
-		service = new ExperimentService(entitymanager);
+		//this.getExperimentBean().setId(this.id); // FUNCIONA DO OUTRO LADO (SAVE)
+		//this.getExperimentBean().setExperiment(experiment);
 		
-		this.experiment=service.findExperiment(id);
+		//session.put("id", id);
+		
+		//experiment = this.getExperimentBean().getService().findExperiment(id);
+		
+		this.experiment = this.getExperimentService().findExperiment(id);
+		
+		session.put("experiment", experiment);
+		
+		//this.experiment=service.findExperiment(id);
 	   	
-		System.out.println("-----------------------------------");
+		System.out.println("ID -> "+id);
+		System.out.println("EDIT-------------------------------");
 		System.out.println("Experiment ID = "+experiment.getEid());
 		System.out.println("Experiment NAME = "+experiment.getName());
 		System.out.println("Experiment TARGET NAME = "+experiment.getTargetName() );
@@ -42,14 +50,26 @@ public class EditExperimentAction extends ActionSupport
         return SUCCESS;
 	}
 
-	public ExperimentService getService()
+	public void validate()
 	{
-		return service;
+		
+	}
+	
+	public ExperimentService getExperimentService()
+	{
+		if(!session.containsKey("experimentService"))
+		{
+			ExperimentService experimentService = new ExperimentService();
+			
+			this.setExperimentService(experimentService);
+		}
+		
+		return (ExperimentService) session.get("experimentService");
 	}
 
-	public void setService(ExperimentService service)
+	public void setExperimentService(ExperimentService experimentService)
 	{
-		this.service = service;
+		this.session.put("experimentService", experimentService);
 	}
 	
 	public Experiment getExperiment()
@@ -62,6 +82,18 @@ public class EditExperimentAction extends ActionSupport
 		this.experiment=experiment;
 	}
 	
+	/*public ExperimentBean getExperimentBean()
+	{
+		if(!session.containsKey("experimentBean"))
+			this.setExperimentBean(new ExperimentBean());
+		return (ExperimentBean) session.get("experimentBean");
+	}
+
+	public void setExperimentBean(ExperimentBean experimentBean)
+	{
+		this.session.put("experimentBean", experimentBean);
+	}*/
+	
 	public int getId()
 	{
 		return id;
@@ -70,5 +102,11 @@ public class EditExperimentAction extends ActionSupport
 	public void setId(int id)
 	{
 		this.id = id;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session)
+	{
+		this.session=session;
 	}
 }

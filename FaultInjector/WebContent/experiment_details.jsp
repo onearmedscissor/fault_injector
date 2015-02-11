@@ -115,7 +115,7 @@
                 <div class="all-20 small-100 tiny-100">
                 </div>
                 <div class="all-40 small-100 tiny-100">
-                	<table class="ink-table grey">
+                	<table class="ink-table grey alternating hover">
                         <tbody>
                         	<tr>
                                 <td class="all-40"><b>Creator name:</b></td>

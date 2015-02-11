@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import faultinjector.model.Experiment;
-import faultinjector.services.ExperimentService;
+import faultinjector.entity.Experiment;
+import faultinjector.service.ExperimentService;
 
 public class LoadExperimentsAction extends ActionSupport
 {
@@ -18,15 +18,13 @@ public class LoadExperimentsAction extends ActionSupport
 	private ExperimentService service;
 	private List <Experiment> experiments;
 	
-	//private Experiment experiment;
+	//private ExperimentBean experimentBean;
 	
 	@Override
 	public String execute()
     {
 		//System.out.println("Olá!");
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-	   	EntityManager entitymanager = emfactory.createEntityManager();
-		service = new ExperimentService(entitymanager);
+		service = new ExperimentService();
 		
 		this.experiments=service.findAll();
 	   	

@@ -1,4 +1,4 @@
-package faultinjector.model;
+package faultinjector.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Experiment
 	private String outputFilename;
 	private String description;
 	private String faultloadName;
-	
+
 	public Experiment(int eid, String name, String targetName, String creationDate, String creatorName, String workloadName, String outputFilename, String description, String faultloadName)
 	{
 		super();
@@ -35,7 +35,7 @@ public class Experiment
 		this.description=description;
 		this.faultloadName=faultloadName;
 	}
-	
+
 	public Experiment()
 	{
 		super();
@@ -60,60 +60,74 @@ public class Experiment
 	{
 		this.name = name;
 	}
-	
-	public String getTargetName() {
+
+	public String getTargetName()
+	{
 		return targetName;
 	}
 
-	public void setTargetName(String targetName) {
+	public void setTargetName(String targetName)
+	{
 		this.targetName = targetName;
 	}
 
-	public String getCreationDate() {
+	public String getCreationDate()
+	{
 		return creationDate;
 	}
 
-	public void setCreationDate(String creationDate) {
+	public void setCreationDate(String creationDate)
+	{
 		this.creationDate = creationDate;
 	}
 
-	public String getCreatorName() {
+	public String getCreatorName()
+	{
 		return creatorName;
 	}
 
-	public void setCreatorName(String creatorName) {
+	public void setCreatorName(String creatorName)
+	{
 		this.creatorName = creatorName;
 	}
 
-	public String getWorkloadName() {
+	public String getWorkloadName()
+	{
 		return workloadName;
 	}
 
-	public void setWorkloadName(String workloadName) {
+	public void setWorkloadName(String workloadName)
+	{
 		this.workloadName = workloadName;
 	}
 
-	public String getOutputFilename() {
+	public String getOutputFilename()
+	{
 		return outputFilename;
 	}
 
-	public void setOutputFilename(String outputFilename) {
+	public void setOutputFilename(String outputFilename)
+	{
 		this.outputFilename = outputFilename;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
 
-	public String getFaultloadName() {
+	public String getFaultloadName()
+	{
 		return faultloadName;
 	}
 
-	public void setFaultloadName(String faultloadName) {
+	public void setFaultloadName(String faultloadName)
+	{
 		this.faultloadName = faultloadName;
 	}
 

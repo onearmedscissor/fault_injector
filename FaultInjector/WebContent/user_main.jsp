@@ -64,13 +64,6 @@
         </style>
 </head>
 <body>
-	<!--<s:form action="login" method="post">
-		<s:text name="Username:" />
-		<s:textfield name="username" /><br>
-        <s:text name="Password:" />
-		<s:textfield name="password" /><br>
-		<s:submit />
-	</s:form>-->
 	<div class="ink-grid">
 
             <!--[if lte IE 9 ]>

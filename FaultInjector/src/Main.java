@@ -1,7 +1,7 @@
 import java.util.List;
 
-import faultinjector.model.Experiment;
-import faultinjector.services.ExperimentService;
+import faultinjector.entity.Experiment;
+import faultinjector.service.ExperimentService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,12 +11,7 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		// TODO Auto-generated method stub
-
-
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-		EntityManager entitymanager = emfactory.createEntityManager();
-	    ExperimentService service = new ExperimentService(entitymanager);
+	    ExperimentService service = new ExperimentService();
 		
 	    List <Experiment> experiments = service.findAll();
 	    
@@ -33,7 +28,6 @@ public class Main
 	    	System.out.println("experiment FAULTLOAD NAME = "+e.getFaultloadName());
 	    }
 	    
-	    entitymanager.close();
-	   	emfactory.close();
+	    service.closeTransaction();
 	}
 }

@@ -116,7 +116,7 @@
                 </div>
                 <div class="all-40 small-100 tiny-100">            
 				
-				<s:form method="post">
+				<!--<s:form method="post">
 					<s:textfield value="%{experiment.creatorName}"/>
 				</s:form>
 				<s:form method="post">
@@ -127,46 +127,92 @@
 					<s:textfield name="password" />
 					<br>
 					<s:submit />
-				</s:form>
+				</s:form>-->
 
-				<table class="ink-table grey">
-                        <tbody>
-                        	<tr>
-                                <td class="all-40"><b>Creator name:</b></td>
-                                <!--<td class="all-60"> <s:property value="experiment.creatorName" /></td>-->
-                                <td class="all-60">
-                                <s:form action="saveexperiment" method="post">
-									<s:textfield name="experiment.creatorName" value="%{experiment.creatorName}"/>
-									<s:submit />
-								</s:form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Creation date:</b></td>
-                                <td class="all-60"> <s:property value="experiment.creationDate" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Target name:</b></td>
-                                <td class="all-60"> <s:property value="experiment.targetName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Workload name:</b></td>
-                                <td class="all-60"> <s:property value="experiment.workloadName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Faultload name(s):</b></td>
-                                <td class="all-60"> <s:property value="experiment.faultloadName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Output filename:</b></td>
-                                <td class="all-60"> <s:property value="experiment.outputFilename" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40 align-top"><b>Description:</b></td>
-                                <td class="all-60"> <s:property value="experiment.description" /></td>
-                            </tr>
-                        </tbody>
-                    </table>
+				<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
+                    <fieldset>
+
+                        <div class="control-group column-group gutters required">
+                            <label for="name" class="all-35 align-right">Name</label>
+                            <div class="control all-65">
+                            	<!-- <input type="text" id="name" name="name"> -->
+                                <s:textfield id="name" name="name" value="%{experiment.name}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters required">
+                            <label for="creatorname" class="all-35 align-right">Creator name</label>
+                            <div class="control all-65">
+                            	<!-- <input type="text" id="creatorname" name="creatorName"> -->
+                                <s:textfield id="creatorname" name="creatorName" value="%{experiment.creatorName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters">
+                            <label for="creationdate" class="all-35 align-right">Creation date</label>
+                            <div class="control all-65">
+                                <!-- <input type="text" id="creationdate" name="creationDate"> -->
+                                <s:textfield id="creationdate" disabled="true" value="%{experiment.creationDate}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters required">
+                            <label for="targetname" class="all-35 align-right">Target name</label>
+                            <div class="control all-65">
+                                <!-- <input type="text" id="targetname" name="targetName"> -->
+                                <s:textfield id="targetname" name="targetName" value="%{experiment.targetName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters required">
+                            <label for="workloadname" class="all-35 align-right">Workload name</label>
+                            <div class="control all-65">
+                                <!-- <input type="text" id="workloadname" name="workloadName"> -->
+                                <s:textfield id="workloadname" name="workloadName" value="%{experiment.workloadName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters required">
+                            <label for="faultloadname" class="all-35 align-right">Faultload name</label>
+                            <div class="control all-65">
+                                <!-- <input type="text" id="faultloadname" name="faultloadName"> -->
+                                <s:textfield id="faultloadname" name="faultloadName" value="%{experiment.faultloadName}"/>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group column-group gutters required">
+                            <label for="outputfilename" class="all-35 align-right">Output filename</label>
+                            <div class="control all-65">
+                                <!-- <input type="text" id="outputfilename" name="outputFilename"> -->
+                                <s:textfield id="outputfilename" name="outputFilename" value="%{experiment.outputFilename}"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group column-group gutters required">
+                            <label for="description" class="all-35 align-right">Description</label>
+                            <div class="control all-65">
+                                <!-- <textarea id="description" name="description"></textarea> -->
+                                <s:textarea id="description" name="description" rows="5" maxlength="300" value="%{experiment.description}"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- <button type="submit">Submit</button> -->
+                    <!-- <div class="all-50 align-left"><a href="#" class="ink-button" id="submit" type="submit">Submit</a></div> -->
+                    <button class="ink-button" type="submit">Submit</button>
+                </form>
+
+                <!--<s:form action="saveexperiment" method="post">
+					<s:text name="Creator name:"/> <s:textfield name="creatorName" value="%{experiment.creatorName}"/>
+					<s:text name="Creation date:"/> <s:textfield name="creationDate" value="%{experiment.creationDate}"/>
+					<s:text name="Target name:"/> <s:textfield name="targetName" value="%{experiment.targetName}"/>
+					<s:text name="Workload name:"/> <s:textfield name="workloadName" value="%{experiment.workloadName}"/>
+					<s:text name="Faultload name(s):"/> <s:textfield name="faultloadName" value="%{experiment.faultloadName}"/>
+					<s:text name="Output filename:"/> <s:textfield name="outputFilename" value="%{experiment.outputFilename}"/>
+					<s:text name="Description:"/> <s:textfield name="description" value="%{experiment.description}"/>
+					<s:submit />
+				</s:form>-->
+
                 </div>
             </div>
         </div>

@@ -42,6 +42,7 @@ table.tableSection tr>td:first-child + td + td
 
 .highlight { background-color: DimGray; }
 
-table tbody tr:hover {
+table tbody tr:hover
+{
     cursor: pointer;
 }
