@@ -3,30 +3,28 @@ package faultinjector.action;
 import com.opensymphony.xwork2.ActionSupport;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.struts2.interceptor.SessionAware;
+
 import faultinjector.entity.Experiment;
 import faultinjector.service.ExperimentService;
 
-public class LoadExperimentsAction extends ActionSupport
+public class LoadExperimentsAction extends ActionSupport implements SessionAware
 {
 	private static final long serialVersionUID = 4L;
 	
-	private ExperimentService service;
+	private Map<String, Object> session;
 	private List <Experiment> experiments;
-	
-	//private ExperimentBean experimentBean;
 	
 	@Override
 	public String execute()
-    {
-		//System.out.println("Olá!");
-		service = new ExperimentService();
-		
-		this.experiments=service.findAll();
+    {	
+		this.experiments=this.getExperimentService().findAll();
 	   	
 		for (Experiment e : this.experiments)
 		{
@@ -36,15 +34,22 @@ public class LoadExperimentsAction extends ActionSupport
 		
         return SUCCESS;
 	}
-
-	public ExperimentService getService()
+	
+	public ExperimentService getExperimentService()
 	{
-		return service;
+		if(!session.containsKey("experimentService"))
+		{
+			ExperimentService experimentService = new ExperimentService();
+			
+			this.setExperimentService(experimentService);
+		}
+		
+		return (ExperimentService) session.get("experimentService");
 	}
-
-	public void setService(ExperimentService service)
+	
+	public void setExperimentService(ExperimentService experimentService)
 	{
-		this.service = service;
+		this.session.put("experimentService", experimentService);
 	}
 	
 	public List<Experiment> getExperiments()
@@ -56,14 +61,10 @@ public class LoadExperimentsAction extends ActionSupport
 	{
 		this.experiments = experiments;
 	}
-	
-	/*public ExperimentBean getExperimentBean()
-	{
-		return experimentBean;
-	}
 
-	public void setExperimentBean(ExperimentBean ExperimentBean)
+	@Override
+	public void setSession(Map<String, Object> session)
 	{
-		this.experimentBean=ExperimentBean;
-	}*/
+		this.session=session;
+	}
 }

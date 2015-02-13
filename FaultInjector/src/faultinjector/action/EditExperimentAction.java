@@ -2,6 +2,8 @@ package faultinjector.action;
 
 import java.util.Map;
 
+import javax.persistence.EntityTransaction;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -15,6 +17,7 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	
 	private Map<String, Object> session;
 	private Experiment experiment;
+	private EntityTransaction et;
 	//private ExperimentService service;
 	private int id;
 	
@@ -29,9 +32,19 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		
 		//experiment = this.getExperimentBean().getService().findExperiment(id);
 		
-		this.experiment = this.getExperimentService().findExperiment(id);
+		et = this.getExperimentService().getEt();
 		
-		session.put("experiment", experiment);
+		if(!et.isActive())
+		{
+			et.begin();
+			this.getExperimentService().setEt(et);
+			
+			this.experiment = this.getExperimentService().findExperiment(id);
+			session.put("experiment", experiment);
+		}
+		else
+			experiment = (Experiment) session.get("experiment");
+
 		
 		//this.experiment=service.findExperiment(id);
 	   	
@@ -48,11 +61,6 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		System.out.println("Experiment FAULTLOAD NAME = "+experiment.getFaultloadName());
 		
         return SUCCESS;
-	}
-
-	public void validate()
-	{
-		
 	}
 	
 	public ExperimentService getExperimentService()

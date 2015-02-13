@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -13,19 +14,14 @@ public class ExperimentService implements Persistable
 {
 	private EntityManager em;
 	private EntityManagerFactory emfactory;
+	private EntityTransaction et;
 	
 	public ExperimentService()
 	{
 		emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
 	   	em = emfactory.createEntityManager();
-		
-	   	this.em.getTransaction().begin();
+	   	et = em.getTransaction();
 	}
-	
-	/*public void beginTransaction()
-	{
-		
-	}*/
 	
 	public void closeTransaction()
 	{
@@ -52,4 +48,19 @@ public class ExperimentService implements Persistable
 	{
         return this.em;
     }
+	
+	public EntityManagerFactory getEntityManagerFactory()
+	{
+        return this.emfactory;
+    }
+
+	public EntityTransaction getEt()
+	{
+		return et;
+	}
+
+	public void setEt(EntityTransaction et)
+	{
+		this.et = et;
+	}
 }

@@ -114,20 +114,7 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100">
                 </div>
-                <div class="all-40 small-100 tiny-100">            
-				
-				<!--<s:form method="post">
-					<s:textfield value="%{experiment.creatorName}"/>
-				</s:form>
-				<s:form method="post">
-					<s:text name="Username:" />
-					<s:textfield name="username" />
-					<br>
-					<s:text name="Password:" />
-					<s:textfield name="password" />
-					<br>
-					<s:submit />
-				</s:form>-->
+                <div class="all-40 small-100 tiny-100">
 
 				<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
                     <fieldset>
@@ -197,21 +184,8 @@
                         </div>
                     </fieldset>
                     
-                    <!-- <button type="submit">Submit</button> -->
-                    <!-- <div class="all-50 align-left"><a href="#" class="ink-button" id="submit" type="submit">Submit</a></div> -->
                     <button class="ink-button" type="submit">Submit</button>
                 </form>
-
-                <!--<s:form action="saveexperiment" method="post">
-					<s:text name="Creator name:"/> <s:textfield name="creatorName" value="%{experiment.creatorName}"/>
-					<s:text name="Creation date:"/> <s:textfield name="creationDate" value="%{experiment.creationDate}"/>
-					<s:text name="Target name:"/> <s:textfield name="targetName" value="%{experiment.targetName}"/>
-					<s:text name="Workload name:"/> <s:textfield name="workloadName" value="%{experiment.workloadName}"/>
-					<s:text name="Faultload name(s):"/> <s:textfield name="faultloadName" value="%{experiment.faultloadName}"/>
-					<s:text name="Output filename:"/> <s:textfield name="outputFilename" value="%{experiment.outputFilename}"/>
-					<s:text name="Description:"/> <s:textfield name="description" value="%{experiment.description}"/>
-					<s:submit />
-				</s:form>-->
 
                 </div>
             </div>
