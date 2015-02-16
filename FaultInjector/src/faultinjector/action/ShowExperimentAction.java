@@ -2,10 +2,6 @@ package faultinjector.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import faultinjector.entity.Experiment;
 import faultinjector.service.ExperimentService;
 

@@ -25,7 +25,7 @@ public class CreateDatabase
    	experiment.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit justo, tristique sit amet vestibulum id, molestie in nunc. Maecenas blandit turpis non lectus sollicitudin aliquet. Integer scelerisque at mauris vel porta.");
    	experiment.setFaultload_name("Faultload #1");*/
    	
-   	experiment.setEid(2);
+   	/*experiment.setEid(2);
    	experiment.setName("Experiência_3_repetição");
    	experiment.setTargetName("Intel i7 2.6 Ghz");
    	experiment.setCreationDate("2015-02-02 12:00:41");
@@ -33,7 +33,7 @@ public class CreateDatabase
    	experiment.setWorkloadName("CentOS + YCSB + VirtualBox");
    	experiment.setOutputFilename("experiencia_3_2_repeticao.csv");
    	experiment.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit justo, tristique sit amet vestibulum id, molestie in nunc. Maecenas blandit turpis non lectus sollicitudin aliquet. Integer scelerisque at mauris vel porta.");
-   	experiment.setFaultloadName("Spatial_read");
+   	experiment.setFaultloadName("Spatial_read");*/
 
    	entitymanager.persist(experiment);
    	entitymanager.getTransaction().commit();

@@ -44,6 +44,17 @@ public class ExperimentService implements Persistable
 		return this.em.find(Experiment.class, id);
 	}
 	
+	public void deleteExperiment(int id)
+	{
+		this.getEt().begin();
+		
+		Experiment experiment= findExperiment(id);
+		
+		this.em.remove(experiment);
+		
+		this.getEt().commit();
+	}
+	
 	public EntityManager getEntityManager()
 	{
         return this.em;

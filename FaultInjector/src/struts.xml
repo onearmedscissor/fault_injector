@@ -32,14 +32,12 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <action name="saveexperiment" class="faultinjector.action.SaveExperimentAction" method="execute">
       <result name="success" type="redirectAction">loadexperiments</result>
       <result name="input" type="redirectAction">editexperiment</result>
-      <!-- <result name="success">/user_main.jsp</result> -->
-      <!-- <result name="input">/edit_experiment.jsp</result> -->
     </action>
     
-    <!--<action name="validateedit" class="faultinjector.action.ValidateEditAction" method="execute">
-      <result name="success">/edit_experiment.jsp</result>
-      <result name="login">/edit_experiment.jsp</result>
-    </action>--> 
+    <action name="deleteexperiment" class="faultinjector.action.DeleteExperimentAction" method="execute">
+      <!-- <result name="success">/user_main.jsp</result> -->
+      <result name="success" type="redirectAction">loadexperiments</result>
+    </action>
 
   </package>
 

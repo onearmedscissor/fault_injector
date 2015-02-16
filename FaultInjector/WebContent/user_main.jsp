@@ -126,7 +126,7 @@
 								<td class="all-100"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>"><s:property value="name" /></a></td>
 								<td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">edit</a></td>
                                 <td class="all-5">|</td>
-                                <td class="all-15"><a href="delete_experiment.jsp">delete</a></td>
+                                <td class="all-15"><a href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">delete</a></td>
                                 <td class="all-5"><a href="help.jsp">?</a></td>
 							</tr>
 						</s:iterator>
