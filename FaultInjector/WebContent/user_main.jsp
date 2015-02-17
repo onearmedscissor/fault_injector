@@ -112,28 +112,35 @@
             </div>
 
             <div class="column-group">
-                <div class="all-20 small-100 tiny-100">
-                </div>
+                <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
-				<s:if test="experiments.size > 0">
 					<table id="experiments" class="ink-table grey tableSection">
 						<thead>
-                            <tr><th colspan="5" class="align-left">Select the experiment to run:</th></tr>
-                        </thead>
-                        <tbody>
-						<s:iterator value="experiments">
-							<tr id="row_<s:property value="i"/>">
-								<td class="all-100"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>"><s:property value="name" /></a></td>
-								<td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">edit</a></td>
-                                <td class="all-5">|</td>
-                                <td class="all-15"><a href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">delete</a></td>
-                                <td class="all-5"><a href="help.jsp">?</a></td>
+							<tr>
+								<th colspan="5" class="align-left">Select the experiment to
+									run:</th>
 							</tr>
-						</s:iterator>
+						</thead>
+						<tbody>
+							<s:if test="experiments.size > 0">
+									<s:iterator value="experiments">
+										<tr id="row_<s:property value="i"/>">
+											<td class="all-100"><a
+												href="<s:url action="showexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>"><s:property
+														value="name" /></a></td>
+											<td class="all-15"><a
+												href="<s:url action="editexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">edit</a></td>
+											<td class="all-5">|</td>
+											<td class="all-15"><a
+												href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="eid" /></s:param></s:url>">delete</a></td>
+											<td class="all-5"><a href="help.jsp">?</a></td>
+										</tr>
+									</s:iterator>
+							</s:if>
 						</tbody>
 					</table>
-				</s:if>
-                    <div class="all-50 align-left"><a href="#" class="ink-button" disabled id="run">Run selected experiment</a></div>
+					
+					<div class="all-50 align-left"><a href="#" class="ink-button" disabled id="run">Run selected experiment</a></div>
                     <h4 class="top-space">New Experiment</h4>
                     <hr />
                     <div class="all-50 align-left"><a href="#" class="ink-button" id="create">Create new experiment...</a></div>

@@ -24,6 +24,7 @@ table.tableSection tbody
   /* Giving height to make the tbscroll */
   /* Giving height dynamically is recommended */
   height: 150px;
+  display:block;
 }
 
 table.tableSection tr
