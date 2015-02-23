@@ -1,5 +1,6 @@
 package faultinjector.action;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityTransaction;
@@ -9,6 +10,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
 import faultinjector.entity.Experiment;
+import faultinjector.entity.Faultload;
+import faultinjector.entity.Injection_Run;
 import faultinjector.service.ExperimentService;
 
 public class EditExperimentAction extends ActionSupport implements SessionAware
@@ -20,18 +23,17 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	private EntityTransaction et;
 	//private ExperimentService service;
 	private int id;
+	private List <Faultload> faultloads;
+	public List<Faultload> getFaultloads()
+	{
+		return faultloads;
+	}
+
+	private List <Injection_Run> injectionRuns;
 	
 	@Override
 	public String execute()
     {
-		//System.out.println("Olá!");
-		//this.getExperimentBean().setId(this.id); // FUNCIONA DO OUTRO LADO (SAVE)
-		//this.getExperimentBean().setExperiment(experiment);
-		
-		//session.put("id", id);
-		
-		//experiment = this.getExperimentBean().getService().findExperiment(id);
-		
 		et = this.getExperimentService().getEt();
 		
 		if(!et.isActive())
@@ -45,20 +47,32 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		else
 			experiment = (Experiment) session.get("experiment");
 
-		
 		//this.experiment=service.findExperiment(id);
 	   	
 		System.out.println("ID -> "+id);
 		System.out.println("EDIT-------------------------------");
-		System.out.println("Experiment ID = "+experiment.getEid());
+		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
-		System.out.println("Experiment TARGET NAME = "+experiment.getTargetName() );
-		System.out.println("Experiment CREATION DATE = "+experiment.getCreationDate());
-		System.out.println("Experiment CREATOR NAME = "+experiment.getCreatorName());
-		System.out.println("Experiment WORKLOAD NAME = "+experiment.getWorkloadName());
-		System.out.println("Experiment OUTPUT FILENAME = "+experiment.getOutputFilename());
+		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
+		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
+		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		
+		faultloads=experiment.getFaultloads();
+		
+		for (Faultload f : faultloads)
+		{
+			injectionRuns = f.getInjectionRuns();
+			
+			System.out.println("Experiment FAULTLOAD NAME = "+f.getName());
+			
+			for(Injection_Run i : injectionRuns)
+			{
+				System.out.println("Faultload WORKLOAD NAME = "+i.getWorkload().getName());
+				System.out.println("Faultload OUTPUT FILENAME = "+i.getOutput_filename());
+			}
+		}
+			
 		System.out.println("Experiment DESCRIPTION = "+experiment.getDescription());
-		System.out.println("Experiment FAULTLOAD NAME = "+experiment.getFaultloadName());
 		
         return SUCCESS;
 	}
@@ -89,18 +103,6 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	{
 		this.experiment=experiment;
 	}
-	
-	/*public ExperimentBean getExperimentBean()
-	{
-		if(!session.containsKey("experimentBean"))
-			this.setExperimentBean(new ExperimentBean());
-		return (ExperimentBean) session.get("experimentBean");
-	}
-
-	public void setExperimentBean(ExperimentBean experimentBean)
-	{
-		this.session.put("experimentBean", experimentBean);
-	}*/
 	
 	public int getId()
 	{

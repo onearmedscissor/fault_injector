@@ -119,31 +119,40 @@
                         <tbody>
                         	<tr>
                                 <td class="all-40"><b>Creator name:</b></td>
-                                <td class="all-60"> <s:property value="experiment.creatorName" /></td>
+                                <td class="all-60"><s:property value="experiment.user.name" /></td>
                             </tr>
                             <tr>
                                 <td class="all-40"><b>Creation date:</b></td>
-                                <td class="all-60"> <s:property value="experiment.creationDate" /></td>
+                                <td class="all-60"><s:property value="experiment.creation_date" /></td>
                             </tr>
                             <tr>
                                 <td class="all-40"><b>Target name:</b></td>
-                                <td class="all-60"> <s:property value="experiment.targetName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Workload name:</b></td>
-                                <td class="all-60"> <s:property value="experiment.workloadName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Faultload name(s):</b></td>
-                                <td class="all-60"> <s:property value="experiment.faultloadName" /></td>
-                            </tr>
-                            <tr>
-                                <td class="all-40"><b>Output filename:</b></td>
-                                <td class="all-60"> <s:property value="experiment.outputFilename" /></td>
-                            </tr>
-                            <tr>
+                                <td class="all-60"><s:property value="experiment.target.name" /></td>
+	                        </tr>
+							<s:if test="faultloads.size > 0">
+								<s:iterator value="faultloads">
+									<tr>
+										<td class="all-40"><b>Faultload name(s):</b></td>
+										<td class="all-60"><s:property value="name" /></td>
+									</tr>
+									
+									<s:if test="injectionRuns.size > 0">
+										<s:iterator value="injectionRuns">
+											<tr>
+												<td class="all-40"><b>Workload name:</b></td>
+												<td class="all-60"><s:property value="workload.name" /></td>
+											</tr>
+											<tr>
+												<td class="all-40"><b>Output filename:</b></td>
+												<td class="all-60"><s:property value="output_filename" /></td>
+											</tr>
+										</s:iterator>
+									</s:if>
+								</s:iterator>
+							</s:if>
+							<tr>
                                 <td class="all-40 align-top"><b>Description:</b></td>
-                                <td class="all-60"> <s:property value="experiment.description" /></td>
+                                <td class="all-60"><s:property value="experiment.description" /></td>
                             </tr>
                         </tbody>
                     </table>

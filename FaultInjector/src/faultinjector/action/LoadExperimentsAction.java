@@ -28,7 +28,7 @@ public class LoadExperimentsAction extends ActionSupport implements SessionAware
 	   	
 		for (Experiment e : this.experiments)
 		{
-			System.out.println("Experiment ID = "+e.getEid());
+			System.out.println("Experiment ID = "+e.getExp_id());
 			System.out.println("Experiment NAME = "+e.getName());
 		}
 		

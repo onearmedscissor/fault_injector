@@ -2,6 +2,14 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="Eclipselink_JPA" transaction-type="RESOURCE_LOCAL">
 	<class>faultinjector.entity.Experiment</class>
+	<class>faultinjector.entity.Fault</class>
+	<class>faultinjector.entity.Faultload</class>
+	<class>faultinjector.entity.HardwareFault</class>
+	<class>faultinjector.entity.Injection_Run</class>
+	<class>faultinjector.entity.SoftwareFault</class>
+	<class>faultinjector.entity.Target</class>
+	<class>faultinjector.entity.User</class>
+	<class>faultinjector.entity.Workload</class>
 		<properties>
         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fault_injector"/>
         	<property name="javax.persistence.jdbc.user" value="root"/>

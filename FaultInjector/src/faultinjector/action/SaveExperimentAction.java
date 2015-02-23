@@ -1,5 +1,6 @@
 package faultinjector.action;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityTransaction;
@@ -9,6 +10,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
 import faultinjector.entity.Experiment;
+import faultinjector.entity.Faultload;
+import faultinjector.entity.Injection_Run;
 import faultinjector.service.ExperimentService;
 
 public class SaveExperimentAction extends ActionSupport implements SessionAware
@@ -18,6 +21,10 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	private Map<String, Object> session;
 	private Experiment experiment;
 	private EntityTransaction et;
+	private List <Faultload> faultloads;
+	private Faultload faultload;
+	private List <Injection_Run> injectionRuns;
+	private Injection_Run injectionRun;
 	
 	//private int id;
 	private String name;
@@ -53,21 +60,25 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 			experiment.setName(name);
 			
 		//if(creatorName.length()!=0)
-			experiment.setCreatorName(creatorName);
+			experiment.getUser().setName(creatorName);
 		
 		//experiment.setCreationDate(creationDate);
 		
 		//if(targetName.length()!=0)
-			experiment.setTargetName(targetName);
+			experiment.getTarget().setName(targetName);
 		
 		//if(workloadName.length()!=0)
-			experiment.setWorkloadName(workloadName);
-		
+			faultloads=experiment.getFaultloads();
+			faultload = faultloads.get(0);
+			injectionRuns = faultload.getInjectionRuns();
+			injectionRun = injectionRuns.get(0);
+			injectionRun.getWorkload().setName(workloadName);
+			
 		//if(faultloadName.length()!=0)
-			experiment.setFaultloadName(faultloadName);
+			faultload.setName(faultloadName);
 		
 		//if(outputFilename.length()!=0)
-			experiment.setOutputFilename(outputFilename);
+			injectionRun.setOutput_filename(outputFilename);
 		
 		//if(description.length()!=0)
 			experiment.setDescription(description);
@@ -75,15 +86,26 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		et.commit();
 
 		System.out.println("SAVE-------------------------------");
-		System.out.println("Experiment ID = "+experiment.getEid());
+		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
-		System.out.println("Experiment TARGET NAME = "+experiment.getTargetName() );
-		System.out.println("Experiment CREATION DATE = "+experiment.getCreationDate());
-		System.out.println("Experiment CREATOR NAME = "+experiment.getCreatorName());
-		System.out.println("Experiment WORKLOAD NAME = "+experiment.getWorkloadName());
-		System.out.println("Experiment OUTPUT FILENAME = "+experiment.getOutputFilename());
+		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
+		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
+		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		
+		for (Faultload f : faultloads)
+		{
+			injectionRuns = f.getInjectionRuns();
+			
+			System.out.println("Experiment FAULTLOAD NAME = "+f.getName());
+			
+			for(Injection_Run i : injectionRuns)
+			{
+				System.out.println("Faultload WORKLOAD NAME = "+i.getWorkload().getName());
+				System.out.println("Faultload OUTPUT FILENAME = "+i.getOutput_filename());
+			}
+		}
+			
 		System.out.println("Experiment DESCRIPTION = "+experiment.getDescription());
-		System.out.println("Experiment FAULTLOAD NAME = "+experiment.getFaultloadName());
 		
 		//this.getExperimentService().closeTransaction();
 		//session.clear();

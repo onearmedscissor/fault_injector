@@ -1,139 +1,139 @@
 package faultinjector.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
 
+import javax.persistence.*;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * The persistent class for the Experiment database table.
+ * 
+ */
 @Entity
-@Table
-public class Experiment
-{
+@Table(name="Experiment")
+@NamedQuery(name="Experiment.findAll", query="SELECT e FROM Experiment e")
+public class Experiment implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int eid;
-	private String name;
-	private String targetName;
-	private String creationDate;
-	private String creatorName;
-	private String workloadName;
-	private String outputFilename;
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="Exp_id")
+	private int exp_id;
+
+	@Column(name="Description")
 	private String description;
-	private String faultloadName;
 
-	public Experiment(int eid, String name, String targetName, String creationDate, String creatorName, String workloadName, String outputFilename, String description, String faultloadName)
-	{
-		super();
-		this.eid=eid;
-		this.name=name;
-		this.targetName=targetName;
-		this.creationDate=creationDate;
-		this.creatorName=creatorName;
-		this.workloadName=workloadName;
-		this.outputFilename=outputFilename;
-		this.description=description;
-		this.faultloadName=faultloadName;
+	@Column(name="Creation_date")
+	private Timestamp creation_date;
+	
+	@Column(name="Injection_date")
+	private Timestamp injection_date;
+
+	@Column(name="Name")
+	private String name;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="Creator_id", referencedColumnName="User_id")
+	private User user;
+
+	//bi-directional many-to-one association to Target
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="Target_id")
+	private Target target;
+
+	//bi-directional many-to-one association to Faultload
+	@OneToMany(mappedBy="experiment", cascade = CascadeType.PERSIST)
+	private List<Faultload> faultloads;
+
+	public Experiment() {
 	}
 
-	public Experiment()
-	{
-		super();
+	public int getExp_id() {
+		return this.exp_id;
 	}
 
-	public int getEid()
-	{
-		return eid;
+	public void setExp_id(int exp_id) {
+		this.exp_id = exp_id;
 	}
 
-	public void setEid(int eid)
-	{
-		this.eid = eid;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public String getName()
-	{
-		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-
-	public String getTargetName()
-	{
-		return targetName;
-	}
-
-	public void setTargetName(String targetName)
-	{
-		this.targetName = targetName;
-	}
-
-	public String getCreationDate()
-	{
-		return creationDate;
-	}
-
-	public void setCreationDate(String creationDate)
-	{
-		this.creationDate = creationDate;
-	}
-
-	public String getCreatorName()
-	{
-		return creatorName;
-	}
-
-	public void setCreatorName(String creatorName)
-	{
-		this.creatorName = creatorName;
-	}
-
-	public String getWorkloadName()
-	{
-		return workloadName;
-	}
-
-	public void setWorkloadName(String workloadName)
-	{
-		this.workloadName = workloadName;
-	}
-
-	public String getOutputFilename()
-	{
-		return outputFilename;
-	}
-
-	public void setOutputFilename(String outputFilename)
-	{
-		this.outputFilename = outputFilename;
-	}
-
-	public String getDescription()
-	{
-		return description;
-	}
-
-	public void setDescription(String description)
-	{
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public String getFaultloadName()
-	{
-		return faultloadName;
+	public Timestamp getCreation_date() {
+		return this.creation_date;
 	}
 
-	public void setFaultloadName(String faultloadName)
-	{
-		this.faultloadName = faultloadName;
+	public void setCreation_date(Timestamp creation_date) {
+		this.creation_date = creation_date;
+	}
+	
+	public Timestamp getInjection_date() {
+		return this.injection_date;
 	}
 
-	@Override
-	public String toString()
-	{
-		return "Experiment [eid=" + eid + ", name=" + name + ", targetName=" + targetName + ", creationDate=" + creationDate + ", creatorName=" + creatorName + ", workloadName=" + workloadName + ", outputFilename=" + outputFilename + ", description=" + description + ", faultloadName=" + faultloadName + "]";
+	public void setInjection_date(Timestamp injection_date) {
+		this.injection_date = injection_date;
 	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Target getTarget() {
+		return this.target;
+	}
+
+	public void setTarget(Target target) {
+		this.target = target;
+	}
+
+	public List<Faultload> getFaultloads()
+	{
+		if(this.faultloads==null)
+			this.faultloads = new ArrayList<Faultload>();
+		
+		return this.faultloads;
+	}
+
+	public void setFaultloads(List<Faultload> faultloads)
+	{	
+		this.faultloads = faultloads;
+	}
+
+	public Faultload addFaultload(Faultload faultload) {
+		getFaultloads().add(faultload);
+		faultload.setExperiment(this);
+
+		return faultload;
+	}
+
+	public Faultload removeFaultload(Faultload faultload) {
+		getFaultloads().remove(faultload);
+		faultload.setExperiment(null);
+
+		return faultload;
+	}
+
 }

@@ -1,8 +1,12 @@
 package faultinjector.action;
 
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import faultinjector.entity.Experiment;
+import faultinjector.entity.Faultload;
+import faultinjector.entity.Injection_Run;
 import faultinjector.service.ExperimentService;
 
 public class ShowExperimentAction extends ActionSupport /*implements SessionAware*/
@@ -13,6 +17,8 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 
 	private ExperimentService service;
 	private Experiment experiment;
+	private List<Faultload> faultloads;
+	private List<Injection_Run> injectionRuns;
 	
 	private int id;
 	
@@ -24,16 +30,30 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 		
 		this.experiment=service.findExperiment(id);
 	   	
-		System.out.println("-----------------------------------");
-		System.out.println("Experiment ID = "+experiment.getEid());
+		System.out.println("ID -> "+id);
+		System.out.println("SHOW-------------------------------");
+		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
-		System.out.println("Experiment TARGET NAME = "+experiment.getTargetName() );
-		System.out.println("Experiment CREATION DATE = "+experiment.getCreationDate());
-		System.out.println("Experiment CREATOR NAME = "+experiment.getCreatorName());
-		System.out.println("Experiment WORKLOAD NAME = "+experiment.getWorkloadName());
-		System.out.println("Experiment OUTPUT FILENAME = "+experiment.getOutputFilename());
+		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
+		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
+		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		
+		faultloads = experiment.getFaultloads();
+		
+		for (Faultload f : faultloads)
+		{
+			injectionRuns = f.getInjectionRuns();
+			
+			System.out.println("Experiment FAULTLOAD NAME = "+f.getName());
+			
+			for(Injection_Run i : injectionRuns)
+			{
+				System.out.println("Faultload WORKLOAD NAME = "+i.getWorkload().getName());
+				System.out.println("Faultload OUTPUT FILENAME = "+i.getOutput_filename());
+			}
+		}
+			
 		System.out.println("Experiment DESCRIPTION = "+experiment.getDescription());
-		System.out.println("Experiment FAULTLOAD NAME = "+experiment.getFaultloadName());
 		
         return SUCCESS;
 	}
@@ -63,10 +83,15 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 	{
 		this.experiment=experiment;
 	}
-	
-	/*public int getId()
+
+	public List<Faultload> getFaultloads()
 	{
-		return id;
+		return faultloads;
+	}
+
+	/*public List<Injection_Run> getInjectionRuns()
+	{
+		return injectionRuns;
 	}*/
 
 	public void setId(int id)
