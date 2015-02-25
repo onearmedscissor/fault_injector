@@ -78,13 +78,15 @@
 
             <!-- Add your site or application content here -->
 
-            <header class="clearfix header-bar all-80">
-                <div class="column-group">
-                    <div class="all-25 small-100 tiny-100"></div>
-                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
-                    <div class="all-40 small-100 tiny-100"></div>
-                </div>
-            </header>
+            <div class="double-top-space">
+	            <header class="clearfix half-top-padding header-bar all-80">
+	                <div class="column-group">
+	                    <div class="all-25 small-100 tiny-100"></div>
+	                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
+	                    <div class="all-40 small-100 tiny-100"></div>
+	                </div>
+	            </header>
+            </div>
 
             <div class="column-group gutters">
                 <div class="all-80">
@@ -143,7 +145,7 @@
 					<div class="all-50 align-left"><a href="#" class="ink-button" disabled id="run">Run selected experiment</a></div>
                     <h4 class="top-space">New Experiment</h4>
                     <hr />
-                    <div class="all-50 align-left"><a href="#" class="ink-button" id="create">Create new experiment...</a></div>
+                    <div class="all-50 align-left"><a href="new_experiment_1.jsp" class="ink-button" id="create">Create new experiment...</a></div>
                 </div>
             </div>
         </div>

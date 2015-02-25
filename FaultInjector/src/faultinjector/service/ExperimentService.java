@@ -1,6 +1,7 @@
 package faultinjector.service;
 
 import faultinjector.entity.Experiment;
+import faultinjector.entity.Target;
 
 import java.util.List;
 
@@ -30,11 +31,17 @@ public class ExperimentService implements Persistable
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Experiment> findAll()
+	public List<Experiment> findAllExperiments()
 	{
         Query query = getEntityManager().createQuery("select e FROM Experiment e");
         
-        System.out.println("Olá");
+        return query.getResultList();
+    }
+	
+	@SuppressWarnings("unchecked")
+	public List<Target> findAllTargets()
+	{
+        Query query = getEntityManager().createQuery("select t FROM Target t");
         
         return query.getResultList();
     }
@@ -42,6 +49,11 @@ public class ExperimentService implements Persistable
 	public Experiment findExperiment(int id)
 	{
 		return this.em.find(Experiment.class, id);
+	}
+	
+	public Target findTarget(int id)
+	{
+		return this.em.find(Target.class, id);
 	}
 	
 	public void deleteExperiment(int id)

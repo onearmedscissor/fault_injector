@@ -12,7 +12,7 @@ public class ShowDatabase
 	{
 	    ExperimentService service = new ExperimentService();
 		
-	    List <Experiment> experiments = service.findAll();
+	    List <Experiment> experiments = service.findAllExperiments();
 	    List <Faultload> faultloads;
 	    List <Injection_Run> injectionRuns;
 	    

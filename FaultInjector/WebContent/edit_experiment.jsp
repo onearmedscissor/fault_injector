@@ -78,13 +78,15 @@
 
             <!-- Add your site or application content here -->
 
-            <header class="clearfix header-bar all-80">
-                <div class="column-group">
-                    <div class="all-25 small-100 tiny-100"></div>
-                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
-                    <div class="all-40 small-100 tiny-100"></div>
-                </div>
-            </header>
+            <div class="double-top-space">
+	            <header class="clearfix half-top-padding header-bar all-80">
+	                <div class="column-group">
+	                    <div class="all-25 small-100 tiny-100"></div>
+	                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
+	                    <div class="all-40 small-100 tiny-100"></div>
+	                </div>
+	            </header>
+            </div>
 
             <div class="column-group gutters">
                 <div class="all-80">
@@ -105,7 +107,7 @@
                 <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
                     <h2>>> Edit experiment</h2>
-                    <h4 class="top-space"><s:property value="experiment.name" /></h4>
+                    <h4 class="vertical-space"><s:property value="experiment.name"/></h4>
                     <hr />
                 </div>
                 <div class="all-40 small-100 tiny-100"></div>
@@ -115,93 +117,93 @@
                 <div class="all-20 small-100 tiny-100">
                 </div>
                 <div class="all-40 small-100 tiny-100">
-
-				<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
-                    <fieldset>
-
-                        <div class="control-group column-group gutters required">
-                            <label for="name" class="all-35 align-right">Name</label>
-                            <div class="control all-65">
-                            	<!-- <input type="text" id="name" name="name"> -->
-                                <s:textfield id="name" name="name" value="%{experiment.name}"/>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group column-group gutters required">
-                            <label for="creatorname" class="all-35 align-right">Creator name</label>
-                            <div class="control all-65">
-                            	<!-- <input type="text" id="creatorname" name="creatorName"> -->
-                                <s:textfield id="creatorname" name="creatorName" value="%{experiment.user.name}"/>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group column-group gutters">
-                            <label for="creationdate" class="all-35 align-right">Creation date</label>
-                            <div class="control all-65">
-                                <!-- <input type="text" id="creationdate" name="creationDate"> -->
-                                <s:textfield id="creationdate" disabled="true" value="%{experiment.creation_date}"/>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group column-group gutters">
-                            <label for="injectiondate" class="all-35 align-right">Injection date</label>
-                            <div class="control all-65">
-                                <s:textfield id="injectiondate" disabled="true" value="%{experiment.injection_date}"/>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group column-group gutters required">
-                            <label for="targetname" class="all-35 align-right">Target name</label>
-                            <div class="control all-65">
-                                <!-- <input type="text" id="targetname" name="targetName"> -->
-                                <s:textfield id="targetname" name="targetName" value="%{experiment.target.name}"/>
-                            </div>
-                        </div>
-                        
-                        <s:if test="faultloads.size > 0">
-							<s:iterator value="faultloads">
-		                        <div class="control-group column-group gutters required">
-		                            <label for="faultloadname" class="all-35 align-right">Faultload name</label>
-		                            <div class="control all-65">
-		                                <!-- <input type="text" id="faultloadname" name="faultloadName"> -->
-		                                <s:textfield id="faultloadname" name="faultloadName" value="%{name}"/>
-		                            </div>
-		                        </div>
-		                        
-		                        <s:if test="injectionRuns.size > 0">
-		                        	<s:iterator value="injectionRuns">
-				                        <div class="control-group column-group gutters required">
-				                            <label for="workloadname" class="all-35 align-right">Workload name</label>
-				                            <div class="control all-65">
-				                                <!-- <input type="text" id="workloadname" name="workloadName"> -->
-				                                <s:textfield id="workloadname" name="workloadName" value="%{workload.name}"/>
-				                            </div>
-				                        </div>
-				                        
-				                        <div class="control-group column-group gutters required">
-				                            <label for="outputfilename" class="all-35 align-right">Output filename</label>
-				                            <div class="control all-65">
-				                                <!-- <input type="text" id="outputfilename" name="outputFilename"> -->
-				                                <s:textfield id="outputfilename" name="outputFilename" value="%{output_filename}"/>
-				                            </div>
-				                        </div>
-				                  </s:iterator>
-				        		</s:if>
-				        	</s:iterator>
-				        </s:if>
-
-                        <div class="control-group column-group gutters required">
-                            <label for="description" class="all-35 align-right">Description</label>
-                            <div class="control all-65">
-                                <!-- <textarea id="description" name="description"></textarea> -->
-                                <s:textarea id="description" name="description" rows="5" maxlength="300" value="%{experiment.description}"/>
-                            </div>
-                        </div>
-                    </fieldset>
-                    
-                    <button class="ink-button" type="submit">Submit</button>
-                </form>
-
+					<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
+	                    <fieldset>
+	                        <div class="control-group column-group gutters required">
+	                            <label for="name" class="all-35 align-right">Name</label>
+	                            <div class="control all-65">
+	                            	<!-- <input type="text" id="name" name="name"> -->
+	                                <s:textfield id="name" name="name" value="%{experiment.name}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="control-group column-group gutters required">
+	                            <label for="creatorname" class="all-35 align-right">Creator name</label>
+	                            <div class="control all-65">
+	                            	<!-- <input type="text" id="creatorname" name="creatorName"> -->
+	                                <s:textfield id="creatorname" name="creatorName" value="%{experiment.user.name}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="control-group column-group gutters">
+	                            <label for="creationdate" class="all-35 align-right">Creation date</label>
+	                            <div class="control all-65">
+	                                <!-- <input type="text" id="creationdate" name="creationDate"> -->
+	                                <s:textfield id="creationdate" disabled="true" value="%{experiment.creation_date}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="control-group column-group gutters">
+	                            <label for="injectiondate" class="all-35 align-right">Injection date</label>
+	                            <div class="control all-65">
+	                                <s:textfield id="injectiondate" disabled="true" value="%{experiment.injection_date}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="control-group column-group gutters required">
+	                            <label for="targetname" class="all-35 align-right">Target name</label>
+	                            <div class="control all-65">
+	                                <!-- <input type="text" id="targetname" name="targetName"> -->
+	                                <s:textfield id="targetname" name="targetName" value="%{experiment.target.name}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <s:if test="faultloads.size > 0">
+								<s:iterator value="faultloads">
+			                        <div class="control-group column-group gutters required">
+			                            <label for="faultloadname" class="all-35 align-right">Faultload name</label>
+			                            <div class="control all-65">
+			                                <!-- <input type="text" id="faultloadname" name="faultloadName"> -->
+			                                <s:textfield id="faultloadname" name="faultloadName" value="%{name}"/>
+			                            </div>
+			                        </div>
+			                        
+			                        <s:if test="injectionRuns.size > 0">
+			                        	<s:iterator value="injectionRuns">
+					                        <div class="control-group column-group gutters required">
+					                            <label for="workloadname" class="all-35 align-right">Workload name</label>
+					                            <div class="control all-65">
+					                                <!-- <input type="text" id="workloadname" name="workloadName"> -->
+					                                <s:textfield id="workloadname" name="workloadName" value="%{workload.name}"/>
+					                            </div>
+					                        </div>
+					                        
+					                        <div class="control-group column-group gutters required">
+					                            <label for="outputfilename" class="all-35 align-right">Output filename</label>
+					                            <div class="control all-65">
+					                                <!-- <input type="text" id="outputfilename" name="outputFilename"> -->
+					                                <s:textfield id="outputfilename" name="outputFilename" value="%{output_filename}"/>
+					                            </div>
+					                        </div>
+					                  </s:iterator>
+					        		</s:if>
+					        	</s:iterator>
+					        </s:if>
+	
+	                        <div class="control-group column-group gutters required">
+	                            <label for="description" class="all-35 align-right">Description</label>
+	                            <div class="control all-65">
+	                                <!-- <textarea id="description" name="description"></textarea> -->
+	                                <s:textarea id="description" name="description" rows="5" maxlength="300" value="%{experiment.description}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="column-group gutters">
+	                        	<div class="all-35"></div>
+                				<div class="all-65"><button class="ink-button" type="submit">Submit</button></div>
+                			</div>
+	                    </fieldset>
+	                </form>
                 </div>
             </div>
         </div>

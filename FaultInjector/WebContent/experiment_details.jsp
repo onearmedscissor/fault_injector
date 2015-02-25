@@ -62,8 +62,8 @@
             }
 
         </style>
-</head>
-<body>
+	</head>
+	<body>
 	<div class="ink-grid">
 
             <!--[if lte IE 9 ]>
@@ -78,13 +78,15 @@
 
             <!-- Add your site or application content here -->
 
-            <header class="clearfix header-bar all-80">
-                <div class="column-group">
-                    <div class="all-25 small-100 tiny-100"></div>
-                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
-                    <div class="all-40 small-100 tiny-100"></div>
-                </div>
-            </header>
+            <div class="double-top-space">
+	            <header class="clearfix half-top-padding header-bar all-80">
+	                <div class="column-group">
+	                    <div class="all-25 small-100 tiny-100"></div>
+	                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
+	                    <div class="all-40 small-100 tiny-100"></div>
+	                </div>
+	            </header>
+            </div>
 
             <div class="column-group gutters">
                 <div class="all-80">
@@ -164,5 +166,5 @@
 
         <script src="js/jquery/jquery-1.11.2.js"></script>
         <script src="js/my-jquery.js"></script>
-</body>
+	</body>
 </html>

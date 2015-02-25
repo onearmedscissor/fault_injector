@@ -168,28 +168,6 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 			addFieldError("experiment.description", "Description is required!");
 	}
 	
-	/*public ExperimentBean getExperimentBean()
-	{
-		if(!session.containsKey("experimentBean"))
-			this.setExperimentBean(new ExperimentBean());
-		return (ExperimentBean) session.get("experimentBean");
-	}
-
-	public void setExperimentBean(ExperimentBean experimentBean)
-	{
-		this.session.put("experimentBean", experimentBean);
-	}*/
-	
-	/*public int getId()
-	{
-		return id;
-	}
-	
-	public void setId(int id)
-	{
-		this.id = id;
-	}*/
-	
 	public ExperimentService getExperimentService()
 	{
 		if(!session.containsKey("experimentService"))

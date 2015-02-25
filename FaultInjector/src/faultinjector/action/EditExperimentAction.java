@@ -24,11 +24,6 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	//private ExperimentService service;
 	private int id;
 	private List <Faultload> faultloads;
-	public List<Faultload> getFaultloads()
-	{
-		return faultloads;
-	}
-
 	private List <Injection_Run> injectionRuns;
 	
 	@Override
@@ -112,6 +107,11 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	public void setId(int id)
 	{
 		this.id = id;
+	}
+	
+	public List<Faultload> getFaultloads()
+	{
+		return faultloads;
 	}
 
 	@Override
