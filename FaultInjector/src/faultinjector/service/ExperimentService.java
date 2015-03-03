@@ -38,6 +38,22 @@ public class ExperimentService implements Persistable
         return query.getResultList();
     }
 	
+	public Experiment findExperiment(int id)
+	{
+		return this.em.find(Experiment.class, id);
+	}
+	
+	public void deleteExperiment(int id)
+	{
+		this.getEt().begin();
+		
+		Experiment experiment=findExperiment(id);
+		
+		this.em.remove(experiment);
+		
+		this.getEt().commit();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Target> findAllTargets()
 	{
@@ -46,23 +62,18 @@ public class ExperimentService implements Persistable
         return query.getResultList();
     }
 	
-	public Experiment findExperiment(int id)
-	{
-		return this.em.find(Experiment.class, id);
-	}
-	
 	public Target findTarget(int id)
 	{
 		return this.em.find(Target.class, id);
 	}
 	
-	public void deleteExperiment(int id)
+	public void deleteTarget(int id)
 	{
 		this.getEt().begin();
 		
-		Experiment experiment= findExperiment(id);
+		Target target=findTarget(id);
 		
-		this.em.remove(experiment);
+		this.em.remove(target);
 		
 		this.getEt().commit();
 	}

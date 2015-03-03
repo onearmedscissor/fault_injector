@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 
 import faultinjector.entity.*;
 
-public class CreateDatabase 
+public class PopulateDatabase 
 {
    public static void main (String[] args) 
    {
@@ -36,16 +36,16 @@ public class CreateDatabase
 	   	experiment.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit justo, tristique sit amet vestibulum id, molestie in nunc. Maecenas blandit turpis non lectus sollicitudin aliquet. Integer scelerisque at mauris vel porta.");
 	   	experiment.setFaultloadName("Spatial_read");*/
 	   	
-	   	CreateDatabase.population.persistAll(entitymanager);
+	   	PopulateDatabase.population.persistAll(entitymanager);
 	   	entitymanager.getTransaction().commit();
 	   	
 	   	entitymanager.close();
 	   	emfactory.close();
    }
    
-   public static final CreateDatabase population = new CreateDatabase();
+   public static final PopulateDatabase population = new PopulateDatabase();
 
-   private CreateDatabase() {
+   private PopulateDatabase() {
 
    }
    
@@ -54,6 +54,7 @@ public class CreateDatabase
        System.out.println("Persisting samples objects.");
        
        em.persist(experiment1());
+       em.persist(experiment2());
 
        System.out.println("Flushing to database.");
        em.flush();
@@ -130,6 +131,86 @@ public class CreateDatabase
 	   
 	   //injection_Run.setFault(softwareFault);
 	   softwareFault.addInjectionRun(injection_Run);
+
+	   return experiment;
+   }
+   
+   private Experiment experiment2()
+   {
+	   Experiment experiment = new Experiment();
+
+	   experiment.setName("Nova experiência");
+	   experiment.setCreation_date(getCurrentTimestamp());
+	   experiment.setDescription("Descrição");
+	   
+	   User user = new User();
+	   user.setName("Admin 1");
+	   user.setEmail("admin@faultinjector.pt");
+	   user.setAdministrator(false);
+	   user.setInstitution("FCTUC - DEI");
+	   user.setUsername("admin_1");
+	   user.setPassword("pass");
+	   
+	   //experiment.setUser(user);
+	   user.addExperiment(experiment);
+	   
+	   Target target = new Target();
+	   target.setName("Vaio VGN-CS11Z 4GB Core 2 Duo 64 bits");
+	   target.setI386Arch(true);
+	   target.setIp("127.1.1.1");
+	   target.setOperating_system("Elementary OS 64 bit");
+
+	   target.addExperiment(experiment);
+	   /*experiment.setTarget(target);*/
+	   
+	   Workload workload = new Workload();
+	   workload.setName("Elementary + VirtualBox + YSCB");
+	   workload.setApp_1_name("Elementary OS 64 bit");
+	   workload.setApp_2_name("VirtualBox");
+	   workload.setApp_3_name("Yahoo Cloud Service Benchmark");
+	   
+	   //workload.setTarget(target);
+	   target.addWorkload(workload);
+	   
+	   Faultload faultload = new Faultload();
+	   faultload.setName("Fault set 666 1234");
+	   faultload.setCreation_date(getCurrentTimestamp());
+	   faultload.setTime_interval(666);
+	   faultload.setMem_range_beg(9600);
+	   faultload.setMem_range_end(21833);
+	   faultload.setN_faults(1234);
+	   faultload.setDescription("Blue screen");
+	   
+	   //faultload.setExperiment(experiment);
+	   experiment.addFaultload(faultload);
+	   
+	   HardwareFault hardwareFault = new HardwareFault();
+	   hardwareFault.setCreation_date(getCurrentTimestamp());
+	   hardwareFault.setTrigger_type("sd");
+	   hardwareFault.setKernel_mode(true);
+	   hardwareFault.setPid(3140);
+	   hardwareFault.setInjected(false);
+	   hardwareFault.setRead_address(false);
+	   hardwareFault.setBit_flip(true);
+	   hardwareFault.setBits(1001);
+	   hardwareFault.setHw_fault_type('r');
+	   hardwareFault.setN_bits(4);
+	   hardwareFault.setRegister("eax");
+	   
+	   //softwareFault.setFaultload(faultload);
+	   faultload.addFault(hardwareFault);
+	   
+	   Injection_Run injection_Run = new Injection_Run();
+	   injection_Run.setOutput_filename("experiencia_nova_injeccao_67.txt");
+	   
+	   //injection_Run.setWorkload(workload);
+	   workload.addInjectionRun(injection_Run);
+	   
+	   //injection_Run.setFaultload(faultload);
+	   faultload.addInjectionRun(injection_Run);
+	   
+	   //injection_Run.setFault(softwareFault);
+	   hardwareFault.addInjectionRun(injection_Run);
 
 	   return experiment;
    }

@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    $('#experiments tbody tr').click(function()
+    $('.tableSection tbody tr').click(function()
     {
         var selected = $(this).hasClass("highlight");
 
-        $('#experiments tbody tr').removeClass("highlight");
-        $('#run').attr("disabled", false);
+        $('.tableSection tbody tr').removeClass("highlight");
+        $('.buttonSection').attr("disabled", false);
 
         if(!selected)
           $(this).addClass("highlight");

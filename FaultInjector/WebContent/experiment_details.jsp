@@ -158,6 +158,8 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <a href="loadexperiments" class="ink-button all-25">Ok</a>
                 </div>
             </div>
         </div>

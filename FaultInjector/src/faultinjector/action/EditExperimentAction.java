@@ -20,8 +20,8 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	
 	private Map<String, Object> session;
 	private Experiment experiment;
+
 	private EntityTransaction et;
-	//private ExperimentService service;
 	private int id;
 	private List <Faultload> faultloads;
 	private List <Injection_Run> injectionRuns;
@@ -29,27 +29,29 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	@Override
 	public String execute()
     {
-		et = this.getExperimentService().getEt();
+		et = this.getExperimentService().getEntityManager().getTransaction();
 		
 		if(!et.isActive())
-		{
 			et.begin();
-			this.getExperimentService().setEt(et);
-			
+		
+		if(!session.containsKey("experiment "+id))
+		{
 			this.experiment = this.getExperimentService().findExperiment(id);
-			session.put("experiment", experiment);
+			session.put("experiment "+id, experiment);
 		}
 		else
-			experiment = (Experiment) session.get("experiment");
-
-		//this.experiment=service.findExperiment(id);
+			experiment = (Experiment) session.get("experiment "+id);
 	   	
 		System.out.println("ID -> "+id);
-		System.out.println("EDIT-------------------------------");
+		System.out.println("EDIT EXPERIMENT-------------------------------");
 		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
-		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
+		
+		if(experiment.getTarget()!=null)
+			System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
+		
 		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
+		
 		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
 		
 		faultloads=experiment.getFaultloads();
@@ -89,16 +91,6 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		this.session.put("experimentService", experimentService);
 	}
 	
-	public Experiment getExperiment()
-	{
-		return experiment;
-	}
-
-	public void setExperiment(Experiment experiment)
-	{
-		this.experiment=experiment;
-	}
-	
 	public int getId()
 	{
 		return id;
@@ -107,6 +99,16 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	public void setId(int id)
 	{
 		this.id = id;
+	}
+	
+	public Experiment getExperiment()
+	{
+		return experiment;
+	}
+
+	public void setExperiment(Experiment experiment)
+	{
+		this.experiment = experiment;
 	}
 	
 	public List<Faultload> getFaultloads()

@@ -17,13 +17,15 @@ public interface Persistable
 	
 	public List <Experiment> findAllExperiments();
 	
-	public List <Target> findAllTargets();
-	
 	public Experiment findExperiment(int id);
+	
+	public void deleteExperiment(int id);
+	
+	public List <Target> findAllTargets();
 	
 	public Target findTarget(int id);
 	
-	public void deleteExperiment(int id);
+	public void deleteTarget(int id); 
 	
 	public EntityManager getEntityManager();
 	

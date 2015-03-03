@@ -26,7 +26,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	private List <Injection_Run> injectionRuns;
 	private Injection_Run injectionRun;
 	
-	//private int id;
+	private String id;
 	private String name;
 	private String creatorName;
 	private String creationDate;
@@ -35,7 +35,6 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	private String faultloadName;
 	private String outputFilename;
 	private String description;
-
 	
 	@Override
 	public String execute()
@@ -49,12 +48,12 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	   	
 		//experiment.setCreatorName(creatorName);
 		
-		System.out.println("CREATOR NAME! -> "+creatorName);
+		System.out.println("SAVE EXPERIMENT ID HIDDEN FORM VALUE FIELD -> "+id);
 		
 		et = this.getExperimentService().getEt();
 		//et.begin();
 		
-		experiment = (Experiment) session.get("experiment");
+		experiment = (Experiment) session.get("experiment "+id);
 		
 		//if(name.length()!=0)
 			experiment.setName(name);
@@ -85,7 +84,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 
 		et.commit();
 
-		System.out.println("SAVE-------------------------------");
+		System.out.println("SAVE EXPERIMENT-------------------------------");
 		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
 		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
@@ -114,57 +113,28 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	}
 	
 	public void validate()
-	{
-//		try
-//		{
-//			experiment = (Experiment) session.get("experiment");
-//		
-//			System.out.println("EXPERIMENT NAME -> "+experiment.getName());
-//			
-//			if (/*experiment.getName() == null ||*/ experiment.getName().length() == 0)
-//				addFieldError("experiment.name", "Experience name is required!");
-//			
-//			if(/*experiment.getCreatorName() == null ||*/ experiment.getCreatorName().length() == 0)
-//				addFieldError("experiment.creatorName", "Creator name is required!");
-//			
-//			if(/*experiment.getTargetName() == null ||*/ experiment.getTargetName().length() == 0)
-//				addFieldError("experiment.targetName", "Target name is required!");
-//			
-//			if(/*experiment.getWorkloadName() == null ||*/ experiment.getWorkloadName().length() == 0)
-//				addFieldError("experiment.workloadName", "Workload name is required!");
-//			
-//			if(/*experiment.getFaultloadName() == null ||*/ experiment.getFaultloadName().length() == 0)
-//				addFieldError("experiment.faultloadName", "Faultload name is required!");
-//			
-//			if(/*experiment.getOutputFilename() == null ||*/ experiment.getOutputFilename().length() == 0)
-//				addFieldError("experiment.outputFilename", "Output filename is required!");
-//			
-//			if(/*experiment.getDescription() == null ||*/ experiment.getDescription().length() == 0)
-//				addFieldError("experiment.description", "Description is required!");
-//		}
-//		catch (NullPointerException npe)
-//		{
-//		}
+	{		
+		System.out.println("SAVE EXPERIMENT VALIDADE ID -> "+id);
 		
-		if (/*experiment.getName() == null ||*/ name.length() == 0)
+		if (name == null || name.length() == 0)
 			addFieldError("experiment.name", "Experience name is required!");
 		
-		if(/*experiment.getCreatorName() == null ||*/ creatorName.length() == 0)
+		if(creatorName == null || creatorName.length() == 0)
 			addFieldError("experiment.creatorName", "Creator name is required!");
 		
-		if(/*experiment.getTargetName() == null ||*/ targetName.length() == 0)
+		if(targetName == null || targetName.length() == 0)
 			addFieldError("experiment.targetName", "Target name is required!");
 		
-		if(/*experiment.getWorkloadName() == null ||*/ workloadName.length() == 0)
+		if(workloadName == null || workloadName.length() == 0)
 			addFieldError("experiment.workloadName", "Workload name is required!");
 		
-		if(/*experiment.getFaultloadName() == null ||*/ faultloadName.length() == 0)
+		if(faultloadName == null || faultloadName.length() == 0)
 			addFieldError("experiment.faultloadName", "Faultload name is required!");
 		
-		if(/*experiment.getOutputFilename() == null ||*/ outputFilename.length() == 0)
+		if(outputFilename == null || outputFilename.length() == 0)
 			addFieldError("experiment.outputFilename", "Output filename is required!");
 		
-		if(/*experiment.getDescription() == null ||*/ description.length() == 0)
+		if(description == null || description.length() == 0)
 			addFieldError("experiment.description", "Description is required!");
 	}
 	
@@ -195,6 +165,16 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		this.experiment = experiment;
 	}
 	
+	public void setId(String id)
+	{
+		this.id=id;
+	}
+	
+	public String getId()
+	{
+		return id;
+	}
+
 	public void setName(String name)
 	{
 		this.name=name;

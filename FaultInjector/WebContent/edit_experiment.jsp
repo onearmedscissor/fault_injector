@@ -119,6 +119,8 @@
                 <div class="all-40 small-100 tiny-100">
 					<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
 	                    <fieldset>
+	                    	<s:hidden name="id" value="%{experiment.exp_id}"/>
+	                    
 	                        <div class="control-group column-group gutters required">
 	                            <label for="name" class="all-35 align-right">Name</label>
 	                            <div class="control all-65">
