@@ -5,19 +5,19 @@
   border-top: 1px solid #cecece;
 }
 
-table.tableSection
+table.tableSection, table.checkbox
 {
   display: table;
   width: 100%;
 }
 
-table.tableSection thead, table.tableSection tbody
+table.tableSection thead, table.tableSection tbody, table.checkbox thead, table.checkbox tbody
 {
   float: left;
   width: 100%;
 }
 
-table.tableSection tbody
+table.tableSection tbody, table.checkbox tbody
 {
   overflow: auto;
   /* Giving height to make the tbscroll */
@@ -26,7 +26,7 @@ table.tableSection tbody
   display:block;
 }
 
-table.tableSection tr
+table.tableSection tr, table.checkbox tr
 {
   width: 100%;
   display: table;
@@ -35,7 +35,7 @@ table.tableSection tr
 }
 
 /** for older browsers (IE8), if you know number of columns in your table **/
-table.tableSection tr>td:first-child + td + td
+table.tableSection tr>td:first-child + td + td, table.checkbox tr>td:first-child + td + td
 {
   width : 31%;
 }

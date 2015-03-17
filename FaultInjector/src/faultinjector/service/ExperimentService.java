@@ -1,7 +1,9 @@
 package faultinjector.service;
 
 import faultinjector.entity.Experiment;
+import faultinjector.entity.Faultload;
 import faultinjector.entity.Target;
+import faultinjector.entity.Workload;
 
 import java.util.List;
 
@@ -74,6 +76,54 @@ public class ExperimentService implements Persistable
 		Target target=findTarget(id);
 		
 		this.em.remove(target);
+		
+		this.getEt().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Workload> findAllWorkloads()
+	{
+        Query query = getEntityManager().createQuery("select w FROM Workload w");
+        
+        return query.getResultList();
+    }
+	
+	public Workload findWorkload(int id)
+	{
+		return this.em.find(Workload.class, id);
+	}
+	
+	public void deleteWorkload(int id)
+	{
+		this.getEt().begin();
+		
+		Workload workload=findWorkload(id);
+		
+		this.em.remove(workload);
+		
+		this.getEt().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Faultload> findAllFaultloads()
+	{
+        Query query = getEntityManager().createQuery("select f FROM Faultload f");
+        
+        return query.getResultList();
+    }
+	
+	public Faultload findFaultload(int id)
+	{
+		return this.em.find(Faultload.class, id);
+	}
+	
+	public void deleteFaultload(int id)
+	{
+		this.getEt().begin();
+		
+		Faultload faultload=findFaultload(id);
+		
+		this.em.remove(faultload);
 		
 		this.getEt().commit();
 	}

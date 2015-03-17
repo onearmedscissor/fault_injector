@@ -74,6 +74,52 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <result name="success" type="redirectAction">loadtargets</result>
       <result name="input">/new_target.jsp</result>
     </action>
+    
+    <action name="createexperiment2" class="faultinjector.action.CreateExperiment2Action" method="execute">
+      <result name="success" type="redirectAction">loadworkloads</result>
+    </action>
+    
+    <action name="loadworkloads" class="faultinjector.action.LoadWorkloadsAction" method="execute">
+      <result name="success">/new_experiment_3.jsp</result>
+    </action>
+    
+    <action name="showworkload" class="faultinjector.action.ShowWorkloadAction" method="execute">
+      <result name="success">/workload_details.jsp</result>
+    </action>
+    
+    <action name="editworkload" class="faultinjector.action.EditWorkloadAction" method="execute">
+      <result name="success">/edit_workload.jsp</result>
+    </action>
+    
+    <action name="saveworkload" class="faultinjector.action.SaveWorkloadAction" method="execute">
+      <result name="success" type="redirectAction">loadworkloads</result>
+      <result name="input" type="redirectAction">
+      	<param name="actionName">editworkload</param>
+      	<param name="id">${id}</param>
+      </result>
+    </action>
+    
+    <action name="deleteworkload" class="faultinjector.action.DeleteWorkloadAction" method="execute">
+      <result name="success" type="redirectAction">loadworkloads</result>
+    </action>
+    
+    <action name="createworkload" class="faultinjector.action.CreateWorkloadAction" method="execute">
+      <result name="success" type="redirectAction">loadworkloads</result>
+      <result name="input">/new_workload.jsp</result>
+    </action>
+    
+    <action name="createexperiment3" class="faultinjector.action.CreateExperiment3Action" method="execute">
+      <result name="success" type="redirectAction">loadfaultloads</result>
+<!--       <result name="input">/new_experiment_3.jsp</result> -->
+   </action>
+   
+   <action name="loadfaultloads" class="faultinjector.action.LoadFaultloadsAction" method="execute">
+      <result name="success">/new_experiment_4.jsp</result>
+    </action>
+    
+    <action name="showfaultload" class="faultinjector.action.ShowFaultloadAction" method="execute">
+      <result name="success">/faultload_details.jsp</result>
+    </action>
 
   </package>
 

@@ -31,7 +31,7 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 		this.experiment=service.findExperiment(id);
 	   	
 		System.out.println("ID -> "+id);
-		System.out.println("SHOW-------------------------------");
+		System.out.println("SHOW EXPERIMENT-------------------------------");
 		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());
 		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
