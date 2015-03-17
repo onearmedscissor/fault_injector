@@ -22,6 +22,8 @@ public class LoadExperimentsAction extends ActionSupport implements SessionAware
     {	
 		this.experiments=this.getExperimentService().findAllExperiments();
 	   	
+		//session.put("wid", -1);
+		
 		for (Experiment e : this.experiments)
 		{
 			System.out.println("LOAD EXPERIMENTS-------------------------------");
