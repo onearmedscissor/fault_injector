@@ -58,7 +58,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		//if(name.length()!=0)
 			experiment.setName(name);
 			
-		//if(creatorName.length()!=0)
+		if(!creatorName.isEmpty())
 			experiment.getUser().setName(creatorName);
 		
 		//experiment.setCreationDate(creationDate);
@@ -68,16 +68,26 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		
 		//if(workloadName.length()!=0)
 			faultloads=experiment.getFaultloads();
-			faultload = faultloads.get(0);
-			injectionRuns = faultload.getInjectionRuns();
-			injectionRun = injectionRuns.get(0);
-			injectionRun.getWorkload().setName(workloadName);
+			if(!faultloads.isEmpty())
+			{
+				faultload = faultloads.get(0);
+				injectionRuns = faultload.getInjectionRuns();
+				if(!injectionRuns.isEmpty())
+				{
+					injectionRun = injectionRuns.get(0);
+					injectionRun.getWorkload().setName(workloadName);
+					
+					injectionRun.setOutput_filename(outputFilename);
+	    		}
+				
+				faultload.setName(faultloadName);
+			}
 			
 		//if(faultloadName.length()!=0)
-			faultload.setName(faultloadName);
+			
 		
 		//if(outputFilename.length()!=0)
-			injectionRun.setOutput_filename(outputFilename);
+			
 		
 		//if(description.length()!=0)
 			experiment.setDescription(description);
@@ -89,7 +99,9 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		System.out.println("Experiment NAME = "+experiment.getName());
 		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
 		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
-		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		
+		if(experiment.getUser()!=null)
+			System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
 		
 		for (Faultload f : faultloads)
 		{
@@ -119,20 +131,23 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		if (name == null || name.length() == 0)
 			addFieldError("experiment.name", "Experience name is required!");
 		
-		if(creatorName == null || creatorName.length() == 0)
-			addFieldError("experiment.creatorName", "Creator name is required!");
+//		if(creatorName == null || creatorName.length() == 0)
+//			addFieldError("experiment.creatorName", "Creator name is required!");
 		
 		if(targetName == null || targetName.length() == 0)
 			addFieldError("experiment.targetName", "Target name is required!");
+//		
+//		if(experiment.getFaultloads()!=null)
+//		{
+//			if(workloadName == null || workloadName.length() == 0)
+//				addFieldError("experiment.workloadName", "Workload name is required!");
+//		
+//			if(outputFilename == null || outputFilename.length() == 0)
+//				addFieldError("experiment.outputFilename", "Output filename is required!");
+//		}
 		
-		if(workloadName == null || workloadName.length() == 0)
-			addFieldError("experiment.workloadName", "Workload name is required!");
-		
-		if(faultloadName == null || faultloadName.length() == 0)
-			addFieldError("experiment.faultloadName", "Faultload name is required!");
-		
-		if(outputFilename == null || outputFilename.length() == 0)
-			addFieldError("experiment.outputFilename", "Output filename is required!");
+//		if(faultloadName == null || faultloadName.length() == 0)
+//			addFieldError("experiment.faultloadName", "Faultload name is required!");
 		
 		if(description == null || description.length() == 0)
 			addFieldError("experiment.description", "Description is required!");

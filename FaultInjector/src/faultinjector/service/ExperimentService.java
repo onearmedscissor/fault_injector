@@ -47,13 +47,19 @@ public class ExperimentService implements Persistable
 	
 	public void deleteExperiment(int id)
 	{
-		this.getEt().begin();
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+				
+		this.et.begin();
 		
 		Experiment experiment=findExperiment(id);
 		
 		this.em.remove(experiment);
 		
 		this.getEt().commit();
+		
+		this.em.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -71,13 +77,19 @@ public class ExperimentService implements Persistable
 	
 	public void deleteTarget(int id)
 	{
-		this.getEt().begin();
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+				
+		this.et.begin();
 		
 		Target target=findTarget(id);
 		
 		this.em.remove(target);
 		
 		this.getEt().commit();
+		
+		this.em.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -95,13 +107,19 @@ public class ExperimentService implements Persistable
 	
 	public void deleteWorkload(int id)
 	{
-		this.getEt().begin();
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+				
+		this.et.begin();
 		
 		Workload workload=findWorkload(id);
 		
 		this.em.remove(workload);
 		
 		this.getEt().commit();
+		
+		this.em.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -119,13 +137,19 @@ public class ExperimentService implements Persistable
 	
 	public void deleteFaultload(int id)
 	{
-		this.getEt().begin();
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+				
+		this.et.begin();
 		
 		Faultload faultload=findFaultload(id);
 		
 		this.em.remove(faultload);
 		
-		this.getEt().commit();
+		this.et.commit();
+		
+		this.em.close();
 	}
 	
 	public EntityManager getEntityManager()

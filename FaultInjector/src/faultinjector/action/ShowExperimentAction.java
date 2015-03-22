@@ -36,7 +36,9 @@ public class ShowExperimentAction extends ActionSupport /*implements SessionAwar
 		System.out.println("Experiment NAME = "+experiment.getName());
 		System.out.println("Experiment TARGET NAME = "+experiment.getTarget().getName());
 		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
-		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		
+		if(experiment.getUser()!=null)
+			System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
 		
 		faultloads = experiment.getFaultloads();
 		

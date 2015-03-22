@@ -52,9 +52,11 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		
 		System.out.println("Experiment CREATION DATE = "+experiment.getCreation_date());
 		
-		System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
+		if(experiment.getUser()!=null)
+			System.out.println("Experiment CREATOR NAME = "+experiment.getUser().getName());
 		
 		faultloads=experiment.getFaultloads();
+		faultloads.size();
 		
 		for (Faultload f : faultloads)
 		{

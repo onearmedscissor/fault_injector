@@ -1,6 +1,6 @@
 $(document).ready(function(){
     if ($('.tableSection tbody tr').hasClass("highlight"))	
-    		$('.buttonSection').attr("disabled", false);
+    	$('.buttonSection').attr("disabled", false);
 	
 	$('.tableSection tbody tr').click(function()
     {
