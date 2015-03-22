@@ -90,16 +90,11 @@
 
             <div class="column-group gutters">
                 <div class="all-80">
-                    <nav class="ink-navigation xlarge-push-left large-push-left half-top-space">
-                        <ul class="menu horizontal">
-                            <li><a href="#">Home</a></li>
-                        </ul>
-                    </nav>
-                    <nav class="ink-navigation xlarge-push-right large-push-right half-top-space">
-                        <ul class="menu horizontal">
-                            <li class="active"><a href="#">Logout jaff</a></li>
-                        </ul>
-                    </nav>
+					<nav class="ink-navigation half-top-space">
+					    <ul class="breadcrumbs">					        
+					        <li class="active"><a href="#">Home</a></li>
+					    </ul>
+					</nav>
                 </div>
             </div>
 
