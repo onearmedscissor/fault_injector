@@ -101,7 +101,7 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
-                    <h2>>> User main menu</h2>
+                    <h2>User main menu</h2>
                     <h4 class="top-space">Experiment selection</h4>
                     <hr />
                 </div>
@@ -119,19 +119,23 @@
 						</thead>
 						<tbody>
 							<s:if test="experiments.size > 0">
-									<s:iterator value="experiments">
-										<tr id="row_<s:property value="i"/>">
-											<td class="all-100"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>"><s:property value="name"/></a></td>
-											<td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>">edit</a></td>
-											<td class="all-5">|</td>
-											<td class="all-15"><a href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>">delete</a></td>
-											<td class="all-5"><a href="help.jsp">?</a></td>
-										</tr>
-									</s:iterator>
+								<s:iterator value="experiments">
+									<tr id="row_<s:property value="i"/>">
+										<td class="all-100"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>"><s:property value="name"/></a></td>
+										<td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>">edit</a></td>
+										<td class="all-5">|</td>
+										<td class="all-15"><a href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>">delete</a></td>
+										<td class="all-5"><a class="help">?</a></td>
+									</tr>
+								</s:iterator>
 							</s:if>
 						</tbody>
 					</table>
-					
+					<div id="help-experiments" class="ink-alert block info" role="alert" style="display:none">
+					    <button class="ink-dismiss">&times;</button>
+					    <h4>Experiment options menu</h4>
+					    <p>Here you can view, edit, delete or run previously created experiments, or alternatively start creating a new one.</p>
+					</div>					
 					<div class="all-50 align-left"><form action="#"><button class="ink-button buttonSection" disabled>Run selected experiment</button></form></div>
                     <h4 class="top-space">New Experiment</h4>
                     <hr />
@@ -144,5 +148,21 @@
 
         <script src="js/jquery/jquery-1.11.2.js"></script>
         <script src="js/my-jquery.js"></script>
+        
+        <script type="text/javascript">
+	        $(document).ready(function() {
+// 	            $('.help').on('mouseover', function() {
+// 	              $('#help-experiments').show();
+// 	            });
+	            
+// 	            $('.help').on('mouseout', function() {
+// 	                $('#help-experiments').hide();
+// 	              });
+
+				$('.help').click(function(event) {
+					$('#help-experiments').show();
+				});
+	    	});
+        </script>
 </body>
 </html>
