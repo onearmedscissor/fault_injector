@@ -102,7 +102,7 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
-                    <h2>>> Experiment details</h2>
+                    <h2>Experiment details</h2>
                     <h4 class="top-space"><s:property value="experiment.name" /></h4>
                     <hr />
                 </div>
