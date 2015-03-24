@@ -46,27 +46,6 @@ public class ExperimentService implements Persistable
 		return this.em.find(Experiment.class, id);
 	}
 	
-	public void updateExperiment(int id, Experiment e)
-	{
-		this.em = this.getEntityManagerFactory().createEntityManager();
-		
-		this.et=this.em.getTransaction();
-				
-		this.et.begin();
-		
-		Experiment experiment=findExperiment(id);
-		
-		experiment = e;
-		
-		//this.em.remove(experiment);
-		
-		this.et.commit();
-		
-		//this.getEt().commit();
-		
-		this.em.close();
-	}
-	
 	public void deleteExperiment(int id)
 	{
 		this.em = this.getEntityManagerFactory().createEntityManager();
@@ -122,7 +101,9 @@ public class ExperimentService implements Persistable
 		
 		this.et=this.em.getTransaction();
 		
-		this.em.persist(t);
+		this.et.begin();
+		
+		this.em.merge(t);
 		
 		this.et.commit();
 		
@@ -167,7 +148,9 @@ public class ExperimentService implements Persistable
 		
 		this.et=this.em.getTransaction();
 		
-		this.em.persist(w);
+		this.et.begin();
+		
+		this.em.merge(w);
 		
 		this.et.commit();
 		
@@ -194,7 +177,7 @@ public class ExperimentService implements Persistable
 		this.em = this.getEntityManagerFactory().createEntityManager();
 		
 		this.et=this.em.getTransaction();
-				
+
 		this.et.begin();
 		
 		Faultload faultload=findFaultload(id);

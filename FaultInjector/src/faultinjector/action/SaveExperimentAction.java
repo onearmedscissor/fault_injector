@@ -56,7 +56,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		//if(name.length()!=0)
 			experiment.setName(name);
 			
-		if(!creatorName.isEmpty())
+		//if(!creatorName.isEmpty())
 			experiment.getUser().setName(creatorName);
 		
 		//experiment.setCreationDate(creationDate);
@@ -130,23 +130,23 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		if (name == null || name.length() == 0)
 			addFieldError("experiment.name", "Experience name is required!");
 		
-//		if(creatorName == null || creatorName.length() == 0)
-//			addFieldError("experiment.creatorName", "Creator name is required!");
+		if(creatorName == null || creatorName.length() == 0)
+			addFieldError("experiment.creatorName", "Creator name is required!");
 		
 		if(targetName == null || targetName.length() == 0)
 			addFieldError("experiment.targetName", "Target name is required!");
 //		
 //		if(experiment.getFaultloads()!=null)
 //		{
-//			if(workloadName == null || workloadName.length() == 0)
-//				addFieldError("experiment.workloadName", "Workload name is required!");
-//		
-//			if(outputFilename == null || outputFilename.length() == 0)
-//				addFieldError("experiment.outputFilename", "Output filename is required!");
+			if(workloadName == null || workloadName.length() == 0)
+				addFieldError("experiment.workloadName", "Workload name is required!");
+		
+			if(outputFilename == null || outputFilename.length() == 0)
+				addFieldError("experiment.outputFilename", "Output filename is required!");
 //		}
 		
-//		if(faultloadName == null || faultloadName.length() == 0)
-//			addFieldError("experiment.faultloadName", "Faultload name is required!");
+		if(faultloadName == null || faultloadName.length() == 0)
+			addFieldError("experiment.faultloadName", "Faultload name is required!");
 		
 		if(description == null || description.length() == 0)
 			addFieldError("experiment.description", "Description is required!");
