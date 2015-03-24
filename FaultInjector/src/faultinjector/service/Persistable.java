@@ -13,9 +13,7 @@ import faultinjector.entity.Workload;
 
 public interface Persistable
 {
-	//public void beginTransaction();
-	
-	public void closeTransaction();
+	public void closeFactory();
 	
 	public List <Experiment> findAllExperiments();
 	
@@ -29,11 +27,15 @@ public interface Persistable
 	
 	public void deleteTarget(int id);
 	
+	public void createTarget(Target t);
+	
 	public List <Workload> findAllWorkloads();
 	
 	public Workload findWorkload(int id);
 	
 	public void deleteWorkload(int id);
+	
+	public void createWorkload(Workload w);
 	
 	public List<Faultload> findAllFaultloads();
 	
@@ -46,6 +48,4 @@ public interface Persistable
 	public EntityManagerFactory getEntityManagerFactory();
 	
 	public EntityTransaction getEt();
-	
-	public void setEt(EntityTransaction et);
 }

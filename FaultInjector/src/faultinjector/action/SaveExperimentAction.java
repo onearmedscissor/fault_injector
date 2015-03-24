@@ -3,6 +3,7 @@ package faultinjector.action;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,6 +21,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	
 	private Map<String, Object> session;
 	private Experiment experiment;
+	private EntityManager em;
 	private EntityTransaction et;
 	private List <Faultload> faultloads;
 	private Faultload faultload;
@@ -38,22 +40,18 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	
 	@Override
 	public String execute()
-    {
-		//System.out.println("Olá!");
-		/*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-	   	EntityManager entitymanager = emfactory.createEntityManager();
-		service = new ExperimentService(entitymanager);
-		
-		this.experiment=service.findExperiment(id);*/
-	   	
+    {  	
 		//experiment.setCreatorName(creatorName);
 		
 		System.out.println("SAVE EXPERIMENT ID HIDDEN FORM VALUE FIELD -> "+id);
 		
-		et = this.getExperimentService().getEt();
-		//et.begin();
+		em = this.getExperimentService().getEntityManager();
+		et = em.getTransaction();
+		et.begin();
 		
-		experiment = (Experiment) session.get("experiment "+id);
+		//experiment = (Experiment) session.get("experiment "+id);
+		
+		experiment = this.getExperimentService().findExperiment(Integer.parseInt(id));
 		
 		//if(name.length()!=0)
 			experiment.setName(name);
@@ -93,7 +91,8 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 			experiment.setDescription(description);
 
 		et.commit();
-
+		em.close();
+		
 		System.out.println("SAVE EXPERIMENT-------------------------------");
 		System.out.println("Experiment ID = "+experiment.getExp_id());
 		System.out.println("Experiment NAME = "+experiment.getName());

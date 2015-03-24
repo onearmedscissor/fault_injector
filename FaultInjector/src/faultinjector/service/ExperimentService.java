@@ -26,16 +26,17 @@ public class ExperimentService implements Persistable
 	   	et = em.getTransaction();
 	}
 	
-	public void closeTransaction()
+	public void closeFactory()
 	{
-		this.em.close();
 		this.emfactory.close();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Experiment> findAllExperiments()
 	{
-        Query query = getEntityManager().createQuery("select e FROM Experiment e");
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		Query query = this.em.createQuery("select e FROM Experiment e");
         
         return query.getResultList();
     }
@@ -43,6 +44,27 @@ public class ExperimentService implements Persistable
 	public Experiment findExperiment(int id)
 	{
 		return this.em.find(Experiment.class, id);
+	}
+	
+	public void updateExperiment(int id, Experiment e)
+	{
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+				
+		this.et.begin();
+		
+		Experiment experiment=findExperiment(id);
+		
+		experiment = e;
+		
+		//this.em.remove(experiment);
+		
+		this.et.commit();
+		
+		//this.getEt().commit();
+		
+		this.em.close();
 	}
 	
 	public void deleteExperiment(int id)
@@ -65,7 +87,9 @@ public class ExperimentService implements Persistable
 	@SuppressWarnings("unchecked")
 	public List<Target> findAllTargets()
 	{
-        Query query = getEntityManager().createQuery("select t FROM Target t");
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		Query query = this.em.createQuery("select t FROM Target t");
         
         return query.getResultList();
     }
@@ -92,10 +116,25 @@ public class ExperimentService implements Persistable
 		this.em.close();
 	}
 	
+	public void createTarget(Target t)
+	{
+		this.em=this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+		
+		this.em.persist(t);
+		
+		this.et.commit();
+		
+		this.em.close();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Workload> findAllWorkloads()
 	{
-        Query query = getEntityManager().createQuery("select w FROM Workload w");
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		Query query = this.em.createQuery("select w FROM Workload w");
         
         return query.getResultList();
     }
@@ -122,10 +161,25 @@ public class ExperimentService implements Persistable
 		this.em.close();
 	}
 	
+	public void createWorkload(Workload w)
+	{
+		this.em=this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+		
+		this.em.persist(w);
+		
+		this.et.commit();
+		
+		this.em.close();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Faultload> findAllFaultloads()
 	{
-        Query query = getEntityManager().createQuery("select f FROM Faultload f");
+		this.em = this.getEntityManagerFactory().createEntityManager();
+		
+		Query query = this.em.createQuery("select f FROM Faultload f");
         
         return query.getResultList();
     }
@@ -165,10 +219,5 @@ public class ExperimentService implements Persistable
 	public EntityTransaction getEt()
 	{
 		return et;
-	}
-
-	public void setEt(EntityTransaction et)
-	{
-		this.et = et;
 	}
 }

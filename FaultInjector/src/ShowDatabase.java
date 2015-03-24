@@ -44,6 +44,6 @@ public class ShowDatabase
 	    	}
 	    }
 	    
-	    service.closeTransaction();
+	    service.closeFactory();
 	}
 }

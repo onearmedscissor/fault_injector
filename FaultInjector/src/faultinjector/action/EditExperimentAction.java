@@ -21,7 +21,6 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	private Map<String, Object> session;
 	private Experiment experiment;
 
-	private EntityTransaction et;
 	private int id;
 	private List <Faultload> faultloads;
 	private List <Injection_Run> injectionRuns;
@@ -29,18 +28,20 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 	@Override
 	public String execute()
     {
-		et = this.getExperimentService().getEntityManager().getTransaction();
+//		et = this.getExperimentService().getEntityManager().getTransaction();
+//		
+//		if(!et.isActive())
+//			et.begin();
 		
-		if(!et.isActive())
-			et.begin();
+		experiment = this.getExperimentService().findExperiment(id);
 		
-		if(!session.containsKey("experiment "+id))
-		{
-			this.experiment = this.getExperimentService().findExperiment(id);
-			session.put("experiment "+id, experiment);
-		}
-		else
-			experiment = (Experiment) session.get("experiment "+id);
+//		if(!session.containsKey("experiment "+id))
+//		{
+//			this.experiment = this.getExperimentService().findExperiment(id);
+//			session.put("experiment "+id, experiment);
+//		}
+//		else
+//			experiment = (Experiment) session.get("experiment "+id);
 	   	
 		System.out.println("ID -> "+id);
 		System.out.println("EDIT EXPERIMENT-------------------------------");
