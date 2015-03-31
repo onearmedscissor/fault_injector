@@ -127,29 +127,29 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 	{		
 		System.out.println("SAVE EXPERIMENT VALIDADE ID -> "+id);
 		
-		if (name == null || name.length() == 0)
-			addFieldError("experiment.name", "Experience name is required!");
+		if (name == null || name.length()==0 || name.length()>50)
+			addFieldError("experiment.name", "Experience name is required and can't have more than 50 characters!");
 		
-		if(creatorName == null || creatorName.length() == 0)
-			addFieldError("experiment.creatorName", "Creator name is required!");
+		if(creatorName == null || creatorName.length()==0 || creatorName.length()>30)
+			addFieldError("experiment.creatorName", "Creator name is required and can't have more than 30 characters!");
 		
-		if(targetName == null || targetName.length() == 0)
-			addFieldError("experiment.targetName", "Target name is required!");
+		if(targetName == null || targetName.length()==0 || targetName.length()>50)
+			addFieldError("experiment.targetName", "Target name is required and can't have more than 50 characters!");
 //		
 //		if(experiment.getFaultloads()!=null)
 //		{
-			if(workloadName == null || workloadName.length() == 0)
-				addFieldError("experiment.workloadName", "Workload name is required!");
+			if(workloadName == null || workloadName.length()==0 || workloadName.length()>30)
+				addFieldError("experiment.workloadName", "Workload name is required and can't have more than 30 characters!");
 		
-			if(outputFilename == null || outputFilename.length() == 0)
-				addFieldError("experiment.outputFilename", "Output filename is required!");
+			if(outputFilename == null || outputFilename.length()==0 || outputFilename.length()>50)
+				addFieldError("experiment.outputFilename", "Output filename is required and can't have more than 50 characters!");
 //		}
 		
-		if(faultloadName == null || faultloadName.length() == 0)
-			addFieldError("experiment.faultloadName", "Faultload name is required!");
+		if(faultloadName == null || faultloadName.length()==0 || faultloadName.length()>30)
+			addFieldError("experiment.faultloadName", "Faultload name is required and can't have more than 30 characters!");
 		
-		if(description == null || description.length() == 0)
-			addFieldError("experiment.description", "Description is required!");
+		if(description == null || description.length()==0 || description.length()>300)
+			addFieldError("experiment.description", "Description is required and can't have more than 300 characters!");
 	}
 	
 	public ExperimentService getExperimentService()
