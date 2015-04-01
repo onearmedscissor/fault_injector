@@ -139,7 +139,7 @@
 					<div class="all-50 align-left"><form action="#"><button class="ink-button buttonSection" disabled>Run selected experiment</button></form></div>
                     <h4 class="top-space">New Experiment</h4>
                     <hr />
-                    <div class="all-50 align-left"><a href="new_experiment_1.jsp" class="ink-button" id="create">Create new experiment...</a></div>
+                    <div class="all-50 align-left"><a href="clearnewexperimentforward" class="ink-button" id="create">Create new experiment...</a></div>
                 </div>
             </div>
         </div>

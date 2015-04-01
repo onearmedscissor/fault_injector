@@ -40,13 +40,17 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     <action name="deleteexperiment" class="faultinjector.action.DeleteExperimentAction" method="execute">
       <result name="success" type="redirectAction">loadexperiments</result>
     </action>
+
+	<action name="clearnewexperimentforward" class="faultinjector.action.ClearNewExperimentAction" method="execute">
+      <result name="success" type="redirectAction">createexperiment1</result>
+    </action>
     
     <action name="createexperiment1" class="faultinjector.action.CreateExperiment1Action" method="execute">
       <result name="success" type="redirectAction">loadtargets</result>
       <result name="input">/new_experiment_1.jsp</result>
     </action>
     
-    <action name="clearnewexperiment" class="faultinjector.action.ClearNewExperimentAction" method="execute">
+    <action name="clearnewexperimentbackward" class="faultinjector.action.ClearNewExperimentAction" method="execute">
       <result name="success" type="redirectAction">loadexperiments</result>
     </action>
     
