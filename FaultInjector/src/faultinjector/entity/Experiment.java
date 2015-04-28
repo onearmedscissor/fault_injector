@@ -42,7 +42,7 @@ public class Experiment implements Serializable {
 	private User user;
 
 	//bi-directional many-to-one association to Target
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="Target_id")
 	private Target target;
 

@@ -1,28 +1,30 @@
 $(document).ready(function(){
-    if ($('.tableSection tbody tr').hasClass("highlight"))	
-    	$('.buttonSection').attr("disabled", false);
+    if ($('.dynamicTable tbody tr').hasClass("highlight"))	
+    	$('.dynamicButton').attr("disabled", false);
 	
-	$('.tableSection tbody tr').click(function()
+	$('.dynamicTable tbody tr').click(function()
     {
         var selected = $(this).hasClass("highlight");
 
-        $('.tableSection tbody tr').removeClass("highlight");
-        $('.buttonSection').attr("disabled", false);
+        $('.dynamicTable tbody tr').removeClass("highlight");
+        $('.dynamicButton').attr("disabled", false);
 
         if(!selected)
           $(this).addClass("highlight");
     });
-
+	
     $('#all').click(function(event) {  //on click
-        if(this.checked) { // check select status
+//        if(this.checked) { // check select status
+//            $('.cb').each(function() { //loop through each checkbox
+//                this.checked = true;  //select all checkboxes with class "checkbox1"              
+//            });
+//        }else{
             $('.cb').each(function() { //loop through each checkbox
-                this.checked = true;  //select all checkboxes with class "checkbox1"              
+                this.checked = true; //deselect all checkboxes with class "checkbox1"                      
             });
-        }else{
-            $('.cb').each(function() { //loop through each checkbox
-                this.checked = false; //deselect all checkboxes with class "checkbox1"                      
-            });        
-        }
+            
+            $('#finish').attr("disabled", false);
+//        }
     });
     
     function isEmpty(el)

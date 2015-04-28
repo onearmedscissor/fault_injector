@@ -21,6 +21,8 @@ public interface Persistable
 	
 	public void deleteExperiment(int id);
 	
+	public void createExperiment(Experiment e);
+	
 	public List <Target> findAllTargets();
 	
 	public Target findTarget(int id);

@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Fault Injector: Experiment details</title>
+        <title>Fault Injector: User main menu</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
@@ -70,31 +70,30 @@
         </style>
 
     </head>
-    
-	<body>
-		<div class="ink-grid">
+
+    <body>
+        <div class="ink-grid">
 
             <!--[if lte IE 9 ]>
-	            <div class="ink-alert basic" role="alert">
-	                <button class="ink-dismiss">&times;</button>
-	                <p>
-	                    <strong>You are using an outdated Internet Explorer version.</strong>
-	                    Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
-	                </p>
-	            </div>
-            <![endif]-->
+				<div class="ink-alert basic" role="alert">
+					<button class="ink-dismiss">&times;</button>
+					<p>
+						<strong>You are using an outdated Internet Explorer version.</strong>
+						Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
+					</p>
+				</div>
+			 <![endif]-->
 
             <!-- Add your site or application content here -->
 
             <header class="vertical-space">
-                <h1>FAULT INJECTOR<small>Experiment details</small></h1>
+                <h1>FAULT INJECTOR<small>User main menu</small></h1>
 
                 <div class="column-group">
                     <div class="all-85">
                         <nav class="ink-navigation">
                             <ul class="breadcrumbs green">
-                                <li><a href="loadexperiments">Home</a></li>
-                                <li class="active"><a href="#">Experiment details</a></li>
+                                <li class="active"><a href="#">Home</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -107,59 +106,43 @@
                     </div>
                 </div>
             </header>
-           <div class="column-group">
-				<div class="all-20"></div>
-           		<div class="all-60">
-           			<h2 class="bottom-space">Experiment details</h2>
-                	<table class="ink-table alternating hover">
-                        <tbody>
-                        	<tr>
-                                <td class="all-25 align-right fw-400">Experiment name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.name" /></td>
-                            </tr>
-                        	<tr>
-                                <td class="all-25 align-right fw-400">Creator name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.user.name" /></td>
-                            </tr>
+            <div class="column-group gutters">
+                <div class="all-100">
+                    <h2 class="bottom-space">Experiment selection</h2>
+                
+                    <table id="experiments" class="ink-table dynamicTable">
+                        <thead>
                             <tr>
-                                <td class="all-25 align-right fw-400">Creation date</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.creation_date" /></td>
+                                <th colspan="4" class="align-left large">Select the experiment to run:</th>
                             </tr>
-                            <tr>
-                                <td class="all-25 align-right fw-400">Target name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.target.name" /></td>
-	                        </tr>
-							<s:if test="faultloads.size > 0">
-								<s:iterator value="faultloads">
-									<tr>
-										<td class="all-25 align-right fw-400">Faultload name(s)</td>
-										<td class="all-75 fw-300"><s:property value="name" /></td>
-									</tr>
-									
-									<s:if test="injectionRuns.size > 0">
-										<s:iterator value="injectionRuns">
-											<tr>
-												<td class="all-25 align-right fw-400">Workload name</td>
-												<td class="all-75 fw-300"><s:property value="workload.name" /></td>
-											</tr>
-											<tr>
-												<td class="all-25 align-right fw-400">Output filename</td>
-												<td class="all-75 fw-300"><s:property value="output_filename" /></td>
-											</tr>
-										</s:iterator>
-									</s:if>
-								</s:iterator>
-							</s:if>
-							<tr>
-                                <td class="all-25 align-right fw-400">Description</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.description" /></td>
-                            </tr>
+                        </thead>
+                        <tbody class="column-group">
+                        	<s:if test="experiments.size > 0">
+								<s:iterator value="experiments">
+		                            <tr class="all-100 column-group">
+		                                <td class="all-70 quarter-top-space"><a href="<s:url action="showexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>" class="large all-100"><s:property value="name"/></a></td>
+		                                <td class="all-15"><a href="<s:url action="editexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
+		                                <td class="all-15"><a href="<s:url action="deleteexperiment"><s:param name="id"><s:property value="exp_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
+		                                <td class="all-5"><a class="help all-100">?</a></td>
+		                            </tr>
+		                       </s:iterator>
+		                   </s:if>
                         </tbody>
                     </table>
+                    
+                    <div id="help-experiments" class="ink-alert block info" role="alert" style="display:none">
+					    <button class="ink-dismiss">&times;</button>
+					    <h4>Experiment options menu</h4>
+					    <p>Here you can view, edit, delete or run previously created experiments, or alternatively start creating a new one. To select an experiment, please click on the corresponding row on the table above.</p>
+					</div>
+                    
+	                <form action="#"><button class="ink-button dynamicButton all-20" disabled>Run selected experiment</button></form>
+	                <h4 class="top-space">New Experiment</h4>
+	                <hr />
+	                <a href="clearnewexperimentforward" class="ink-button all-20" id="create">Create new experiment...</a>
             	</div>
-            	<div class="all-20"></div>
         	</div>
-		</div>
+        </div>
         <footer class="clearfix double-top-space">
             <div class="ink-grid">
                 <ul class="unstyled inline half-vertical-space">
@@ -170,8 +153,18 @@
                 <p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
             </div>
         </footer>
-
+        
         <script src="js/jquery/jquery-1.11.2.js"></script>
         <script src="js/my-jquery.js"></script>
-	</body>
+        
+        <script type="text/javascript">
+	        $(document).ready(function()
+	        {
+				$('.help').click(function(event)
+				{
+					$('#help-experiments').show();
+				});
+	    	});
+        </script>
+    </body>
 </html>

@@ -63,6 +63,21 @@ public class ExperimentService implements Persistable
 		this.em.close();
 	}
 	
+	public void createExperiment(Experiment e)
+	{
+		this.em=this.getEntityManagerFactory().createEntityManager();
+		
+		this.et=this.em.getTransaction();
+		
+		this.et.begin();
+		
+		this.em.merge(e);
+		
+		this.et.commit();
+		
+		this.em.close();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Target> findAllTargets()
 	{

@@ -78,15 +78,22 @@
 
             <!-- Add your site or application content here -->
 
-            <div class="double-top-space">
-	            <header class="clearfix half-top-padding header-bar all-80">
-	                <div class="column-group">
-	                    <div class="all-25 small-100 tiny-100"></div>
-	                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div>
-	                    <div class="all-40 small-100 tiny-100"></div>
-	                </div>
-	            </header>
-            </div>
+<!--             <div class="double-top-space"> -->
+<!-- 	            <header class="clearfix half-top-padding header-bar all-80"> -->
+<!-- 	                <div class="column-group"> -->
+<!-- 	                    <div class="all-25 small-100 tiny-100"></div> -->
+<!-- 	                    <div class="all-35 small-100 tiny-100"><h1>Fault injector</h1></div> -->
+<!-- 	                    <div class="all-40 small-100 tiny-100"></div> -->
+<!-- 	                </div> -->
+<!-- 	            </header> -->
+<!--             </div> -->
+
+			<header class="clearfix vertical-padding">
+
+                <h1 class="logo xlarge-push-left large-push-left">
+                     FAULT INJECTOR<small>smaller text</small>
+                </h1>
+           </header>
 
             <div class="column-group gutters">
                 <div class="all-80">
@@ -101,16 +108,17 @@
             <div class="column-group">
                 <div class="all-20 small-100 tiny-100"></div>
                 <div class="all-40 small-100 tiny-100">
-                    <h2>User main menu</h2>
-                    <h4 class="top-space">Experiment selection</h4>
-                    <hr />
+                    <h2 class="bottom-space">User main menu</h2>
                 </div>
                 <div class="all-40 small-100 tiny-100"></div>
             </div>
 
             <div class="column-group">
-                <div class="all-20 small-100 tiny-100"></div>
-                <div class="all-40 small-100 tiny-100">
+                <div class="all-15 small-100 tiny-100"></div>
+                <div class="all-45 small-100 tiny-100">
+                	<h4>Experiment selection</h4>
+                    <hr />
+                    
 					<table id="experiments" class="ink-table grey tableSection">
 						<thead>
 							<tr>
@@ -131,16 +139,19 @@
 							</s:if>
 						</tbody>
 					</table>
+					
 					<div id="help-experiments" class="ink-alert block info" role="alert" style="display:none">
 					    <button class="ink-dismiss">&times;</button>
 					    <h4>Experiment options menu</h4>
 					    <p>Here you can view, edit, delete or run previously created experiments, or alternatively start creating a new one.</p>
-					</div>					
+					</div>
+					
 					<div class="all-50 align-left"><form action="#"><button class="ink-button buttonSection" disabled>Run selected experiment</button></form></div>
                     <h4 class="top-space">New Experiment</h4>
                     <hr />
                     <div class="all-50 align-left"><a href="clearnewexperimentforward" class="ink-button" id="create">Create new experiment...</a></div>
                 </div>
+                 <div class="all-20 small-100 tiny-100"></div>
             </div>
         </div>
 

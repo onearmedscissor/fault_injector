@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Fault Injector: Experiment details</title>
+        <title>Fault Injector: Faultload details</title>
         <meta name="description" content="">
         <meta name="author" content="ink, cookbook, recipes">
         <meta name="HandheldFriendly" content="True">
@@ -62,7 +62,7 @@
                 margin: 0 0.5em;
                 font-size: 1.6em;
             }
-
+			
             footer {
                 background: #ccc;
             }
@@ -84,17 +84,18 @@
 	            </div>
             <![endif]-->
 
-            <!-- Add your site or application content here -->
+            <!-- Add your site or application content here -->        <div class="top-space"></div>
 
             <header class="vertical-space">
-                <h1>FAULT INJECTOR<small>Experiment details</small></h1>
+                <h1>FAULT INJECTOR<small>Faultload details</small></h1>
 
                 <div class="column-group">
                     <div class="all-85">
                         <nav class="ink-navigation">
                             <ul class="breadcrumbs green">
                                 <li><a href="loadexperiments">Home</a></li>
-                                <li class="active"><a href="#">Experiment details</a></li>
+                                <li><a href="loadfaultloads">New experiment [4/4]</a></li>
+                                <li class="active"><a href="#">Faultload details</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -107,60 +108,49 @@
                     </div>
                 </div>
             </header>
-           <div class="column-group">
-				<div class="all-20"></div>
-           		<div class="all-60">
-           			<h2 class="bottom-space">Experiment details</h2>
+
+            <div class="column-group">
+                <div class="all-20"></div>
+                <div class="all-60">
+                    <h2 class="bottom-space">Faultload details</h2>
                 	<table class="ink-table alternating hover">
                         <tbody>
                         	<tr>
-                                <td class="all-25 align-right fw-400">Experiment name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.name" /></td>
-                            </tr>
-                        	<tr>
-                                <td class="all-25 align-right fw-400">Creator name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.user.name" /></td>
+                                <td class="all-25 align-right fw-400">Name</td>
+                                <td class="all-75 fw-300"><s:property value="faultload.name" /></td>
                             </tr>
                             <tr>
                                 <td class="all-25 align-right fw-400">Creation date</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.creation_date" /></td>
+                                <td class="all-75 fw-300"><s:property value="faultload.creation_date" /></td>
                             </tr>
                             <tr>
-                                <td class="all-25 align-right fw-400">Target name</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.target.name" /></td>
+                                <td class="all-25 align-right fw-400">Memory range start</td>
+                                <td class="all-75 fw-300"><s:property value="faultload.mem_range_beg" /></td>
 	                        </tr>
-							<s:if test="faultloads.size > 0">
-								<s:iterator value="faultloads">
-									<tr>
-										<td class="all-25 align-right fw-400">Faultload name(s)</td>
-										<td class="all-75 fw-300"><s:property value="name" /></td>
-									</tr>
-									
-									<s:if test="injectionRuns.size > 0">
-										<s:iterator value="injectionRuns">
-											<tr>
-												<td class="all-25 align-right fw-400">Workload name</td>
-												<td class="all-75 fw-300"><s:property value="workload.name" /></td>
-											</tr>
-											<tr>
-												<td class="all-25 align-right fw-400">Output filename</td>
-												<td class="all-75 fw-300"><s:property value="output_filename" /></td>
-											</tr>
-										</s:iterator>
-									</s:if>
-								</s:iterator>
-							</s:if>
-							<tr>
+                            <tr>
+                                <td class="all-25 align-right fw-400">Memory range end</td>
+                                <td class="all-75 fw-300"><s:property value="faultload.mem_range_end" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-25 align-right fw-400">Number of faults</td>
+                                <td class="all-75 fw-300"><s:property value="faultload.n_faults" /></td>
+                            </tr>
+                            <tr>
+                                <td class="all-25 align-right fw-400">Time interval (ms)</td>
+                                <td class="all-75 fw-300"><s:property value="faultload.time_interval" /></td>
+                            </tr>
+                            <tr>
                                 <td class="all-25 align-right fw-400">Description</td>
-                                <td class="all-75 fw-300"><s:property value="experiment.description" /></td>
+                                <td class="all-75 fw-300"><s:property value="faultload.description" /></td>
                             </tr>
                         </tbody>
                     </table>
-            	</div>
-            	<div class="all-20"></div>
-        	</div>
-		</div>
-        <footer class="clearfix double-top-space">
+<!--                     <a href="loadfaultloads" class="ink-button all-25">Ok</a> -->
+                </div>
+                <div class="all-20"></div>
+            </div>
+        </div>
+		<footer class="clearfix double-top-space">
             <div class="ink-grid">
                 <ul class="unstyled inline half-vertical-space">
                     <li class="active"><a href="#">About</a></li>
