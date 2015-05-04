@@ -87,7 +87,7 @@
             <!-- Add your site or application content here -->
 
             <header class="vertical-space">
-                <h1>FAULT INJECTOR<small>Create new experiment</small></h1>
+                <h1>FAULT INJECTOR<small>Create new faultload</small></h1>
 
                 <div class="column-group">
                     <div class="all-85">

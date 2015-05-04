@@ -130,8 +130,8 @@
 	                        <div class="control-group column-group gutters required">
 					            <p class="label all-20 align-right push-middle">Architecture</p>
 					            <ul class="control unstyled all-80 inline">
-					                <li><input type="radio" id="arch32" name="i386Arch" value="true" checked><label for="x86">32 bit</label></li>
-					                <li><input type="radio" id="arch64" name="i386Arch" value="false"><label for="x64">64 bit</label></li>
+					                <li><input type="radio" id="arch32" name="i386Arch" value="true" checked><label for="x86">Intel 32 bits</label></li>
+					                <li><input type="radio" id="arch64" name="i386Arch" value="false"><label for="x64">Intel 64 bits</label></li>
 					            </ul>
 					        </div>
 	                        

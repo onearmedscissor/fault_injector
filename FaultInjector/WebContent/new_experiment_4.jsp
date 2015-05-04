@@ -156,7 +156,7 @@
 					<a href="#" class="ink-button all-20" id="all">Select all</a>
 					<h4 class="top-space">New faultload</h4>
                     <hr />
-                    <a href="new_faultload_1.jsp" class="ink-button all-20" id="newfaultload">Add new faultload...</a>
+                    <a href="new_faultload_1.jsp" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a>
 	               <div class="column-group push-center">
                     	<a href="loadworkloads" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
 						<button class="ink-button double-vertical-space all-25 dynamicButton" id="finish" disabled>Finish</button>

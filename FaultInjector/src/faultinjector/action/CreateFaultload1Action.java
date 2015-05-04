@@ -15,8 +15,8 @@ public class CreateFaultload1Action extends ActionSupport implements SessionAwar
 	private Map<String, Object> session;
 	private FaultloadBean faultloadBean;
 	
-	String name, description;
-	int timeInterval;
+	private String name, description;
+	private int timeInterval;
 	
 	public String execute()
 	{

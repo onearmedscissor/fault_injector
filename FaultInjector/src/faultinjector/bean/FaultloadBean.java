@@ -4,7 +4,8 @@ public class FaultloadBean
 {
 	private String name, description;
 	private int timeInterval, memoryFaultRangeStart, memoryFaultRangeEnd, numberFaults, bitsChangeStart, bitsChangeEnd;
-	private boolean faultType, hardwareFaultType, faultClass;
+	private char hardwareFaultType;
+	private boolean bitFlip;
 	
 	public FaultloadBean()
 	{
@@ -90,33 +91,23 @@ public class FaultloadBean
 		this.bitsChangeEnd = bitsChangeEnd;
 	}
 
-	public boolean isFaultType()
-	{
-		return faultType;
-	}
-
-	public void setFaultType(boolean faultType)
-	{
-		this.faultType = faultType;
-	}
-
-	public boolean isHardwareFaultType()
+	public char getHardwareFaultType()
 	{
 		return hardwareFaultType;
 	}
 
-	public void setHardwareFaultType(boolean hardwareFaultType)
+	public void setHardwareFaultType(char hardwareFaultType)
 	{
 		this.hardwareFaultType = hardwareFaultType;
 	}
 
-	public boolean isFaultClass()
+	public boolean isBitFlip()
 	{
-		return faultClass;
+		return bitFlip;
 	}
 
-	public void setFaultClass(boolean faultClass)
+	public void setBitFlip(boolean bitFlip)
 	{
-		this.faultClass = faultClass;
+		this.bitFlip = bitFlip;
 	}
 }

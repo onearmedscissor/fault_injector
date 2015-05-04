@@ -130,16 +130,21 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     </action>
     
     
+
+    
+    <action name="deletefaultload" class="faultinjector.action.DeleteFaultloadAction" method="execute">
+      <result name="success" type="redirectAction">loadfaultloads</result>
+    </action>
     
     <action name="createfaultload1" class="faultinjector.action.CreateFaultload1Action" method="execute">
       <result name="success">/new_faultload_2.jsp</result>
       <result name="input">/new_faultload_1.jsp</result>
     </action>
     
-    <action name="deletefaultload" class="faultinjector.action.DeleteFaultloadAction" method="execute">
-      <result name="success" type="redirectAction">loadfaultloads</result>
+    <action name="createfaultload2" class="faultinjector.action.CreateFaultload2Action" method="execute">
+      <result name="success">/new_faultload_3.jsp</result>
+      <result name="input">/new_faultload_2.jsp</result>
     </action>
-    
     
     <action name="createexperiment4" class="faultinjector.action.CreateExperiment4Action" method="execute">
       <result name="success" type="redirectAction">loadexperiments</result>
