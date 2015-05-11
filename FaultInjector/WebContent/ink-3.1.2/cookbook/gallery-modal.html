@@ -1,248 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Modal gallery</title>
-        <meta name="description" content="">
-        <meta name="author" content="ink, cookbook, recipes">
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Modal gallery</title>
+<meta name="description" content="">
+<meta name="author" content="ink, cookbook, recipes">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <link rel="apple-touch-icon" href="../img/touch-icon-iphone.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../img/touch-icon-ipad.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../img/touch-icon-iphone-retina.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../img/touch-icon-ipad-retina.png">
-        <link rel="apple-touch-startup-image" href="../img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="../img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<!-- Place favicon.ico and apple-touch-icon(s) here  -->
+<link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="../img/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="../img/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="../img/touch-icon-ipad-retina.png">
+<link rel="apple-touch-startup-image" href="../img/splash.320x460.png"
+	media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="../img/splash.768x1004.png"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="../img/splash.1024x748.png"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
-        <!-- load Ink's CSS -->
-        <link rel="stylesheet" type="text/css" href="../css/ink-flex.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+<!-- load Ink's CSS -->
+<link rel="stylesheet" type="text/css" href="../css/ink-flex.min.css">
+<link rel="stylesheet" type="text/css"
+	href="../css/font-awesome.min.css">
 
-        <!-- load Ink's CSS for IE8 -->
-        <!--[if lt IE 9 ]>
+<!-- load Ink's CSS for IE8 -->
+<!--[if lt IE 9 ]>
             <link rel="stylesheet" href="../css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
-        <!-- test browser flexbox support and load legacy grid if unsupported -->
-        <script type="text/javascript" src="../js/modernizr.js"></script>
-        <script type="text/javascript">
+<!-- test browser flexbox support and load legacy grid if unsupported -->
+<script type="text/javascript" src="../js/modernizr.js"></script>
+<script type="text/javascript">
             Modernizr.load({
               test: Modernizr.flexbox,
               nope : '../css/ink-legacy.min.css'
             });
         </script>
 
-        <!-- load Ink's javascript files -->
-        <script type="text/javascript" src="../js/holder.js"></script>
-        <script type="text/javascript" src="../js/ink-all.min.js"></script>
-        <script type="text/javascript" src="../js/autoload.js"></script>
+<!-- load Ink's javascript files -->
+<script type="text/javascript" src="../js/holder.js"></script>
+<script type="text/javascript" src="../js/ink-all.min.js"></script>
+<script type="text/javascript" src="../js/autoload.js"></script>
 
-        <style>
+<style>
+body {
+	background: #ededed;
+}
 
-            body {
-                background: #ededed;
-            }
+.panel {
+	border-radius: 2px;
+	-webkit-box-shadow: #dddddd 0 1px 1px 0;
+	-moz-box-shadow: #dddddd 0 1px 1px 0;
+	box-shadow: #dddddd 0 1px 1px 0;
+	padding: 1em;
+	border: 1px solid #BBB;
+	background-color: #FFF;
+}
 
-            .panel {
-                border-radius: 2px;
-                -webkit-box-shadow: #dddddd 0 1px 1px 0;
-                -moz-box-shadow: #dddddd 0 1px 1px 0;
-                box-shadow: #dddddd 0 1px 1px 0;
-                padding: 1em;
-                border: 1px solid #BBB;
-                background-color: #FFF;
-            }
+#thumbs_carousel .slide {
+	opacity: 0.6;
+}
 
-            #thumbs_carousel .slide {
-                opacity: 0.6;
-            }
-            #thumbs_carousel .slide.active {
-                opacity: 1;
-            }
+#thumbs_carousel .slide.active {
+	opacity: 1;
+}
+</style>
 
-        </style>
-
-    </head>
+</head>
 <body>
-<div class="ink-grid vertical-space">
+	<div class="ink-grid vertical-space">
 
-    <h1>Modal Gallery</h1>
+		<h1>Modal Gallery</h1>
 
-    <div class="panel">
+		<div class="panel">
 
-        <div id="main_carousel" class="ink-carousel">
+			<div id="main_carousel" class="ink-carousel">
 
-            <ul class="stage column-group gutters" id="trigger-modal">
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/1"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/2"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/3"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/4"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/5"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/6"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/7"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="slide all-100">
-                    <figure class="ink-image">
-                        <a href="#"><img src="http://lorempixel.com/1650/928/city/8"></a>
-                        <figcaption class="dark">
-                            This caption is placed after the image
-                        </figcaption>
-                    </figure>
-                </li>
-            </ul>
+				<ul class="stage column-group gutters" id="trigger-modal">
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/1"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/2"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/3"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/4"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/5"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/6"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/7"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+					<li class="slide all-100">
+						<figure class="ink-image">
+							<a href="#"><img src="http://lorempixel.com/1650/928/city/8"></a>
+							<figcaption class="dark">This caption is placed
+								after the image</figcaption>
+						</figure>
+					</li>
+				</ul>
 
-            <nav id="pagination_main" class="ink-navigation vertical-space" data-next-label="" data-previous-label="">
-                <ul class="pagination chevron">
-                </ul>
-            </nav>
+				<nav id="pagination_main" class="ink-navigation vertical-space"
+					data-next-label="" data-previous-label="">
+					<ul class="pagination chevron">
+					</ul>
+				</nav>
 
-        </div>
+			</div>
 
 
-        <!-- THUMBNAILS -->
+			<!-- THUMBNAILS -->
 
-        <div id="thumbs_carousel" class="ink-carousel">
-            <ul class="stage column-group gutters unstyled">
-                <li class="slide all-20 active">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/1"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/2"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/3"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/4"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/5"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/6"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/7"></a>
-                </li>
-                <li class="slide all-20">
-                    <a href="#"><img src="http://lorempixel.com/480/270/city/8"></a>
-                </li>
-            </ul>
-            <nav id="pagination_thumbs" class="ink-navigation top-space" data-next-label="" data-previous-label="">
-                <ul class="pagination dotted">
-                </ul>
-            </nav>
-        </div>
+			<div id="thumbs_carousel" class="ink-carousel">
+				<ul class="stage column-group gutters unstyled">
+					<li class="slide all-20 active"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/1"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/2"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/3"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/4"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/5"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/6"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/7"></a></li>
+					<li class="slide all-20"><a href="#"><img
+							src="http://lorempixel.com/480/270/city/8"></a></li>
+				</ul>
+				<nav id="pagination_thumbs" class="ink-navigation top-space"
+					data-next-label="" data-previous-label="">
+					<ul class="pagination dotted">
+					</ul>
+				</nav>
+			</div>
 
-        <!-- MODAL -->
-        <div class="ink-shade fade">
-            <div id="modal-window" class="ink-modal fade" data-trigger="#trigger-modal" data-width="95%" data-height="95%" role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
-                <div class="modal-header">
-                    <button class="modal-close ink-dismiss"></button>
-                    <h2 id="modal-title">Use arrow left/right to navigate</h2>
-                </div>
-                <div class="modal-body" id="modalContent">
-                <!-- CAROUSEL MODAL -->
-                    <div id="modal_carousel" class="ink-carousel">
+			<!-- MODAL -->
+			<div class="ink-shade fade">
+				<div id="modal-window" class="ink-modal fade"
+					data-trigger="#trigger-modal" data-width="95%" data-height="95%"
+					role="dialog" aria-hidden="true" aria-labelled-by="modal-title">
+					<div class="modal-header">
+						<button class="modal-close ink-dismiss"></button>
+						<h2 id="modal-title">Use arrow left/right to navigate</h2>
+					</div>
+					<div class="modal-body" id="modalContent">
+						<!-- CAROUSEL MODAL -->
+						<div id="modal_carousel" class="ink-carousel">
 
-                        <ul class="stage column-group half-gutters unstyled">
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/1">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/2">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/3">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/4">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/5">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/6">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/7">
-                            </li>
-                            <li class="slide all-100">
-                                <img src="http://lorempixel.com/1650/928/city/8">
-                            </li>
-                        </ul>
+							<ul class="stage column-group half-gutters unstyled">
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/1"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/2"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/3"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/4"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/5"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/6"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/7"></li>
+								<li class="slide all-100"><img
+									src="http://lorempixel.com/1650/928/city/8"></li>
+							</ul>
 
-                        <nav id="pagination_modal" class="ink-navigation" data-next-label="" data-previous-label="">
-                            <ul class="pagination chevron">
-                            </ul>
-                        </nav>
-                    </div>
+							<nav id="pagination_modal" class="ink-navigation"
+								data-next-label="" data-previous-label="">
+								<ul class="pagination chevron">
+								</ul>
+							</nav>
+						</div>
 
-                </div>
-            </div>
-        </div>
+					</div>
+				</div>
+			</div>
 
-    </div>
+		</div>
 
-</div>
+	</div>
 
-<script>
+	<script>
 Ink.requireModules(['Ink.UI.Carousel_1', 'Ink.UI.Modal_1', 'Ink.Dom.Event_1', 'Ink.Dom.Element_1', 'Ink.Dom.Css_1'], function(Carousel, Modal, InkEvent, InkElement, InkCss){
 
 

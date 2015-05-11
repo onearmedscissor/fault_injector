@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityTransaction;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-import org.apache.struts2.interceptor.SessionAware;
 
 import faultinjector.entity.Target;
 import faultinjector.service.ExperimentService;
@@ -16,72 +14,71 @@ import faultinjector.service.ExperimentService;
 public class EditTargetAction extends ActionSupport implements SessionAware
 {
 	private static final long serialVersionUID = 4L;
-	
+
 	private Map<String, Object> session;
 	private Target target;
 	private int id;
 	private String ip, ip1, ip2, ip3, ip4;
-	private String [] ips;
+	private String[] ips;
 	private List<String> architectures;
 
-	private static final String X86 = "32 Bit";
-	private static final String X64 = "64 Bit";
-	
+	private static final String X86 = "32 Bit", X64 = "64 Bit";
+
 	public EditTargetAction()
 	{
 		architectures = new ArrayList<String>();
 		architectures.add(X86);
 		architectures.add(X64);
 	}
-	
+
 	@Override
 	public String execute()
-    {
-//		et = this.getExperimentService().getEntityManager().getTransaction();
-//		
-//		if(!et.isActive())
-//			et.begin();
-		
+	{
+		// et = this.getExperimentService().getEntityManager().getTransaction();
+		//
+		// if(!et.isActive())
+		// et.begin();
+
 		target = this.getExperimentService().findTarget(id);
-		
-//		if(!session.containsKey("target "+id))
-//		{
-//			this.target = this.getExperimentService().findTarget(id);
-//			session.put("target "+id, target);
-//		}
-//		else
-//			target = (Target) session.get("target "+id);
-		
-		ip=target.getIp();
-		ips=ip.split("\\.");
-		System.out.println("IP -> "+ip);
+
+		// if(!session.containsKey("target "+id))
+		// {
+		// this.target = this.getExperimentService().findTarget(id);
+		// session.put("target "+id, target);
+		// }
+		// else
+		// target = (Target) session.get("target "+id);
+
+		ip = target.getIp();
+		ips = ip.split("\\.");
+		System.out.println("IP -> " + ip);
 		ip1 = ips[0];
-		System.out.println("IP1 -> "+ip1);
+		System.out.println("IP1 -> " + ip1);
 		ip2 = ips[1];
-		System.out.println("IP2 -> "+ip2);
+		System.out.println("IP2 -> " + ip2);
 		ip3 = ips[2];
 		ip4 = ips[3];
-		
-		System.out.println("ID -> "+id);
+
+		System.out.println("ID -> " + id);
 		System.out.println("EDIT TARGET-------------------------------");
-		System.out.println("Target ID = "+target.getTarget_id());
-		System.out.println("Target NAME = "+target.getName());
-		System.out.println("Target 32 BIT ARCHITECTURE? = "+target.getI386Arch());
-		System.out.println("Target IP = "+target.getIp());
-		System.out.println("Target OPERATING SYSTEM = "+target.getOperating_system());
-		
-        return SUCCESS;
+		System.out.println("Target ID = " + target.getTarget_id());
+		System.out.println("Target NAME = " + target.getName());
+		System.out.println("Target 32 BIT ARCHITECTURE? = " + target.getI386Arch());
+		System.out.println("Target IP = " + target.getIp());
+		System.out.println("Target OPERATING SYSTEM = " + target.getOperating_system());
+
+		return SUCCESS;
 	}
-	
+
 	public ExperimentService getExperimentService()
 	{
-		if(!session.containsKey("experimentService"))
+		if (!session.containsKey("experimentService"))
 		{
 			ExperimentService experimentService = new ExperimentService();
-			
+
 			this.setExperimentService(experimentService);
 		}
-		
+
 		return (ExperimentService) session.get("experimentService");
 	}
 
@@ -89,7 +86,7 @@ public class EditTargetAction extends ActionSupport implements SessionAware
 	{
 		this.session.put("experimentService", experimentService);
 	}
-	
+
 	public int getId()
 	{
 		return id;
@@ -129,7 +126,7 @@ public class EditTargetAction extends ActionSupport implements SessionAware
 	{
 		return target;
 	}
-	
+
 	public String getDefaultArchitectureValue()
 	{
 		if (getTarget().getI386Arch())
@@ -141,6 +138,6 @@ public class EditTargetAction extends ActionSupport implements SessionAware
 	@Override
 	public void setSession(Map<String, Object> session)
 	{
-		this.session=session;
+		this.session = session;
 	}
 }

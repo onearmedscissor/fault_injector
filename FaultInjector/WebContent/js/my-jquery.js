@@ -22,8 +22,8 @@ $(document).ready(function(){
             $('.cb').each(function() { //loop through each checkbox
                 this.checked = true; //deselect all checkboxes with class "checkbox1"                      
             });
-            
-            $('#finish').attr("disabled", false);
+
+            $('#finish, #nextfl').attr("disabled", false);
 //        }
     });
     

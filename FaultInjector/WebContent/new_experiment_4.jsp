@@ -107,22 +107,22 @@
                     </div>
                 </div>
             </header>
-            <div class="column-group gutters">
+            <div class="column-group">
                 <div class="all-100">
                     <h2 class="bottom-space">Create new experiment [4/4]</h2>
 					<table class="ink-table hover alternating checkboxTable">
-	                  <thead>
-	                    <tr>
-	                      <th class="all-5"></th>
-	                      <th class="align-left all-30 large">Select the faultloads to use:</th>
-	                      <th class="all-15"></th>
-	                      <th class="all-15"></th>
-	                      <th class="all-15"></th>
-	                      <th class="all-15"></th>
-	                      <th class="all-5"></th>
-	                    </tr>
-	                  </thead>
-	                  <tbody>
+	                	<thead>
+	                    	<tr>
+			                	<th class="all-5"></th>
+			               		<th class="align-left all-30 large">Select the faultloads to use:</th>
+			                	<th class="all-15"></th>
+			                	<th class="all-15"></th>
+			                	<th class="all-15"></th>
+			                	<th class="all-15"></th>
+			                	<th class="all-5"></th>
+							</tr>
+						</thead>
+						<tbody>
 	                  	<s:if test="faultloads.size > 0">
 							<s:iterator value="faultloads">
 			                    <tr>
@@ -130,22 +130,27 @@
 				                      	<div class="ink-form quarter-top-space">
 											<div class="control-group" style="margin:0">
 								                <ul class="control unstyled" style="margin:0">
-								                	<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value=""><label for=""></label></li>
+								                	<s:if test="#session.experimentBean.containsFaultloadId(fl_id) == true">
+									                		<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value="" checked><label for=""></label></li>									            		
+									            		</s:if>
+									            		<s:else>
+									                		<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value=""><label for=""></label></li>
+									                	</s:else>
 								            	</ul>
 							            	</div>
 						                </div>
 			                      	</td>
 			                      <td><a href="<s:url action="showfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="large"><s:property value="name"/></a></td>
 			                      <td><a href="<s:url action="editfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
-			                      <td><a href="href="<s:url action="copyfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">copy</a></td>
+			                      <td><a href="<s:url action="copyfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">copy</a></td>
 			                      <td><a href="<s:url action="regeneratefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">regenerate</a></td>
 			                      <td><a href="<s:url action="deletefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
 			                      <td class="align-center"><a href="#" class="help all-100">?</a></td>
 			                    </tr>
 			          		</s:iterator>
 			          	</s:if>
-	               	</tbody>
-	              </table>
+	               		</tbody>
+					</table>
 					
 					<div id="help-faultloads" class="ink-alert block info" role="alert" style="display:none">
 					    <button class="ink-dismiss">&times;</button>
@@ -156,8 +161,9 @@
 					<a href="#" class="ink-button all-20" id="all">Select all</a>
 					<h4 class="top-space">New faultload</h4>
                     <hr />
-                    <a href="new_faultload_1.jsp" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a>
-	               <div class="column-group push-center">
+<!--                     <a href="new_faultload_1.jsp" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a> -->
+					<a href="clearnewfaultloadforward" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a>
+	               	<div class="column-group push-center">
                     	<a href="loadworkloads" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
 						<button class="ink-button double-vertical-space all-25 dynamicButton" id="finish" disabled>Finish</button>
 	            	</div>
