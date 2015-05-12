@@ -9,10 +9,14 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import faultinjector.bean.ExperimentBean;
 import faultinjector.bean.FaultloadBean;
+import faultinjector.entity.Experiment;
 import faultinjector.entity.Faultload;
 import faultinjector.entity.HardwareFault;
 import faultinjector.entity.Register;
+import faultinjector.entity.Target;
+import faultinjector.entity.Workload;
 import faultinjector.service.ExperimentService;
 
 public class CreateFaultload4Action extends ActionSupport implements SessionAware
@@ -20,13 +24,50 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 	private static final long serialVersionUID = 4L;
 
 	private Map<String, Object> session;
+	private ExperimentBean experimentBean;
 	private FaultloadBean faultloadBean;
 	private boolean faultMode;
 	private int processId, timeStart, timeEnd, codeAddress, dataAddress;
 	private String triggerType, accessCode, accessData;
+	private List<String> accessTypes;
 
 	public String execute()
 	{
+		// first, finish creating a new experiment
+
+		if (!session.containsKey("experimentBean"))
+		{
+			this.experimentBean = new ExperimentBean();
+			session.put("experimentBean", experimentBean);
+		} else
+			experimentBean = (ExperimentBean) session.get("experimentBean");
+
+		// experimentBean.setFaultloadIds(fids);
+
+		Experiment experiment = new Experiment();
+
+		experiment.setName(experimentBean.getName());
+		experiment.setDescription(experimentBean.getDescription());
+
+		Target t = this.getExperimentService().findTarget(experimentBean.getTargetId());
+		experiment.setTarget(t);
+
+		Workload w = this.getExperimentService().findWorkload(experimentBean.getWorkloadId());
+		experiment.getTarget().addWorkload(w);
+
+		// for (int n = 0; n < fids.length; n++)
+		// {
+		// Faultload f =
+		// this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
+		//
+		// experiment.addFaultload(f);
+		// }
+
+		/*
+		 * 2. Then, assign the newly created experiment to the new faultload
+		 * being created, and then finish creating it
+		 */
+
 		if (!session.containsKey("faultloadBean"))
 		{
 			this.faultloadBean = new FaultloadBean();
@@ -34,9 +75,6 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		} else
 			faultloadBean = (FaultloadBean) session.get("faultloadBean");
 
-		
-		
-		
 		faultloadBean.setKernelMode(faultMode);
 		faultloadBean.setProcessId(processId);
 		faultloadBean.setTriggerType(triggerType);
@@ -99,6 +137,7 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 
 		faultload.setRegisters(regs);
 		// faultload.setExperiment(experiment);
+		experiment.addFaultload(faultload);
 
 		HardwareFault hardwareFault = new HardwareFault();
 		hardwareFault.setHw_fault_type(faultloadBean.getHardwareFaultType());
@@ -107,8 +146,9 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		hardwareFault.setBitEnd(faultloadBean.getBitsChangeEnd());
 		hardwareFault.setKernel_mode(faultloadBean.getKernelMode());
 		hardwareFault.setPid(faultloadBean.getProcessId());
+		hardwareFault.setTrigger_type(faultloadBean.getTriggerType());
 
-		switch (faultloadBean.getTriggerType())
+		switch (hardwareFault.getTrigger_type())
 		{
 			case "tp":
 			{
@@ -139,6 +179,15 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		}
 
 		faultload.addFault(hardwareFault);
+
+		this.getExperimentService().createExperiment(experiment);
+
+		System.out.println("NEW EXPERIMENT 4-------------------------------");
+		System.out.println("New experiment NAME = " + experimentBean.getName());
+		System.out.println("New experiment DESCRIPTION = " + experimentBean.getDescription());
+		System.out.println("New experiment SELECTED TARGET ID = " + experimentBean.getTargetId());
+		System.out.println("New experiment SELECTED WORKLOAD ID = " + experimentBean.getWorkloadId());
+		System.out.println("New experiment SELECTED FAULTLOAD(S) ID(S) = " + Arrays.toString(experimentBean.getFaultloadIds()));
 
 		// this.getExperimentService().createFaultload(faultload);
 
@@ -239,6 +288,11 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 	public void setTriggerType(String triggerType)
 	{
 		this.triggerType = triggerType;
+	}
+
+	public void setAccessTypes(List<String> accessTypes)
+	{
+		this.accessTypes = accessTypes;
 	}
 
 	public void setAccessCode(String accessCode)

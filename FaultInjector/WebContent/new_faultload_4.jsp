@@ -137,8 +137,7 @@ footer {
 
 		<div class="column-group">
 			<div class="all-100">
-				<form action="createfaultload4" id="page_4"
-					class="ink-form all-100 small-100 tiny-100" method="post">
+				<form action="createfaultload4" id="page_4" class="ink-form all-100 small-100 tiny-100" method="post">
 					<div class="column-group">
 						<div class="all-20"></div>
 						<div class="all-80">
@@ -213,14 +212,14 @@ footer {
 													(code segment)</label>
 											</div>
 											<div class="all-10">
-												<s:select label="spatial (code segment)" list="accessTypes"
+												<s:select label="spatial (code segment)" id="accesscode" list="accessTypes"
 													name="accessCode" cssClass="all-100"
-													value="%{#session.faultloadBean.readAddress}" />
+													value="%{#session.faultloadBean.readAddress}" disabled="true"/>
 											</div>
 											<div class="all-20">
 												<label for="codeaddress" class="all-50 quarter-right-space">address</label><input
 													type="text" id="codeaddress" name="codeAddress" value=""
-													class="all-50">
+													class="all-50" disabled>
 											</div>
 										</li>
 										<li class="column-group quarter-gutters">
@@ -230,13 +229,13 @@ footer {
 													(data segment)</label>
 											</div>
 											<div class="all-10">
-												<s:select label="spatial (data segment)" list="accessTypes"
-													name="accessData" cssClass="all-100" />
+												<s:select label="spatial (data segment)" id="accessdata" list="accessTypes"
+													name="accessData" cssClass="all-100" disabled="true"/>
 											</div>
 											<div class="all-20">
 												<label for="dataaddress" class="all-50 quarter-right-space">address</label><input
 													type="text" id="dataaddress" name="dataAddress" value=""
-													class="all-50">
+													class="all-50" disabled>
 											</div>
 										</li>
 									</ul>
@@ -285,54 +284,71 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-//     	$(document).ready(function()
-        
-        	$("#triggertype, #page_4").bind("ready load change on", function()
-   	        {
-       			//alert("Olá 3!");
-       			
-       			if($('#processid').val().match(/^\d+$/) && $('#processid').val()>0)
-	        	{
-					var option = $('input[name=triggerType]:checked').val();
-		        	//alert(option);
-		        	switch (option)
-		        	{
-		        		case 'tp':
-		        		{
-		        			if($('#timestart').val().match(/^\d+$/) && $('#timestart').val()>0 && $('#timeend').val().match(/^\d+$/) && $('#timeend').val()>0 && ($('#timestart').val()<$('#timeend').val()))
-		        			{
-		        				$('#finish').attr("disabled", false);
-		        				//alert("1");
-		        			}
-		        			else
-		        				$('#finish').attr("disabled", true);
-			        		break;
-		        		}
-		        		case 'sc':
-		        		{
-		        			if($('#codeaddress').val().match(/^\d+$/) && $('#codeaddress').val()>0)
-		        			{
-		        				$('#finish').attr("disabled", false);
-		        				//alert("2");
-		        			}
-		        			else
-		        				$('#finish').attr("disabled", true);
-		        			break;
-		        		}
-		        		case 'sd':
-		        		{
-		        			if($('#dataaddress').val().match(/^\d+$/) && $('#dataaddress').val()>0)
-		        			{
-		        				$('#finish').attr("disabled", false);
-		        				//alert("3");
-		        			}
-		        			else
-		        				$('#finish').attr("disabled", true);
-		        			break;
-		        		}
-		        	}
-	        	}
-   	        });
+		var check21, check22;
+		
+		$("#page_4, .triggerType").on("input change", function()
+		{
+			if($('#processid').val().match(/^\d+$/) && $('#processid').val()>0)
+				check21="true";
+			else
+				check21="false";
+       		
+       		var option = $('input[name=triggerType]:checked').val();
+
+        	switch (option)
+        	{
+        		case 'tp':
+        		{
+        			$('#timestart').attr("disabled", false);
+        			$('#timeend').attr("disabled", false);
+        			$('#accesscode').attr("disabled", true);
+        			$('#codeaddress').attr("disabled", true);
+        			$('#accessdata').attr("disabled", true);
+        			$('#dataaddress').attr("disabled", true);
+        			
+        			if($('#timestart').val().match(/^\d+$/) && $('#timestart').val()>0 && $('#timeend').val().match(/^\d+$/) && $('#timeend').val()>0 && (parseInt($('#timestart').val())<parseInt($('#timeend').val())))
+        				check22="true";
+        			else
+        				check22="false";
+	        		break;
+        		}
+        		case 'sc':
+        		{
+        			$('#timestart').attr("disabled", true);
+        			$('#timeend').attr("disabled", true);
+        			$('#accesscode').attr("disabled", false);
+        			$('#codeaddress').attr("disabled", false);
+        			$('#accessdata').attr("disabled", true);
+        			$('#dataaddress').attr("disabled", true);
+        			
+        			if($('#codeaddress').val().match(/^\d+$/) && $('#codeaddress').val()>0)
+        				check22="true";
+        			else
+        				check22="false";
+	        		break;
+        		}
+        		case 'sd':
+        		{
+        			$('#timestart').attr("disabled", true);
+        			$('#timeend').attr("disabled", true);
+        			$('#accesscode').attr("disabled", true);
+        			$('#codeaddress').attr("disabled", true);
+        			$('#accessdata').attr("disabled", false);
+        			$('#dataaddress').attr("disabled", false);
+        			
+        			if($('#dataaddress').val().match(/^\d+$/) && $('#dataaddress').val()>0)
+        				check22="true";
+        			else
+        				check22="false";
+	        		break;
+        		}
+        	}
+        	
+        	if(check21=="true" && check22=="true")
+        		$('#finish').attr("disabled", false);
+        	else
+        		$('#finish').attr("disabled", true);
+		});
         </script>
-</body>
+	</body>
 </html>

@@ -294,74 +294,13 @@ footer {
 	<script src="js/jquery/jquery-1.11.2.js"></script>
 	<script src="js/my-jquery.js"></script>
 
-	<script type="text/javascript">
-	        if($('#memstart').is(':disabled') && $('#memend').is(':disabled'))
-	        {
-	        	if($('#numberfaults').val().match(/^\d+$/) && $('#bitstart').val().match(/^\d+$/) && $('#bitend').val().match(/^\d+$/))
-		        {
-		        	if($('#numberfaults').val()>0 && $('#bitstart').val()>=0 && $('#bitend').val()>=0)
-			        {
-			        	if($('#bitstart').val()<=$('#bitend').val())
-			        		$('#next').attr("disabled", false);	
-			        }
-		        }
-	        }
-	        else
-	        {
-	        	if($('#memstart').val().match(/^\d+$/) && $('#memend').val().match(/^\d+$/) && $('#numberfaults').val().match(/^\d+$/) && $('#bitstart').val().match(/^\d+$/) && $('#bitend').val().match(/^\d+$/))
-		        {
-		        	if($('#memstart').val()>0 && $('#memend').val()>0 && $('#numberfaults').val()>0 && $('#bitstart').val()>=0 && $('#bitend').val()>=0)
-			        {
-			        	if(($('#memstart').val()<=$('#memend').val()) && ($('#bitstart').val()<=$('#bitend').val()))
-			        		$('#next').attr("disabled", false);
-			        }
-		        }
-	        }
-	        
-	        
-	        $("#page_2").on("input", function()
-			{
-	        	if($('#memstart').is(':disabled') && $('#memend').is(':disabled'))
-	        	{
-	        		if($('#numberfaults').val().match(/^\d+$/) && $('#bitstart').val().match(/^\d+$/) && $('#bitend').val().match(/^\d+$/))
-			        {
-			        	if($('#numberfaults').val()>0 && $('#bitstart').val()>=0 && $('#bitend').val()>=0)
-				        {
-				        	if($('#bitstart').val()<=$('#bitend').val())
-				        		$('#next').attr("disabled", false);	
-				        }
-			        }
-	        	}
-	        	else
-	        	{
-		        	if($('#memstart').val().match(/^\d+$/) && $('#memend').val().match(/^\d+$/) && $('#numberfaults').val().match(/^\d+$/) && $('#bitstart').val().match(/^\d+$/) && $('#bitend').val().match(/^\d+$/))
-					{
-				        if($('#memstart').val()>0 && $('#memend').val()>0 && $('#numberfaults').val()>0 && $('#bitstart').val()>=0 && $('#bitend').val()>=0)
-				        {
-				        	if(($('#memstart').val()<=$('#memend').val()) && ($('#bitstart').val()<=$('#bitend').val()))
-								$('#next').attr("disabled", false);
-				        	else
-								$('#next').attr("disabled", true);
-				        }
-					}
-	        	}
-			});
-        </script>
-
-	<script type="text/javascript">
-// 	        if($('#hwfaulttype').val()=="m")
-// 	        {
-// 	        	$('#memstart').attr("disabled", false);
-// 	        	$('#memend').attr("disabled", false);
-// 	        }
-// 	        else
-// 	        {
-// 	        	$('#memstart').attr("disabled", true);
-// 	        	$('#memend').attr("disabled", true);
-// 	        }
-	        
-	        var value = $('input[name=hardwareFaultType]:checked').val();
-	        	
+	<script type="text/javascript">	        
+        var check10, check11;
+        
+        $("#page_2").on("input change", function()
+		{
+        	var value = $('input[name=hardwareFaultType]:checked').val();
+        	
         	if (value=="m")
         	{
         		$('#memstart').attr("disabled", false);
@@ -372,33 +311,32 @@ footer {
         		$('#memstart').attr("disabled", true);
 	        	$('#memend').attr("disabled", true);
         	}
-	        
-	        $('#hwfaulttype').change(function(event)
-	        {
-// 	        	if($('#hwfaulttype').val()=="m")
-// 		        {
-// 		        	$('#memstart').attr("disabled", false);
-// 		        	$('#memend').attr("disabled", false);
-// 		        }
-// 		        else
-// 		        {
-// 		        	$('#memstart').attr("disabled", true);
-// 		        	$('#memend').attr("disabled", true);
-// 		        }
-	        	
-	        	var value = $('input[name=hardwareFaultType]:checked').val();
-	        	
-	        	if (value=="m")
-	        	{
-	        		$('#memstart').attr("disabled", false);
-		        	$('#memend').attr("disabled", false);
-	        	}
-	        	else
-	        	{
-	        		$('#memstart').attr("disabled", true);
-		        	$('#memend').attr("disabled", true);
-	        	}
-	        });
-        </script>
+        	
+        	if($('#numberfaults').val().match(/^\d+$/) && $('#numberfaults').val()>0)
+       		{
+        		if($('#memstart').is(':disabled') && $('#memend').is(':disabled'))
+        			check10="true";
+        		else
+       			{
+        			if($('#memstart').val().match(/^\d+$/) && $('#memend').val().match(/^\d+$/) && $('#memstart').val()>0 && parseInt($('#memstart').val())<=parseInt($('#memend').val()))
+        				check10="true";
+        			else
+        				check10="false";
+       			}
+       		}
+        	else
+        		check10="false";
+        	
+        	if($('#bitstart').val().match(/^\d+$/) && $('#bitend').val().match(/^\d+$/) && $('#bitstart').val()>=0 && parseInt($('#bitstart').val())<=parseInt($('#bitend').val()))
+        		check11="true";
+        	else
+        		check11="false";
+        	
+        	if(check10=="true" && check11=="true")
+        		$('#next').attr("disabled", false);
+        	else
+        		$('#next').attr("disabled", true);
+        });
+    </script>
 </body>
 </html>

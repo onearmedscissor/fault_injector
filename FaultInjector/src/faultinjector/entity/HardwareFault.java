@@ -32,9 +32,6 @@ public class HardwareFault extends Fault implements Serializable
 	@Column(name = "Bit_end")
 	private int bitEnd;
 
-	@Column(name = "Register")
-	private String register;
-
 	@Column(name = "Hw_fault_type")
 	private char hw_fault_type;
 
@@ -75,16 +72,6 @@ public class HardwareFault extends Fault implements Serializable
 	public void setBitEnd(int bitEnd)
 	{
 		this.bitEnd = bitEnd;
-	}
-
-	public String getRegister()
-	{
-		return this.register;
-	}
-
-	public void setRegister(String register)
-	{
-		this.register = register;
 	}
 
 	public char getHw_fault_type()

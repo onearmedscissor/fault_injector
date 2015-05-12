@@ -235,7 +235,7 @@ public class PopulateDatabase
 		hardwareFault.setBitStart(0);
 		hardwareFault.setHw_fault_type('r');
 		hardwareFault.setBitEnd(4);
-		hardwareFault.setRegister("eax");
+		// hardwareFault.setRegister("eax");
 		hardwareFault.setMem_address(1234);
 
 		// softwareFault.setFaultload(faultload);
