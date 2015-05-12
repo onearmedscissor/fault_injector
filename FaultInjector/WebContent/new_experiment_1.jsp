@@ -167,7 +167,7 @@ footer {
 									</div>
 									<div class="all-50 align-right">
 										<button class="ink-button all-95" type="submit" id="next"
-											disabled>Next &gt;</button>
+											>Next &gt;</button>
 									</div>
 								</div>
 							</div>
@@ -196,16 +196,18 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-	        if($('#name').val() && $('#description').val())
+        if($('#name').val() && $('#description').val())
+			$('#next').attr("disabled", false);
+        else
+        	$('#next').attr("disabled", true);
+
+        $("#page_1").on("load ready input", function()
+		{
+			if($('#name').val() && $('#description').val())
 				$('#next').attr("disabled", false);
-	        
-	        $("#page_1").on("input", function()
-			{
-				if($('#name').val() && $('#description').val())
-					$('#next').attr("disabled", false);
-				else
-					$('#next').attr("disabled", true);
-			});
-        </script>
+			else
+				$('#next').attr("disabled", true);
+		});
+	</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,36 +12,22 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <!-- Place favicon.ico and apple-touch-icon(s) here  -->
 
-<link rel="shortcut icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
-<link rel="apple-touch-icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png"
-	media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
+<link rel="apple-touch-icon" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
 <!-- load Ink's css from the cdn -->
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="css/ink-custom.css">
 
@@ -52,22 +37,18 @@
 <![endif]-->
 
 <!-- test browser flexbox support and load legacy grid if unsupported -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
 <script type="text/javascript">
-            Modernizr.load({
-                test: Modernizr.flexbox,
-                nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
-            });
-        </script>
+	Modernizr.load({
+		test : Modernizr.flexbox,
+		nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
+	});
+</script>
 
 <!-- load Ink's javascript files from the cdn -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
 
 
 <style type="text/css">
@@ -152,26 +133,20 @@ footer {
 							<p class="label all-20 align-right push-middle">Mode</p>
 							<ul class="control unstyled all-80 inline">
 								<s:if test="%{!#session.faultloadBean.kernelMode}">
-									<li><input type="radio" id="kernel" name="faultMode"
-										value="true"><label for="kernel">kernel</label></li>
-									<li><input type="radio" id="user" name="faultMode"
-										value="false" checked><label for="user">user</label></li>
+									<li><input type="radio" id="kernel" name="faultMode" value="true"><label for="kernel">kernel</label></li>
+									<li><input type="radio" id="user" name="faultMode" value="false" checked><label for="user">user</label></li>
 								</s:if>
 								<s:else>
-									<li><input type="radio" id="kernel" name="faultMode"
-										value="true" checked><label for="kernel">kernel</label></li>
-									<li><input type="radio" id="user" name="faultMode"
-										value="false"><label for="user">user</label></li>
+									<li><input type="radio" id="kernel" name="faultMode" value="true" checked><label for="kernel">kernel</label></li>
+									<li><input type="radio" id="user" name="faultMode" value="false"><label for="user">user</label></li>
 								</s:else>
 							</ul>
 						</div>
 
 						<div class="control-group column-group gutters required">
-							<label for="processid" class="all-20 align-right">Process
-								ID</label>
+							<label for="processid" class="all-20 align-right">Process ID</label>
 							<div class="control all-15">
-								<s:textfield id="processid" name="processId"
-									value="%{#session.faultloadBean.processId}" />
+								<s:textfield id="processid" name="processId" value="%{#session.faultloadBean.processId}" />
 							</div>
 							<div class="all-70"></div>
 						</div>
@@ -186,56 +161,39 @@ footer {
 									<ul id="triggertype" class="control unstyled">
 										<li class="column-group quarter-gutters">
 											<div class="all-30 large push-bottom">
-												<input type="radio" id="temporal" name="triggerType"
-													value="tp" checked><label for="temporal">temporal
-													between</label>
+												<input type="radio" id="temporal" name="triggerType" value="tp" checked><label for="temporal">temporal between</label>
 											</div>
 											<div class="all-15">
 												<!-- 			                                        <input type="text" id="timestart" name="timeStart" value="%{#session.faultloadBean.temporalTriggerStart}" class="all-66 quarter-right-space"><label for="timestart" class="all-33">and</label> -->
-												<s:textfield id="timestart" name="timeStart"
-													value="%{#session.faultloadBean.temporalTriggerStart}"
-													cssClass="all-66 quarter-right-space" />
+												<s:textfield id="timestart" name="timeStart" value="%{#session.faultloadBean.temporalTriggerStart}" cssClass="all-66 quarter-right-space" />
 												<label for="timestart" class="all-33">and</label>
 											</div>
 											<div class="all-15">
 												<!-- 			                                        <input type="text" id="timeend" name="timeEnd" value="%{#session.faultloadBean.temporalTriggerEnd}" class="all-66 quarter-right-space"><label for="timeend" class="all-33">ms</label> -->
-												<s:textfield id="timeend" name="timeEnd"
-													value="%{#session.faultloadBean.temporalTriggerEnd}"
-													cssClass="all-66 quarter-right-space" />
+												<s:textfield id="timeend" name="timeEnd" value="%{#session.faultloadBean.temporalTriggerEnd}" cssClass="all-66 quarter-right-space" />
 												<label for="timeend" class="all-33">ms</label>
 											</div>
 										</li>
 										<li class="column-group quarter-gutters">
 											<div class="all-30 large push-bottom">
-												<input type="radio" id="spatialcode" name="triggerType"
-													value="sc"><label for="spatialcode">spatial
-													(code segment)</label>
+												<input type="radio" id="spatialcode" name="triggerType" value="sc"><label for="spatialcode">spatial (code segment)</label>
 											</div>
 											<div class="all-10">
-												<s:select label="spatial (code segment)" id="accesscode" list="accessTypes"
-													name="accessCode" cssClass="all-100"
-													value="%{#session.faultloadBean.readAddress}" disabled="true"/>
+												<s:select label="spatial (code segment)" id="accesscode" list="accessTypes" name="accessCode" cssClass="all-100" value="%{#session.faultloadBean.readAddress}" disabled="true" />
 											</div>
 											<div class="all-20">
-												<label for="codeaddress" class="all-50 quarter-right-space">address</label><input
-													type="text" id="codeaddress" name="codeAddress" value=""
-													class="all-50" disabled>
+												<label for="codeaddress" class="all-50 quarter-right-space">address</label><input type="text" id="codeaddress" name="codeAddress" value="" class="all-50" disabled>
 											</div>
 										</li>
 										<li class="column-group quarter-gutters">
 											<div class="all-30 large push-bottom">
-												<input type="radio" id="spatialdata" name="triggerType"
-													value="sd"><label for="spatialdata">spatial
-													(data segment)</label>
+												<input type="radio" id="spatialdata" name="triggerType" value="sd"><label for="spatialdata">spatial (data segment)</label>
 											</div>
 											<div class="all-10">
-												<s:select label="spatial (data segment)" id="accessdata" list="accessTypes"
-													name="accessData" cssClass="all-100" disabled="true"/>
+												<s:select label="spatial (data segment)" id="accessdata" list="accessTypes" name="accessData" cssClass="all-100" disabled="true" />
 											</div>
 											<div class="all-20">
-												<label for="dataaddress" class="all-50 quarter-right-space">address</label><input
-													type="text" id="dataaddress" name="dataAddress" value=""
-													class="all-50" disabled>
+												<label for="dataaddress" class="all-50 quarter-right-space">address</label><input type="text" id="dataaddress" name="dataAddress" value="" class="all-50" disabled>
 											</div>
 										</li>
 									</ul>
@@ -250,12 +208,10 @@ footer {
 							<div class="all-50">
 								<div class="column-group">
 									<div class="all-50 align-left">
-										<a href="createfaultload22" class="ink-button all-95">&lt;
-											Previous</a>
+										<a href="createfaultload22" class="ink-button all-95">&lt; Previous</a>
 									</div>
 									<div class="all-50 align-right">
-										<button class="ink-button all-95" type="submit" id="finish"
-											disabled>Finish</button>
+										<button class="ink-button all-95" type="submit" id="finish" disabled>Finish</button>
 									</div>
 								</div>
 							</div>
@@ -274,9 +230,7 @@ footer {
 				<li><a href="#">Sitemap</a></li>
 				<li><a href="#">Contacts</a></li>
 			</ul>
-			<p class="note">Identification of the owner of the copyright,
-				either by name, abbreviation, or other designation by which it is
-				generally known.</p>
+			<p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
 		</div>
 	</footer>
 
@@ -286,69 +240,129 @@ footer {
 	<script type="text/javascript">
 		var check21, check22;
 		
-		$("#page_4, .triggerType").on("input change", function()
-		{
-			if($('#processid').val().match(/^\d+$/) && $('#processid').val()>0)
-				check21="true";
-			else
-				check21="false";
-       		
-       		var option = $('input[name=triggerType]:checked').val();
+		if ($('#processid').val().match(/^\d+$/) && $('#processid').val() > 0)
+			check21 = "true";
+		else
+			check21 = "false";
 
-        	switch (option)
-        	{
-        		case 'tp':
-        		{
-        			$('#timestart').attr("disabled", false);
-        			$('#timeend').attr("disabled", false);
-        			$('#accesscode').attr("disabled", true);
-        			$('#codeaddress').attr("disabled", true);
-        			$('#accessdata').attr("disabled", true);
-        			$('#dataaddress').attr("disabled", true);
-        			
-        			if($('#timestart').val().match(/^\d+$/) && $('#timestart').val()>0 && $('#timeend').val().match(/^\d+$/) && $('#timeend').val()>0 && (parseInt($('#timestart').val())<parseInt($('#timeend').val())))
-        				check22="true";
-        			else
-        				check22="false";
-	        		break;
-        		}
-        		case 'sc':
-        		{
-        			$('#timestart').attr("disabled", true);
-        			$('#timeend').attr("disabled", true);
-        			$('#accesscode').attr("disabled", false);
-        			$('#codeaddress').attr("disabled", false);
-        			$('#accessdata').attr("disabled", true);
-        			$('#dataaddress').attr("disabled", true);
-        			
-        			if($('#codeaddress').val().match(/^\d+$/) && $('#codeaddress').val()>0)
-        				check22="true";
-        			else
-        				check22="false";
-	        		break;
-        		}
-        		case 'sd':
-        		{
-        			$('#timestart').attr("disabled", true);
-        			$('#timeend').attr("disabled", true);
-        			$('#accesscode').attr("disabled", true);
-        			$('#codeaddress').attr("disabled", true);
-        			$('#accessdata').attr("disabled", false);
-        			$('#dataaddress').attr("disabled", false);
-        			
-        			if($('#dataaddress').val().match(/^\d+$/) && $('#dataaddress').val()>0)
-        				check22="true";
-        			else
-        				check22="false";
-	        		break;
-        		}
-        	}
-        	
-        	if(check21=="true" && check22=="true")
-        		$('#finish').attr("disabled", false);
-        	else
-        		$('#finish').attr("disabled", true);
+		var option = $('input[name=triggerType]:checked').val();
+
+		switch (option)
+		{
+			case 'tp':
+			{
+				$('#timestart').attr("disabled", false);
+				$('#timeend').attr("disabled", false);
+				$('#accesscode').attr("disabled", true);
+				$('#codeaddress').attr("disabled", true);
+				$('#accessdata').attr("disabled", true);
+				$('#dataaddress').attr("disabled", true);
+
+				if ($('#timestart').val().match(/^\d+$/) && $('#timestart').val() > 0 && $('#timeend').val().match(/^\d+$/) && $('#timeend').val() > 0 && (parseInt($('#timestart').val()) < parseInt($('#timeend').val())))
+					check22 = "true";
+				else
+					check22 = "false";
+				break;
+			}
+			case 'sc':
+			{
+				$('#timestart').attr("disabled", true);
+				$('#timeend').attr("disabled", true);
+				$('#accesscode').attr("disabled", false);
+				$('#codeaddress').attr("disabled", false);
+				$('#accessdata').attr("disabled", true);
+				$('#dataaddress').attr("disabled", true);
+
+				if ($('#codeaddress').val().match(/^\d+$/) && $('#codeaddress').val() > 0)
+					check22 = "true";
+				else
+					check22 = "false";
+				break;
+			}
+			case 'sd':
+			{
+				$('#timestart').attr("disabled", true);
+				$('#timeend').attr("disabled", true);
+				$('#accesscode').attr("disabled", true);
+				$('#codeaddress').attr("disabled", true);
+				$('#accessdata').attr("disabled", false);
+				$('#dataaddress').attr("disabled", false);
+
+				if ($('#dataaddress').val().match(/^\d+$/) && $('#dataaddress').val() > 0)
+					check22 = "true";
+				else
+					check22 = "false";
+				break;
+			}
+		}
+
+		if (check21 == "true" && check22 == "true")
+			$('#finish').attr("disabled", false);
+		else
+			$('#finish').attr("disabled", true);
+
+		$("#page_4, .triggerType").on("input change", function() {
+			if ($('#processid').val().match(/^\d+$/) && $('#processid').val() > 0)
+				check21 = "true";
+			else
+				check21 = "false";
+
+			var option = $('input[name=triggerType]:checked').val();
+
+			switch (option)
+			{
+				case 'tp':
+				{
+					$('#timestart').attr("disabled", false);
+					$('#timeend').attr("disabled", false);
+					$('#accesscode').attr("disabled", true);
+					$('#codeaddress').attr("disabled", true);
+					$('#accessdata').attr("disabled", true);
+					$('#dataaddress').attr("disabled", true);
+	
+					if ($('#timestart').val().match(/^\d+$/) && $('#timestart').val() > 0 && $('#timeend').val().match(/^\d+$/) && $('#timeend').val() > 0 && (parseInt($('#timestart').val()) < parseInt($('#timeend').val())))
+						check22 = "true";
+					else
+						check22 = "false";
+					break;
+				}
+				case 'sc':
+				{
+					$('#timestart').attr("disabled", true);
+					$('#timeend').attr("disabled", true);
+					$('#accesscode').attr("disabled", false);
+					$('#codeaddress').attr("disabled", false);
+					$('#accessdata').attr("disabled", true);
+					$('#dataaddress').attr("disabled", true);
+	
+					if ($('#codeaddress').val().match(/^\d+$/) && $('#codeaddress').val() > 0)
+						check22 = "true";
+					else
+						check22 = "false";
+					break;
+				}
+				case 'sd':
+				{
+					$('#timestart').attr("disabled", true);
+					$('#timeend').attr("disabled", true);
+					$('#accesscode').attr("disabled", true);
+					$('#codeaddress').attr("disabled", true);
+					$('#accessdata').attr("disabled", false);
+					$('#dataaddress').attr("disabled", false);
+	
+					if ($('#dataaddress').val().match(/^\d+$/) && $('#dataaddress').val() > 0)
+						check22 = "true";
+					else
+						check22 = "false";
+					break;
+				}
+			}
+
+			if (check21 == "true" && check22 == "true")
+				$('#finish').attr("disabled", false);
+			else
+				$('#finish').attr("disabled", true);
 		});
-        </script>
-	</body>
+	</script>
+</body>
 </html>

@@ -205,7 +205,7 @@ public class ExperimentService implements Persistable
 		this.em.close();
 	}
 
-	public void createFaultload(Faultload f)
+	public int createFaultload(Faultload f)
 	{
 		this.em = this.getEntityManagerFactory().createEntityManager();
 
@@ -213,11 +213,13 @@ public class ExperimentService implements Persistable
 
 		this.et.begin();
 
-		this.em.merge(f);
+		Faultload fl = this.em.merge(f);
 
 		this.et.commit();
 
 		this.em.close();
+
+		return fl.getFl_id();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -33,7 +33,7 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 
 	public String execute()
 	{
-		// first, finish creating a new experiment
+		/* 1. First, finish creating a new experiment */
 
 		if (!session.containsKey("experimentBean"))
 		{
@@ -180,7 +180,14 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 
 		faultload.addFault(hardwareFault);
 
-		this.getExperimentService().createExperiment(experiment);
+		// this.getExperimentService().createExperiment(experiment);
+
+		int id = this.getExperimentService().createFaultload(faultload);
+
+		System.out.println("ID NOVA FAULTLOAD 3 -> " + id);
+
+		String[] fids = { Integer.toString(id) };
+		experimentBean.setFaultloadIds(fids);
 
 		System.out.println("NEW EXPERIMENT 4-------------------------------");
 		System.out.println("New experiment NAME = " + experimentBean.getName());
@@ -188,8 +195,6 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		System.out.println("New experiment SELECTED TARGET ID = " + experimentBean.getTargetId());
 		System.out.println("New experiment SELECTED WORKLOAD ID = " + experimentBean.getWorkloadId());
 		System.out.println("New experiment SELECTED FAULTLOAD(S) ID(S) = " + Arrays.toString(experimentBean.getFaultloadIds()));
-
-		// this.getExperimentService().createFaultload(faultload);
 
 		System.out.println("NEW FAULTLOAD 4-------------------------------");
 		System.out.println("New faultload NAME = " + faultloadBean.getName());

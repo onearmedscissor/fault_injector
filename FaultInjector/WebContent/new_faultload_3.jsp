@@ -219,36 +219,38 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-	        var checkboxes = $("input[type='checkbox']");
-	        
-	    	checkboxes.click(function()
-	    	{
-	    		$('#nextfl').attr("disabled", !checkboxes.is(":checked"));
-	    	});
-        </script>
+        var checkboxes = $("input[type='checkbox']");
+        
+        $('#nextfl').attr("disabled", !checkboxes.is(":checked"));
+        
+    	checkboxes.click(function()
+    	{
+    		$('#nextfl').attr("disabled", !checkboxes.is(":checked"));
+    	});
+    </script>
 
 	<script type="text/javascript">
- 			$('#nextfl').click(function(event)
- 			{
-			    var rids = $('input:checkbox').filter(':checked').map(function ()
-			    {
-			        return this.id;
-			    }).get();
-			    
- 				$.ajax({
- 					method: "POST",
- 					url: "createfaultload31.action",
- 					data: { rids : rids },
- 					traditional: true,
- 					success:
- 						function()
- 						{
+		$('#nextfl').click(function(event)
+		{
+		    var rids = $('input:checkbox').filter(':checked').map(function ()
+		    {
+		        return this.id;
+		    }).get();
+		    
+			$.ajax({
+				method: "POST",
+				url: "createfaultload31.action",
+				data: { rids : rids },
+				traditional: true,
+				success:
+					function()
+					{
 //  					    	alert("RIDS -> "+rids);
 //  					    	alert("RIDS [0] -> "+rids[0]);
- 							window.location = "createfaultload32.action";
- 						}
- 				});
- 			});
- 		</script>
+							window.location = "createfaultload32.action";
+					}
+			});
+		});
+	</script>
 </body>
 </html>
