@@ -130,18 +130,23 @@
 				                      	<div class="ink-form quarter-top-space">
 											<div class="control-group" style="margin:0">
 								                <ul class="control unstyled" style="margin:0">
-								                	<s:if test="#session.experimentBean.containsFaultloadId(fl_id) == true">
-									                		<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value="" checked><label for=""></label></li>									            		
+									                <s:if test="#session.experimentBean != null">
+									                	<s:if test="#session.experimentBean.containsFaultloadId(fl_id) == true">
+										                	<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value="" checked><label for=""></label></li>									            		
 									            		</s:if>
 									            		<s:else>
-									                		<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value=""><label for=""></label></li>
-									                	</s:else>
+								                			<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value=""><label for=""></label></li>
+								                		</s:else>
+									            	</s:if>
+								            		<s:else>
+								                		<li style="margin:0"><input type="checkbox" class="cb" name="select" id="<s:property value="fl_id"/>" value=""><label for=""></label></li>
+								                	</s:else>
 								            	</ul>
 							            	</div>
 						                </div>
 			                      	</td>
 			                      <td><a href="<s:url action="showfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="large"><s:property value="name"/></a></td>
-			                      <td><a href="<s:url action="editfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
+			                      <td><a href="<s:url action="cleareditfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
 			                      <td><a href="<s:url action="copyfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">copy</a></td>
 			                      <td><a href="<s:url action="regeneratefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">regenerate</a></td>
 			                      <td><a href="<s:url action="deletefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
@@ -155,13 +160,12 @@
 					<div id="help-faultloads" class="ink-alert block info" role="alert" style="display:none">
 					    <button class="ink-dismiss">&times;</button>
 					    <h4>Faultload options menu</h4>
-					    <p>Here you can view, edit or delete previously created faultloads or alternatively create a new one.</p>
+					    <p>Here you can view, edit or delete previously created faultloads or alternatively create a new one. To select a faultload, select the corresponding checkbox(es) on the table above.</p>
 					</div>
 					
 					<a href="#" class="ink-button all-20" id="all">Select all</a>
 					<h4 class="top-space">New faultload</h4>
                     <hr />
-<!--                     <a href="new_faultload_1.jsp" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a> -->
 					<a href="clearnewfaultloadforward" class="ink-button all-20" id="newfaultload">+ Add new faultload...</a>
 	               	<div class="column-group push-center">
                     	<a href="loadworkloads" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
@@ -185,7 +189,11 @@
         <script src="js/my-jquery.js"></script>
         
         <script type="text/javascript">
-	        $(document).ready(function()
+	        var checkboxes = $("input[type='checkbox']");
+	        
+	    	$('#finish').attr("disabled", !checkboxes.is(":checked"));
+        	
+        	$(document).ready(function()
 	        {
 // 	            $('.help').on('mouseover', function() {
 // 	              $('#help-faultloads').show();
@@ -199,8 +207,7 @@
 					$('#help-faultloads').show();
 				});
 	        	
-	        	
-	        	var checkboxes = $("input[type='checkbox']");
+	        	checkboxes = $("input[type='checkbox']");
 	           
 	        	checkboxes.click(function()
 	        	{
@@ -210,6 +217,28 @@
         </script>
       
        	<script type="text/javascript">
+       		$('#previous').click(function(event)
+     			{
+    			    var fids = $('input:checkbox').filter(':checked').map(function ()
+    			    {
+    			        return this.id;
+    			    }).get();
+    			    
+     				$.ajax({
+     					method: "POST",
+     					url: "createexperiment41.action",
+     					data: { fids : fids },
+     					traditional: true,
+     					success:
+     						function()
+     						{
+//      					    	alert("FIDS -> "+fids);
+//      					    	alert("FIDS [0] -> "+fids[0]);
+     							window.location = "createexperiment41.action";
+     						}
+     				});
+     			});
+       	
  			$('#finish').click(function(event)
  			{
 			    var fids = $('input:checkbox').filter(':checked').map(function ()
@@ -219,7 +248,7 @@
 			    
  				$.ajax({
  					method: "POST",
- 					url: "createexperiment4.action",
+ 					url: "createexperiment41.action",
  					data: { fids : fids },
  					traditional: true,
  					success:

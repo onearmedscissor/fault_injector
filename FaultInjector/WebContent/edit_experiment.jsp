@@ -1,6 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,36 +12,22 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <!-- Place favicon.ico and apple-touch-icon(s) here  -->
 
-<link rel="shortcut icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
-<link rel="apple-touch-icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png"
-	media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
+<link rel="apple-touch-icon" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
 <!-- load Ink's css from the cdn -->
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="css/ink-custom.css">
 
@@ -52,22 +37,18 @@
 <![endif]-->
 
 <!-- test browser flexbox support and load legacy grid if unsupported -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
 <script type="text/javascript">
-            Modernizr.load({
-                test: Modernizr.flexbox,
-                nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
-            });
-        </script>
+	Modernizr.load({
+		test : Modernizr.flexbox,
+		nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
+	});
+</script>
 
 <!-- load Ink's javascript files from the cdn -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
 
 
 <style type="text/css">
@@ -134,8 +115,7 @@ footer {
 		</div>
 		<div class="column-group">
 			<div class="all-100">
-				<form action="saveexperiment"
-					class="ink-form all-100 small-100 tiny-100" method="post">
+				<form action="saveexperiment" class="ink-form all-100 small-100 tiny-100" method="post">
 					<fieldset>
 						<s:hidden name="id" value="%{experiment.exp_id}" />
 
@@ -149,44 +129,36 @@ footer {
 						</div>
 
 						<div class="control-group column-group gutters required">
-							<label for="creatorname" class="all-20 align-right">Creator
-								name</label>
+							<label for="creatorname" class="all-20 align-right">Creator name</label>
 							<div class="control all-50">
 								<!-- <input type="text" id="creatorname" name="creatorName"> -->
-								<s:textfield id="creatorname" name="creatorName"
-									value="%{experiment.user.name}" />
+								<s:textfield id="creatorname" name="creatorName" value="%{experiment.user.name}" />
 							</div>
 							<div class="all-30"></div>
 						</div>
 
 						<div class="control-group column-group gutters">
-							<label for="creationdate" class="all-20 align-right">Creation
-								date</label>
+							<label for="creationdate" class="all-20 align-right">Creation date</label>
 							<div class="control all-50">
 								<!-- <input type="text" id="creationdate" name="creationDate"> -->
-								<s:textfield id="creationdate" disabled="true"
-									value="%{experiment.creation_date}" />
+								<s:textfield id="creationdate" disabled="true" value="%{experiment.creation_date}" />
 							</div>
 							<div class="all-30"></div>
 						</div>
 
 						<div class="control-group column-group gutters">
-							<label for="injectiondate" class="all-20 align-right">Injection
-								date</label>
+							<label for="injectiondate" class="all-20 align-right">Injection date</label>
 							<div class="control all-50">
-								<s:textfield id="injectiondate" disabled="true"
-									value="%{experiment.injection_date}" />
+								<s:textfield id="injectiondate" disabled="true" value="%{experiment.injection_date}" />
 							</div>
 							<div class="all-30"></div>
 						</div>
 
 						<div class="control-group column-group gutters required">
-							<label for="targetname" class="all-20 align-right">Target
-								name</label>
+							<label for="targetname" class="all-20 align-right">Target name</label>
 							<div class="control all-50">
 								<!-- <input type="text" id="targetname" name="targetName"> -->
-								<s:textfield id="targetname" name="targetName"
-									value="%{experiment.target.name}" />
+								<s:textfield id="targetname" name="targetName" value="%{experiment.target.name}" />
 							</div>
 							<%-- 	                            <a href="<s:url action="edittarget"><s:param name="id"><s:property value="experiment.target.target_id"/></s:param></s:url>" class="ink-button all-10">Edit...</a> --%>
 							<div class="all-20"></div>
@@ -195,12 +167,10 @@ footer {
 						<s:if test="faultloads.size > 0">
 							<s:iterator value="faultloads">
 								<div class="control-group column-group gutters required">
-									<label for="faultloadname" class="all-20 align-right">Faultload
-										name</label>
+									<label for="faultloadname" class="all-20 align-right">Faultload name</label>
 									<div class="control all-50">
 										<!-- <input type="text" id="faultloadname" name="faultloadName"> -->
-										<s:textfield id="faultloadname" name="faultloadName"
-											value="%{name}" />
+										<s:textfield id="faultloadname" name="faultloadName" value="%{name}" />
 									</div>
 									<div class="all-30"></div>
 								</div>
@@ -208,23 +178,19 @@ footer {
 								<s:if test="injectionRuns.size > 0">
 									<s:iterator value="injectionRuns">
 										<div class="control-group column-group gutters required">
-											<label for="workloadname" class="all-20 align-right">Workload
-												name</label>
+											<label for="workloadname" class="all-20 align-right">Workload name</label>
 											<div class="control all-50">
 												<!-- <input type="text" id="workloadname" name="workloadName"> -->
-												<s:textfield id="workloadname" name="workloadName"
-													value="%{workload.name}" />
+												<s:textfield id="workloadname" name="workloadName" value="%{workload.name}" />
 											</div>
 											<div class="control all-30"></div>
 										</div>
 
 										<div class="control-group column-group gutters required">
-											<label for="outputfilename" class="all-20 align-right">Output
-												filename</label>
+											<label for="outputfilename" class="all-20 align-right">Output filename</label>
 											<div class="control all-50">
 												<!-- <input type="text" id="outputfilename" name="outputFilename"> -->
-												<s:textfield id="outputfilename" name="outputFilename"
-													value="%{output_filename}" />
+												<s:textfield id="outputfilename" name="outputFilename" value="%{output_filename}" />
 											</div>
 											<div class="all-30"></div>
 										</div>
@@ -237,8 +203,7 @@ footer {
 							<label for="description" class="all-20 align-right">Description</label>
 							<div class="control all-50">
 								<!-- <textarea id="description" name="description"></textarea> -->
-								<s:textarea id="description" name="description" rows="5"
-									maxlength="300" value="%{experiment.description}" />
+								<s:textarea id="description" name="description" rows="5" maxlength="300" value="%{experiment.description}" />
 							</div>
 							<div class="all-30"></div>
 						</div>
@@ -261,9 +226,7 @@ footer {
 				<li><a href="#">Sitemap</a></li>
 				<li><a href="#">Contacts</a></li>
 			</ul>
-			<p class="note">Identification of the owner of the copyright,
-				either by name, abbreviation, or other designation by which it is
-				generally known.</p>
+			<p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
 		</div>
 	</footer>
 

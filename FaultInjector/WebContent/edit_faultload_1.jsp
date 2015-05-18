@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Fault Injector: Create new experiment [2/4]</title>
+<title>Fault Injector: Edit faultload [1/4]</title>
 <meta name="description" content="">
 <meta name="author" content="ink, cookbook, recipes">
 <meta name="HandheldFriendly" content="True">
@@ -87,7 +87,7 @@ footer {
 
 		<header class="vertical-space">
 			<h1>
-				FAULT INJECTOR<small>Create new experiment</small>
+				FAULT INJECTOR<small>Edit faultload</small>
 			</h1>
 
 			<div class="column-group">
@@ -95,7 +95,8 @@ footer {
 					<nav class="ink-navigation">
 						<ul class="breadcrumbs green">
 							<li><a href="loadexperiments">Home</a></li>
-							<li class="active"><a href="#">New experiment [2/4]</a></li>
+							<li><a href="loadfaultloads">New experiment [4/4]</a></li>
+							<li class="active"><a href="#">Edit faultload [1/4]</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -108,46 +109,60 @@ footer {
 				</div>
 			</div>
 		</header>
-		<div class="column-group gutters">
+
+		<div class="column-group">
+			<div class="all-20"></div>
+			<div class="all-80">
+				<h2 class="bottom-space">Edit faultload [1/4]</h2>
+			</div>
+		</div>
+
+		<div class="column-group">
 			<div class="all-100">
-				<h2 class="bottom-space">Create new experiment [2/4]</h2>
+				<form action="editfaultload21" id="page_1" class="ink-form all-100 small-100 tiny-100" method="post">
+					<fieldset>
+						<s:hidden name="id" value="%{faultload.fl_id}" />
 
-				<table id="targets" class="ink-table grey dynamicTable">
-					<thead>
-						<tr>
-							<th colspan="4" class="align-left large">Select your target:</th>
-						</tr>
-					</thead>
-					<tbody class="column-group">
-						<s:if test="targets.size > 0">
-							<s:iterator value="targets">
-								<s:if test="#session.experimentBean.targetId == target_id">
-									<tr id="<s:property value="target_id"/>" class="all-100 column-group highlight">
-								</s:if>
-								<s:else>
-									<tr id="<s:property value="target_id"/>" class="all-100 column-group">
-								</s:else>
-								<td class="all-70 quarter-top-space"><a href="<s:url action="showtarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="large all-100"><s:property value="name" /></a></td>
-								<td class="all-15"><a href="<s:url action="edittarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
-								<td class="all-15"><a href="<s:url action="deletetarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
-								<td class="all-5"><a href="#" class="help all-100">?</a></td>
-								</tr>
-							</s:iterator>
-						</s:if>
-					</tbody>
-				</table>
+						<div class="control-group column-group gutters required">
+							<label for="name" class="all-20 align-right">Name</label>
+							<div class="control all-50">
+								<s:textfield id="name" name="name" value="%{faultload.name}" />
+							</div>
+							<div class="all-30"></div>
+						</div>
 
-				<div id="help-targets" class="ink-alert block info" role="alert" style="display: none">
-					<button class="ink-dismiss">&times;</button>
-					<h4>Target options menu</h4>
-					<p>Here you can view, edit or delete previously created targets or alternatively create a new one. To select a target, click on the corresponding row on the table above.</p>
-				</div>
+						<div class="control-group column-group gutters required">
+							<label for="description" class="all-20 align-right">Description</label>
+							<div class="control all-50">
+								<s:textarea id="description" name="description" value="%{faultload.description}" rows="5" maxlength="300" />
+							</div>
+							<div class="all-30"></div>
+						</div>
 
-				<a href="new_target.jsp" class="ink-button all-20" id="newtarget">Create new target...</a>
-				<div class="column-group push-center">
-					<a href="new_experiment_1.jsp" class="ink-button double-top-space all-25" id="previous">&lt; Previous</a>
-					<button class="ink-button double-top-space all-25 dynamicButton" id="next" disabled>Next &gt;</button>
-				</div>
+						<div class="control-group column-group gutters required">
+							<label for="timeinterval" class="all-20 align-right">Time interval (ms)</label>
+							<div class="control all-50">
+								<s:textfield id="timeinterval" name="timeInterval" value="%{faultload.time_interval}" />
+							</div>
+							<div class="all-30"></div>
+						</div>
+
+						<div class="column-group">
+							<div class="all-20"></div>
+							<div class="all-50">
+								<div class="column-group">
+									<div class="all-50 align-left">
+										<a href="loadfaultloads" class="ink-button all-95">Cancel</a>
+									</div>
+									<div class="all-50 align-right">
+										<button class="ink-button all-95" type="submit" id="next">Next &gt;</button>
+									</div>
+								</div>
+							</div>
+							<div class="all-30"></div>
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -167,59 +182,23 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function()
+		if ($('#name').val() && $('#description').val() && $('#timeinterval').val())
 		{
-			// 	            $('.help').on('mouseover', function() {
-			// 	              $('#help-targets').show();
-			// 	            });
+			if ($('#timeinterval').val().match(/^\d+$/))
+				$('#next').attr("disabled", false);
+		} else
+			$('#next').attr("disabled", true);
 
-			// 	            $('.help').on('mouseout', function() {
-			// 	                $('#help-targets').hide();
-			// 	              });
-
-			$('.help').click(function(event)
+		$("#page_1").on("input", function()
+		{
+			if ($('#name').val() && $('#description').val() && $('#timeinterval').val())
 			{
-				$('#help-targets').show();
-			});
-		});
-	</script>
-
-	<script type="text/javascript">
-		$('#previous').click(function(event)
-		{
-			var tid = $('.highlight').attr("id");
-
-			$.ajax({
-				method: "POST",
-				url: "createexperiment2.action",
-				data: { tid : tid },
-				success:
-					function()
-					{
-				    	//alert("TID -> "+tid);
-						window.location = "createexperiment2.action";
-					}
-			});
-		});
-
-		$('#next').click(function(event)
-		{
-			var tid = $('.highlight').attr("id");
-
-			$.ajax(
-			{
-				method : "POST",
-				url : "createexperiment2.action",
-				data :
-				{
-					tid : tid
-				},
-				success : function()
-				{
-					//alert("TID -> "+tid);
-					window.location = "loadworkloads.action";
-				}
-			});
+				if ($('#timeinterval').val().match(/^\d+$/))
+					$('#next').attr("disabled", false);
+				else
+					$('#next').attr("disabled", true);
+			} else
+				$('#next').attr("disabled", true);
 		});
 	</script>
 </body>

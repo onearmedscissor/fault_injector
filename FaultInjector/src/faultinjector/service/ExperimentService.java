@@ -205,8 +205,10 @@ public class ExperimentService implements Persistable
 		this.em.close();
 	}
 
-	public int createFaultload(Faultload f)
+	public int[] createFaultload(Faultload f)
 	{
+		int[] ids = new int[2];
+
 		this.em = this.getEntityManagerFactory().createEntityManager();
 
 		this.et = this.em.getTransaction();
@@ -219,7 +221,10 @@ public class ExperimentService implements Persistable
 
 		this.em.close();
 
-		return fl.getFl_id();
+		ids[0] = fl.getFl_id();
+		ids[1] = fl.getExperiment().getExp_id();
+
+		return ids;
 	}
 
 	@SuppressWarnings("unchecked")

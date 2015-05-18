@@ -7,6 +7,7 @@ public class ExperimentBean
 	private int targetId;
 	private int workloadId;
 	private String[] faultloadIds;
+	private int id;
 
 	public ExperimentBean()
 	{
@@ -70,5 +71,15 @@ public class ExperimentBean
 				return true;
 		}
 		return false;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 }

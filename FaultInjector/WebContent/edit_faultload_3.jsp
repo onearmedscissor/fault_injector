@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Fault Injector: Create new experiment [2/4]</title>
+<title>Fault Injector: Edit faultload [3/4]</title>
 <meta name="description" content="">
 <meta name="author" content="ink, cookbook, recipes">
 <meta name="HandheldFriendly" content="True">
@@ -87,7 +87,7 @@ footer {
 
 		<header class="vertical-space">
 			<h1>
-				FAULT INJECTOR<small>Create new experiment</small>
+				FAULT INJECTOR<small>Edit faultload</small>
 			</h1>
 
 			<div class="column-group">
@@ -95,7 +95,8 @@ footer {
 					<nav class="ink-navigation">
 						<ul class="breadcrumbs green">
 							<li><a href="loadexperiments">Home</a></li>
-							<li class="active"><a href="#">New experiment [2/4]</a></li>
+							<li><a href="loadfaultloads">New experiment [4/4]</a></li>
+							<li class="active"><a href="#">Edit faultload [3/4]</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -108,47 +109,65 @@ footer {
 				</div>
 			</div>
 		</header>
-		<div class="column-group gutters">
-			<div class="all-100">
-				<h2 class="bottom-space">Create new experiment [2/4]</h2>
 
-				<table id="targets" class="ink-table grey dynamicTable">
+		<div class="column-group">
+			<div class="all-20"></div>
+			<div class="all-50">
+				<h2 class="bottom-space">Edit faultload [3/4]</h2>
+
+				<h3 class="quarter-bottom-space">1.2 Fault model: target register selection</h3>
+				<hr />
+
+				<table class="ink-table hover alternating checkbox">
 					<thead>
 						<tr>
-							<th colspan="4" class="align-left large">Select your target:</th>
+							<th class="all-5"></th>
+							<th class="all-95 align-left large">Select the registers to use:</th>
 						</tr>
 					</thead>
-					<tbody class="column-group">
-						<s:if test="targets.size > 0">
-							<s:iterator value="targets">
-								<s:if test="#session.experimentBean.targetId == target_id">
-									<tr id="<s:property value="target_id"/>" class="all-100 column-group highlight">
-								</s:if>
-								<s:else>
-									<tr id="<s:property value="target_id"/>" class="all-100 column-group">
-								</s:else>
-								<td class="all-70 quarter-top-space"><a href="<s:url action="showtarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="large all-100"><s:property value="name" /></a></td>
-								<td class="all-15"><a href="<s:url action="edittarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
-								<td class="all-15"><a href="<s:url action="deletetarget"><s:param name="id"><s:property value="target_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
-								<td class="all-5"><a href="#" class="help all-100">?</a></td>
+					<tbody class="all-100">
+						<s:if test="registers.size > 0">
+							<s:iterator value="registers">
+								<tr class="all-100">
+									<td>
+										<div class="ink-form quarter-top-space">
+											<div class="control-group" style="margin: 0">
+												<ul class="control unstyled" style="margin: 0">
+													<s:if test="faultload.containsRegisterId(reg_id) == true">
+														<li style="margin: 0"><input type="checkbox" class="cb" name="select" id="<s:property value="reg_id"/>" value="" checked><label for=""></label></li>
+													</s:if>
+													<s:else>
+														<li style="margin: 0"><input type="checkbox" class="cb" name="select" id="<s:property value="reg_id"/>" value=""><label for=""></label></li>
+													</s:else>
+												</ul>
+											</div>
+										</div>
+									</td>
+									<td class="all-100"><a href="#" class="large align-left"><s:property value="name" /></a></td>
 								</tr>
 							</s:iterator>
 						</s:if>
 					</tbody>
 				</table>
 
-				<div id="help-targets" class="ink-alert block info" role="alert" style="display: none">
-					<button class="ink-dismiss">&times;</button>
-					<h4>Target options menu</h4>
-					<p>Here you can view, edit or delete previously created targets or alternatively create a new one. To select a target, click on the corresponding row on the table above.</p>
-				</div>
+				<a href="#" class="ink-button all-40 double-bottom-space" id="all">Select all</a>
+			</div>
+			<div class="all-30"></div>
+		</div>
 
-				<a href="new_target.jsp" class="ink-button all-20" id="newtarget">Create new target...</a>
-				<div class="column-group push-center">
-					<a href="new_experiment_1.jsp" class="ink-button double-top-space all-25" id="previous">&lt; Previous</a>
-					<button class="ink-button double-top-space all-25 dynamicButton" id="next" disabled>Next &gt;</button>
+		<div class="column-group">
+			<div class="all-20"></div>
+			<div class="all-50">
+				<div class="column-group">
+					<div class="all-50 align-left">
+						<a href="editfaultload22" class="ink-button all-95">&lt; Previous</a>
+					</div>
+					<div class="all-50 align-right">
+						<button class="ink-button all-95" type="submit" id="nextfl" disabled>Next &gt;</button>
+					</div>
 				</div>
 			</div>
+			<div class="all-30"></div>
 		</div>
 	</div>
 
@@ -167,57 +186,38 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-		$(document).ready(function()
+		var checkboxes = $("input[type='checkbox']");
+
+		$('#nextfl').attr("disabled", !checkboxes.is(":checked"));
+
+		checkboxes.click(function()
 		{
-			// 	            $('.help').on('mouseover', function() {
-			// 	              $('#help-targets').show();
-			// 	            });
-
-			// 	            $('.help').on('mouseout', function() {
-			// 	                $('#help-targets').hide();
-			// 	              });
-
-			$('.help').click(function(event)
-			{
-				$('#help-targets').show();
-			});
+			$('#nextfl').attr("disabled", !checkboxes.is(":checked"));
 		});
 	</script>
 
 	<script type="text/javascript">
-		$('#previous').click(function(event)
+		$('#nextfl').click(function(event)
 		{
-			var tid = $('.highlight').attr("id");
-
-			$.ajax({
-				method: "POST",
-				url: "createexperiment2.action",
-				data: { tid : tid },
-				success:
-					function()
-					{
-				    	//alert("TID -> "+tid);
-						window.location = "createexperiment2.action";
-					}
-			});
-		});
-
-		$('#next').click(function(event)
-		{
-			var tid = $('.highlight').attr("id");
+			var rids = $('input:checkbox').filter(':checked').map(function()
+			{
+				return this.id;
+			}).get();
 
 			$.ajax(
 			{
 				method : "POST",
-				url : "createexperiment2.action",
+				url : "editfaultload41.action",
 				data :
 				{
-					tid : tid
+					rids : rids
 				},
+				traditional : true,
 				success : function()
 				{
-					//alert("TID -> "+tid);
-					window.location = "loadworkloads.action";
+					//  					    	alert("RIDS -> "+rids);
+					//  					    	alert("RIDS [0] -> "+rids[0]);
+					window.location = "editfaultload42.action";
 				}
 			});
 		});

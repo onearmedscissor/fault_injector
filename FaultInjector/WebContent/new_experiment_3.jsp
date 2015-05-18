@@ -1,6 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,36 +12,22 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <!-- Place favicon.ico and apple-touch-icon(s) here  -->
 
-<link rel="shortcut icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
-<link rel="apple-touch-icon"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="76x76"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="120x120"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="152x152"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png"
-	media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-<link rel="apple-touch-startup-image"
-	href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png"
-	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="shortcut icon" href="http://cdn.ink.sapo.pt/3.1.7/img/favicon.ico">
+<link rel="apple-touch-icon" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://cdn.ink.sapo.pt/3.1.7/img/touch-icon-ipad-retina.png">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.320x460.png" media="screen and (min-device-width: 200px) and (max-device-width: 320px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.768x1004.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="http://cdn.ink.sapo.pt/3.1.7/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
 <!-- load Ink's css from the cdn -->
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/ink-flex.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.7/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="css/ink-custom.css">
 
@@ -52,22 +37,19 @@
 <![endif]-->
 
 <!-- test browser flexbox support and load legacy grid if unsupported -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
 <script type="text/javascript">
-            Modernizr.load({
-                test: Modernizr.flexbox,
-                nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
-            });
-        </script>
+	Modernizr.load(
+	{
+		test : Modernizr.flexbox,
+		nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
+	});
+</script>
 
 <!-- load Ink's javascript files from the cdn -->
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
-<script type="text/javascript"
-	src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/holder.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/ink-all.min.js"></script>
+<script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/autoload.js"></script>
 
 
 <style type="text/css">
@@ -133,30 +115,21 @@ footer {
 				<table class="ink-table dynamicTable">
 					<thead>
 						<tr>
-							<th colspan="4" class="align-left large">Select the workload
-								to use:</th>
+							<th colspan="4" class="align-left large">Select the workload to use:</th>
 						</tr>
 					</thead>
 					<tbody class="column-group">
 						<s:if test="workloads.size > 0">
 							<s:iterator value="workloads">
 								<s:if test="#session.experimentBean.workloadId == wl_id">
-									<tr id="<s:property value="wl_id"/>"
-										class="all-100 column-group highlight">
+									<tr id="<s:property value="wl_id"/>" class="all-100 column-group highlight">
 								</s:if>
 								<s:else>
-									<tr id="<s:property value="wl_id"/>"
-										class="all-100 column-group">
+									<tr id="<s:property value="wl_id"/>" class="all-100 column-group">
 								</s:else>
-								<td class="all-70 quarter-top-space"><a
-									href="<s:url action="showworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>"
-									class="large all-100"><s:property value="name" /></a></td>
-								<td class="all-15"><a
-									href="<s:url action="editworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>"
-									class="ink-button all-100">edit</a></td>
-								<td class="all-15"><a
-									href="<s:url action="deleteworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>"
-									class="ink-button all-100">delete</a></td>
+								<td class="all-70 quarter-top-space"><a href="<s:url action="showworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="large all-100"><s:property value="name" /></a></td>
+								<td class="all-15"><a href="<s:url action="editworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
+								<td class="all-15"><a href="<s:url action="deleteworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
 								<td class="all-5"><a href="#" class="help all-100">?</a></td>
 								</tr>
 							</s:iterator>
@@ -164,25 +137,18 @@ footer {
 					</tbody>
 				</table>
 
-				<div id="help-workloads" class="ink-alert block info" role="alert"
-					style="display: none">
+				<div id="help-workloads" class="ink-alert block info" role="alert" style="display: none">
 					<button class="ink-dismiss">&times;</button>
 					<h4>Workload options menu</h4>
-					<p>Here you can select, view details, edit or delete previously
-						created workloads, or alternatively create a new one.</p>
+					<p>Here you can select, view details, edit or delete previously created workloads, or alternatively create a new one. To select a workload, click on the corresponding row on the table above.</p>
 					<!-- 					    <p>To select a workload, please click the corresponding row in the table above. To view the details of a workload, click on its name. To edit a workload, you must click on the corresponding "edit" link. The same applies to the "delete" option. Finally, you can create a new workload by hitting the "Create new workload..." button, below the table.</p> -->
 					<!-- 					    <p><b>Note:</b> To be able to proceed and finish the creation of a new experiment, you must select a workload to use, either an existent or a new one.</p> -->
 				</div>
 
-				<a href="new_workload.jsp" class="ink-button all-20"
-					id="newworkload">Create new workload...</a>
+				<a href="new_workload.jsp" class="ink-button all-20" id="newworkload">Create new workload...</a>
 				<div class="column-group push-center">
-					<a href="loadtargets"
-						class="ink-button double-vertical-space all-25" id="previous">&lt;
-						Previous</a>
-					<button
-						class="ink-button double-vertical-space all-25 dynamicButton"
-						id="next" disabled>Next &gt;</button>
+					<a href="loadtargets" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
+					<button class="ink-button double-vertical-space all-25 dynamicButton" id="next" disabled>Next &gt;</button>
 				</div>
 			</div>
 		</div>
@@ -194,9 +160,7 @@ footer {
 				<li><a href="#">Sitemap</a></li>
 				<li><a href="#">Contacts</a></li>
 			</ul>
-			<p class="note">Identification of the owner of the copyright,
-				either by name, abbreviation, or other designation by which it is
-				generally known.</p>
+			<p class="note">Identification of the owner of the copyright, either by name, abbreviation, or other designation by which it is generally known.</p>
 		</div>
 	</footer>
 
@@ -204,55 +168,63 @@ footer {
 	<script src="js/my-jquery.js"></script>
 
 	<script type="text/javascript">
-	        $(document).ready(function() {
-// 	            $('.help').on('mouseover', function() {
-// 	              $('#help-workloads').show();
-// 	            });
-	            
-// 	            $('.help').on('mouseout', function() {
-// 	                $('#help-workloads').hide();
-// 	              });
+		$(document).ready(function()
+		{
+			// 	            $('.help').on('mouseover', function() {
+			// 	              $('#help-workloads').show();
+			// 	            });
 
-	        	$('.help').click(function(event) {
-					$('#help-workloads').show();
-				});
-	    	});
-        </script>
+			// 	            $('.help').on('mouseout', function() {
+			// 	                $('#help-workloads').hide();
+			// 	              });
+
+			$('.help').click(function(event)
+			{
+				$('#help-workloads').show();
+			});
+		});
+	</script>
 
 	<script type="text/javascript">
-        	$('#previous').click(function(event)
-    			{	
-    				var wid = $('.highlight').attr("id");
-    				
-    				$.ajax({
-    					method: "POST",
-    					url: "createexperiment3.action",
-    					data: { wid : wid },
-    					success:
-    						function()
-    						{
-    					    	//alert("WID -> "+wid);
-    							window.location = "loadfaultloads.action";
-    						}
-    				});
-    			});
-        
-			$('#next').click(function(event)
-			{	
-				var wid = $('.highlight').attr("id");
-				
-				$.ajax({
-					method: "POST",
-					url: "createexperiment3.action",
-					data: { wid : wid },
-					success:
-						function()
-						{
-					    	//alert("WID -> "+wid);
-							window.location = "loadfaultloads.action";
-						}
-				});
+		$('#previous').click(function(event)
+		{
+			var wid = $('.highlight').attr("id");
+
+			$.ajax(
+			{
+				method : "POST",
+				url : "createexperiment3.action",
+				data :
+				{
+					wid : wid
+				},
+				success : function()
+				{
+					//alert("WID -> "+wid);
+					window.location = "loadfaultloads.action";
+				}
 			});
-		</script>
+		});
+
+		$('#next').click(function(event)
+		{
+			var wid = $('.highlight').attr("id");
+
+			$.ajax(
+			{
+				method : "POST",
+				url : "createexperiment3.action",
+				data :
+				{
+					wid : wid
+				},
+				success : function()
+				{
+					//alert("WID -> "+wid);
+					window.location = "loadfaultloads.action";
+				}
+			});
+		});
+	</script>
 </body>
 </html>

@@ -2,21 +2,29 @@ package faultinjector.action;
 
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import faultinjector.bean.ExperimentBean;
+import faultinjector.entity.Experiment;
+import faultinjector.entity.Faultload;
 import faultinjector.service.ExperimentService;
 
-public class CreateExperiment1Action extends ActionSupport implements SessionAware
+public class CreateExperiment42Action extends ActionSupport implements SessionAware
 {
 	private static final long serialVersionUID = 4L;
 
 	private Map<String, Object> session;
 	private ExperimentBean experimentBean;
+	private Experiment experiment;
+	private String[] fids;
 
-	private String name, description;
+	private EntityManager em;
+	private EntityTransaction et;
 
 	@Override
 	public String execute()
@@ -29,23 +37,25 @@ public class CreateExperiment1Action extends ActionSupport implements SessionAwa
 		else
 			experimentBean = (ExperimentBean) session.get("experimentBean");
 
-		experimentBean.setName(name);
-		experimentBean.setDescription(description);
+		fids = experimentBean.getFaultloadIds();
 
-		System.out.println("NEW EXPERIMENT 1-------------------------------");
-		System.out.println("New experiment NAME = " + experimentBean.getName());
-		System.out.println("New experiment DESCRIPTION = " + experimentBean.getDescription());
+		em = this.getExperimentService().getEntityManager();
+		et = em.getTransaction();
+		et.begin();
+
+		experiment = this.getExperimentService().findExperiment(experimentBean.getId());
+
+		for (int n = 0; n < fids.length; n++)
+		{
+			Faultload f = this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
+
+			experiment.addFaultload(f);
+		}
+
+		et.commit();
+		em.close();
 
 		return SUCCESS;
-	}
-
-	public void validate()
-	{
-		if (name == null || name.length() == 0 || name.length() > 50)
-			addFieldError("experimentBean.name", "Experiment name is required and can't have more than 50 characters!");
-
-		if (description == null || description.length() == 0 || description.length() > 300)
-			addFieldError("experimentBean.description", "Experiment description is required  and can't have more than 300 characters!");
 	}
 
 	public ExperimentService getExperimentService()
@@ -63,16 +73,6 @@ public class CreateExperiment1Action extends ActionSupport implements SessionAwa
 	public void setExperimentService(ExperimentService experimentService)
 	{
 		this.session.put("experimentService", experimentService);
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-
-	public void setDescription(String description)
-	{
-		this.description = description;
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public class Faultload implements Serializable
 	private String name;
 
 	@Column(name = "Time_interval")
-	private float time_interval;
+	private int time_interval;
 
 	// bi-directional many-to-many association to Register
 	@ManyToMany
@@ -148,12 +148,12 @@ public class Faultload implements Serializable
 		this.name = name;
 	}
 
-	public float getTime_interval()
+	public int getTime_interval()
 	{
 		return this.time_interval;
 	}
 
-	public void setTime_interval(float time_interval)
+	public void setTime_interval(int time_interval)
 	{
 		this.time_interval = time_interval;
 	}
@@ -177,6 +177,16 @@ public class Faultload implements Serializable
 		register.addFaultload(this);
 
 		return register;
+	}
+
+	public boolean containsRegisterId(int id)
+	{
+		for (Register r : registers)
+		{
+			if (r.getReg_id() == id)
+				return true;
+		}
+		return false;
 	}
 
 	public List<Fault> getFaults()

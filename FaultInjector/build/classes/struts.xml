@@ -17,7 +17,7 @@
 		<default-action-ref name="loadexperiments" />
 
 		<action name="loadexperiments" class="faultinjector.action.LoadExperimentsAction" method="execute">
-			<result name="success">/user_main2.jsp</result>
+			<result name="success">/user_main.jsp</result>
 		</action>
 
 		<action name="showexperiment" class="faultinjector.action.ShowExperimentAction" method="execute">
@@ -128,8 +128,56 @@
 			<result name="success">/faultload_details.jsp</result>
 		</action>
 
+		<action name="cleareditfaultload" class="faultinjector.action.ClearEditFaultloadAction" method="execute">
+			<result name="success" type="redirectAction">editfaultload1</result>
+		</action>
+		
+		<action name="editfaultload1" class="faultinjector.action.EditFaultload1Action" method="execute">
+			<result name="success">/edit_faultload_1.jsp</result>
+		</action>
+		
+		<action name="editfaultload21" class="faultinjector.action.EditFaultload21Action" method="execute">
+			<result name="success" type="redirectAction">
+				<param name="actionName">editfaultload22</param>
+				<param name="id">${id}</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">editfaultload1</param>
+				<param name="id">${id}</param>
+			</result>
+		</action>
+		
+		<action name="editfaultload22" class="faultinjector.action.EditFaultload22Action" method="execute">
+			<result name="success">/edit_faultload_2.jsp</result>
+		</action>
+		
+		<action name="editfaultload31" class="faultinjector.action.EditFaultload31Action" method="execute">
+			<result name="success"  type="redirectAction">
+				<param name="actionName">editfaultload32</param>
+				<param name="id">${id}</param>
+			</result>
+			<result name="input" type="redirectAction">
+				<param name="actionName">editfaultload22</param>
+				<param name="id">${id}</param>
+			</result>
+		</action>
+		
+		<action name="editfaultload32" class="faultinjector.action.EditFaultload32Action" method="execute">
+			<result name="success">/edit_faultload_3.jsp</result>
+		</action>
+		
+		<action name="editfaultload41" class="faultinjector.action.EditFaultload41Action" method="execute">
+			<result name="success" type="redirectAction">editfaultload42</result>
+		</action>
 
+		<action name="editfaultload42" class="faultinjector.action.EditFaultload42Action" method="execute">
+			<result name="success">/edit_faultload_4.jsp</result>
+		</action>
 
+		<action name="editfaultload5" class="faultinjector.action.EditFaultload5Action" method="execute">
+			<result name="success" type="redirectAction">loadfaultloads</result>
+			<result name="input" type="redirectAction">editfaultload42</result>
+		</action>
 
 		<action name="deletefaultload" class="faultinjector.action.DeleteFaultloadAction" method="execute">
 			<result name="success" type="redirectAction">loadfaultloads</result>
@@ -172,11 +220,15 @@
 			<result name="input">/new_faultload_4.jsp</result>
 		</action>
 
-		<action name="createexperiment4" class="faultinjector.action.CreateExperiment4Action" method="execute">
+		<action name="createexperiment41" class="faultinjector.action.CreateExperiment41Action" method="execute">
+			<result name="success" type="redirectAction">createexperiment42</result>
+			<!-- <result name="input">/new_experiment_3.jsp</result> -->
+		</action>
+		
+		<action name="createexperiment42" class="faultinjector.action.CreateExperiment42Action" method="execute">
 			<result name="success" type="redirectAction">loadexperiments</result>
 			<!-- <result name="input">/new_experiment_3.jsp</result> -->
 		</action>
 
 	</package>
-
 </struts>

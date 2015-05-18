@@ -30,6 +30,7 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 	private int processId, timeStart, timeEnd, codeAddress, dataAddress;
 	private String triggerType, accessCode, accessData;
 	private List<String> accessTypes;
+	private int[] ids;
 
 	public String execute()
 	{
@@ -39,7 +40,8 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		{
 			this.experimentBean = new ExperimentBean();
 			session.put("experimentBean", experimentBean);
-		} else
+		}
+		else
 			experimentBean = (ExperimentBean) session.get("experimentBean");
 
 		// experimentBean.setFaultloadIds(fids);
@@ -72,7 +74,8 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		{
 			this.faultloadBean = new FaultloadBean();
 			session.put("faultloadBean", faultloadBean);
-		} else
+		}
+		else
 			faultloadBean = (FaultloadBean) session.get("faultloadBean");
 
 		faultloadBean.setKernelMode(faultMode);
@@ -182,12 +185,14 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 
 		// this.getExperimentService().createExperiment(experiment);
 
-		int id = this.getExperimentService().createFaultload(faultload);
+		ids = this.getExperimentService().createFaultload(faultload);
 
-		System.out.println("ID NOVA FAULTLOAD 3 -> " + id);
+		System.out.println("ID NOVA FAULTLOAD 3 -> " + ids[0]);
+		System.out.println("ID NOVA EXPERIMENT 3 -> " + ids[1]);
 
-		String[] fids = { Integer.toString(id) };
+		String[] fids = { Integer.toString(ids[0]) };
 		experimentBean.setFaultloadIds(fids);
+		experimentBean.setId(ids[1]);
 
 		System.out.println("NEW EXPERIMENT 4-------------------------------");
 		System.out.println("New experiment NAME = " + experimentBean.getName());
@@ -237,10 +242,13 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 			addFieldError("faultloadBean.processId", "Faultload process ID is required and must be positive!");
 
 		if (timeStart < 0 || timeEnd <= timeStart)
-			addFieldError("faultloadBean.memoryFaultRangeStart", "Faultload temporal trigger time start is required and must be positive! Also, time start must be greater than time end!");
+			addFieldError("faultloadBean.temporalTriggerStart", "Faultload temporal trigger time start is required and must be positive! Also, time start must be greater than time end!");
 
 		if (timeEnd < 0 || timeEnd <= timeStart)
-			addFieldError("faultloadBean.memoryFaultRangeEnd", "Faultload temporal trigger time end is required and must be positive! Also, time start must be greater than time end!");
+			addFieldError("faultloadBean.temporalTriggerEnd", "Faultload temporal trigger time end is required and must be positive! Also, time start must be greater than time end!");
+
+		if (codeAddress <= 0 || dataAddress <= 0)
+			addFieldError("faultloadBean.memoryAddress", "Faultload memory address is required and must be positive!");
 	}
 
 	public ExperimentService getExperimentService()

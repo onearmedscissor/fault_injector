@@ -88,6 +88,8 @@ public class Fault implements Serializable
 	@OneToMany(mappedBy = "fault", cascade = CascadeType.PERSIST)
 	private List<SoftwareFault> softwares;
 
+	private static final String READ = "read", WRITE = "write";
+
 	public Fault()
 	{
 	}
@@ -162,9 +164,17 @@ public class Fault implements Serializable
 		this.pid = pid;
 	}
 
-	public boolean getRead_address()
+	// public boolean getRead_address()
+	// {
+	// return this.read_address;
+	// }
+
+	public String getRead_address()
 	{
-		return this.read_address;
+		if (this.read_address)
+			return READ;
+		else
+			return WRITE;
 	}
 
 	public void setRead_address(boolean read_address)

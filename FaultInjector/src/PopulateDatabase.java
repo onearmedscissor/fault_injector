@@ -1,5 +1,7 @@
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +12,6 @@ import faultinjector.entity.Faultload;
 import faultinjector.entity.HardwareFault;
 import faultinjector.entity.Injection_Run;
 import faultinjector.entity.Register;
-import faultinjector.entity.SoftwareFault;
 import faultinjector.entity.Target;
 import faultinjector.entity.User;
 import faultinjector.entity.Workload;
@@ -85,8 +86,15 @@ public class PopulateDatabase
 		register8 = new Register();
 		register8.setName("EDX (general purpose)");
 
-		em.persist(experiment1());
-		em.persist(experiment2());
+		List<Register> regs1 = new ArrayList<Register>();
+		regs1.add(register1);
+		regs1.add(register5);
+
+		List<Register> regs2 = new ArrayList<Register>();
+		regs2.add(register8);
+
+		em.persist(experiment1(regs1));
+		em.persist(experiment2(regs2));
 
 		em.persist(register1);
 		em.persist(register2);
@@ -101,7 +109,7 @@ public class PopulateDatabase
 		em.flush();
 	}
 
-	private Experiment experiment1()
+	private Experiment experiment1(List<Register> regs)
 	{
 		Experiment experiment = new Experiment();
 
@@ -141,24 +149,31 @@ public class PopulateDatabase
 		faultload.setName("Faultload #1");
 		faultload.setCreation_date(getCurrentTimestamp());
 		faultload.setTime_interval(500);
-		faultload.setMem_range_beg(8000);
-		faultload.setMem_range_end(10000);
+		faultload.setMem_range_beg(9600);
+		faultload.setMem_range_end(21833);
 		faultload.setN_faults(1000);
 		faultload.setDescription("Veni, vidi, vici");
+		faultload.setRegisters(regs);
 
 		// faultload.setExperiment(experiment);
 		experiment.addFaultload(faultload);
 
-		SoftwareFault softwareFault = new SoftwareFault();
-		softwareFault.setCreation_date(getCurrentTimestamp());
-		softwareFault.setTrigger_type("sc");
-		softwareFault.setKernel_mode(false);
-		softwareFault.setPid(6667);
-		softwareFault.setInjected(false);
-		softwareFault.setRead_address(true);
+		HardwareFault hardwareFault = new HardwareFault();
+		hardwareFault.setCreation_date(getCurrentTimestamp());
+		hardwareFault.setTrigger_type("sc");
+		hardwareFault.setKernel_mode(false);
+		hardwareFault.setPid(6667);
+		hardwareFault.setInjected(false);
+		hardwareFault.setRead_address(true);
+
+		hardwareFault.setBit_flip(false);
+		hardwareFault.setBitStart(7);
+		hardwareFault.setHw_fault_type('m');
+		hardwareFault.setBitEnd(15);
+		hardwareFault.setMem_address(6969);
 
 		// softwareFault.setFaultload(faultload);
-		faultload.addFault(softwareFault);
+		faultload.addFault(hardwareFault);
 
 		Injection_Run injection_Run = new Injection_Run();
 		injection_Run.setOutput_filename("experiment_3_2.csv");
@@ -170,12 +185,12 @@ public class PopulateDatabase
 		faultload.addInjectionRun(injection_Run);
 
 		// injection_Run.setFault(softwareFault);
-		softwareFault.addInjectionRun(injection_Run);
+		hardwareFault.addInjectionRun(injection_Run);
 
 		return experiment;
 	}
 
-	private Experiment experiment2()
+	private Experiment experiment2(List<Register> regs)
 	{
 		Experiment experiment = new Experiment();
 
@@ -216,10 +231,9 @@ public class PopulateDatabase
 		faultload.setName("Fault set 666 1234");
 		faultload.setCreation_date(getCurrentTimestamp());
 		faultload.setTime_interval(666);
-		faultload.setMem_range_beg(9600);
-		faultload.setMem_range_end(21833);
 		faultload.setN_faults(1234);
 		faultload.setDescription("Blue screen");
+		faultload.setRegisters(regs);
 
 		// faultload.setExperiment(experiment);
 		experiment.addFaultload(faultload);

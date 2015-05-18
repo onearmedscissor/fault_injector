@@ -2,12 +2,18 @@ package faultinjector.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import faultinjector.entity.Faultload;
 
 public class CreateFaultload32Action extends ActionSupport
 {
 	private static final long serialVersionUID = 4L;
+
+	private Map<String, Object> session;
+	private Faultload faultload;
 
 	private List<String> accessTypes;
 
