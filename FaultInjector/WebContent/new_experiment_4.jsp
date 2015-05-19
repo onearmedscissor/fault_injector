@@ -147,8 +147,10 @@
 			                      	</td>
 			                      <td><a href="<s:url action="showfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="large"><s:property value="name"/></a></td>
 			                      <td><a href="<s:url action="cleareditfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
-			                      <td><a href="<s:url action="copyfaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">copy</a></td>
-			                      <td><a href="<s:url action="regeneratefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">regenerate</a></td>
+<%-- 			                      <td><a href="<s:url action="#"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">copy</a></td> --%>
+			                      <td><a href="#" class="ink-button all-100">copy</a></td>
+<%-- 			                      <td><a href="<s:url action="#"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">regenerate</a></td> --%>
+									<td><a href="#" class="ink-button all-100">regenerate</a></td>
 			                      <td><a href="<s:url action="deletefaultload"><s:param name="id"><s:property value="fl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
 			                      <td class="align-center"><a href="#" class="help all-100">?</a></td>
 			                    </tr>

@@ -123,7 +123,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 
 	public void validate()
 	{
-		System.out.println("SAVE EXPERIMENT VALIDADE ID -> " + id);
+		System.out.println("SAVE EXPERIMENT VALIDATE ID -> " + id);
 
 		if (name == null || name.length() == 0 || name.length() > 50)
 			addFieldError("experiment.name", "Experience name is required and can't have more than 50 characters!");

@@ -22,7 +22,7 @@ public class EditTargetAction extends ActionSupport implements SessionAware
 	private String[] ips;
 	private List<String> architectures;
 
-	private static final String X86 = "32 Bit", X64 = "64 Bit";
+	private static final String X86 = "Intel 32 Bit", X64 = "Intel 64 Bit";
 
 	public EditTargetAction()
 	{
@@ -57,7 +57,9 @@ public class EditTargetAction extends ActionSupport implements SessionAware
 		ip2 = ips[1];
 		System.out.println("IP2 -> " + ip2);
 		ip3 = ips[2];
+		System.out.println("IP3 -> " + ip3);
 		ip4 = ips[3];
+		System.out.println("IP4 -> " + ip4);
 
 		System.out.println("ID -> " + id);
 		System.out.println("EDIT TARGET-------------------------------");

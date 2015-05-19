@@ -39,7 +39,8 @@
 <!-- test browser flexbox support and load legacy grid if unsupported -->
 <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.1.7/js/modernizr.js"></script>
 <script type="text/javascript">
-	Modernizr.load({
+	Modernizr.load(
+	{
 		test : Modernizr.flexbox,
 		nope : 'http://cdn.ink.sapo.pt/3.1.7/css/ink-legacy.min.css'
 	});

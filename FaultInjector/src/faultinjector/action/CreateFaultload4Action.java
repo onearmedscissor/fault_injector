@@ -1,7 +1,9 @@
 package faultinjector.action;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,13 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 	private String triggerType, accessCode, accessData;
 	private List<String> accessTypes;
 	private int[] ids;
+
+	// public CreateFaultload4Action()
+	// {
+	// accessTypes = new ArrayList<String>();
+	// accessTypes.add("read");
+	// accessTypes.add("write");
+	// }
 
 	public String execute()
 	{
@@ -181,6 +190,7 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 				break;
 		}
 
+		hardwareFault.setCreation_date(getCurrentTimestamp());
 		faultload.addFault(hardwareFault);
 
 		// this.getExperimentService().createExperiment(experiment);
@@ -241,14 +251,33 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 		if (processId <= 0)
 			addFieldError("faultloadBean.processId", "Faultload process ID is required and must be positive!");
 
-		if (timeStart < 0 || timeEnd <= timeStart)
-			addFieldError("faultloadBean.temporalTriggerStart", "Faultload temporal trigger time start is required and must be positive! Also, time start must be greater than time end!");
+		switch (triggerType)
+		{
+			case "tp":
+			{
+				if (timeStart < 0 || timeEnd <= timeStart)
+					addFieldError("faultloadBean.temporalTriggerStart", "Faultload temporal trigger time start is required and must be positive! Also, time start must be greater than time end!");
 
-		if (timeEnd < 0 || timeEnd <= timeStart)
-			addFieldError("faultloadBean.temporalTriggerEnd", "Faultload temporal trigger time end is required and must be positive! Also, time start must be greater than time end!");
+				if (timeEnd < 0 || timeEnd <= timeStart)
+					addFieldError("faultloadBean.temporalTriggerEnd", "Faultload temporal trigger time end is required and must be positive! Also, time start must be greater than time end!");
 
-		if (codeAddress <= 0 || dataAddress <= 0)
-			addFieldError("faultloadBean.memoryAddress", "Faultload memory address is required and must be positive!");
+				break;
+			}
+			case "sc":
+			{
+				if (codeAddress <= 0)
+					addFieldError("faultloadBean.memoryAddress", "Faultload memory address is required and must be positive!");
+
+				break;
+			}
+			case "sd":
+			{
+				if (dataAddress <= 0)
+					addFieldError("faultloadBean.memoryAddress", "Faultload memory address is required and must be positive!");
+
+				break;
+			}
+		}
 	}
 
 	public ExperimentService getExperimentService()
@@ -266,6 +295,13 @@ public class CreateFaultload4Action extends ActionSupport implements SessionAwar
 	public void setExperimentService(ExperimentService experimentService)
 	{
 		this.session.put("experimentService", experimentService);
+	}
+
+	private Timestamp getCurrentTimestamp()
+	{
+		Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
+
+		return currentTimestamp;
 	}
 
 	public void setFaultMode(boolean faultMode)

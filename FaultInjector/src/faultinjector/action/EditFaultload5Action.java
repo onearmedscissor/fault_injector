@@ -116,18 +116,32 @@ public class EditFaultload5Action extends ActionSupport implements SessionAware
 		if (processId <= 0)
 			addFieldError("fault.pid", "Faultload process ID is required and must be positive!");
 
-		if (triggerType.equals("tp"))
+		switch (triggerType)
 		{
-			if (timeStart < 0 || timeEnd <= timeStart)
-				addFieldError("faultload.mem_range_beg", "Faultload temporal trigger time start is required and must be positive! Also, time end must be greater than time start!");
+			case "tp":
+			{
+				if (timeStart < 0 || timeEnd <= timeStart)
+					addFieldError("faultload.mem_range_beg", "Faultload temporal trigger time start is required and must be positive! Also, time end must be greater than time start!");
 
-			if (timeEnd < 0 || timeEnd <= timeStart)
-				addFieldError("faultload.mem_range_end", "Faultload temporal trigger time end is required and must be positive! Also, time end must be greater than time start!");
-		}
-		else
-		{
-			if (codeAddress <= 0 || dataAddress <= 0)
-				addFieldError("fault.mem_address", "Faultload memory address is required and must be positive!");
+				if (timeEnd < 0 || timeEnd <= timeStart)
+					addFieldError("faultload.mem_range_end", "Faultload temporal trigger time end is required and must be positive! Also, time end must be greater than time start!");
+
+				break;
+			}
+			case "sc":
+			{
+				if (codeAddress <= 0)
+					addFieldError("fault.mem_address", "Faultload memory address is required and must be positive!");
+
+				break;
+			}
+			case "sd":
+			{
+				if (dataAddress <= 0)
+					addFieldError("fault.mem_address", "Faultload memory address is required and must be positive!");
+
+				break;
+			}
 		}
 	}
 
