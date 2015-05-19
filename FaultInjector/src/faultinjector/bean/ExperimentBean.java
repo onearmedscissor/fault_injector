@@ -11,6 +11,7 @@ public class ExperimentBean
 
 	public ExperimentBean()
 	{
+		this.id = -1;
 	}
 
 	public String getName()

@@ -12,6 +12,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import faultinjector.bean.ExperimentBean;
 import faultinjector.entity.Experiment;
 import faultinjector.entity.Faultload;
+import faultinjector.entity.Target;
+import faultinjector.entity.Workload;
 import faultinjector.service.ExperimentService;
 
 public class CreateExperiment42Action extends ActionSupport implements SessionAware
@@ -43,13 +45,39 @@ public class CreateExperiment42Action extends ActionSupport implements SessionAw
 		et = em.getTransaction();
 		et.begin();
 
-		experiment = this.getExperimentService().findExperiment(experimentBean.getId());
-
-		for (int n = 0; n < fids.length; n++)
+		if (experimentBean.getId() != -1) // if the experiment has already been
+											// created when creating a new
+											// faultload
 		{
-			Faultload f = this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
+			experiment = this.getExperimentService().findExperiment(experimentBean.getId());
 
-			experiment.addFaultload(f);
+			for (int n = 0; n < fids.length; n++)
+			{
+				Faultload f = this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
+
+				experiment.addFaultload(f);
+			}
+		}
+		else
+		// truly a new experiment
+		{
+			experiment = new Experiment();
+
+			experiment.setName(experimentBean.getName());
+			experiment.setDescription(experimentBean.getDescription());
+
+			Target t = this.getExperimentService().findTarget(experimentBean.getTargetId());
+			experiment.setTarget(t);
+
+			Workload w = this.getExperimentService().findWorkload(experimentBean.getWorkloadId());
+			experiment.getTarget().addWorkload(w);
+
+			for (int n = 0; n < fids.length; n++)
+			{
+				Faultload f = this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
+
+				experiment.addFaultload(f);
+			}
 		}
 
 		et.commit();
