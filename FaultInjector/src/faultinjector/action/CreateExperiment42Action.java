@@ -51,6 +51,9 @@ public class CreateExperiment42Action extends ActionSupport implements SessionAw
 		{
 			experiment = this.getExperimentService().findExperiment(experimentBean.getId());
 
+			experiment.getFaultloads().clear(); // cleans the already chosen
+												// faultloads
+
 			for (int n = 0; n < fids.length; n++)
 			{
 				Faultload f = this.getExperimentService().findFaultload(Integer.parseInt(fids[n]));
