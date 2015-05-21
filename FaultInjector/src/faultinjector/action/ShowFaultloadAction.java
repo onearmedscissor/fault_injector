@@ -63,6 +63,8 @@ public class ShowFaultloadAction extends ActionSupport /*
 			System.out.println("Faultload FAULT TYPE = " + f.getFault_type());
 		}
 
+		hardwares = faults.get(0).getHardwares();
+
 		return SUCCESS;
 	}
 

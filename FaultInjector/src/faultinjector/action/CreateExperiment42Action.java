@@ -86,6 +86,8 @@ public class CreateExperiment42Action extends ActionSupport implements SessionAw
 		et.commit();
 		em.close();
 
+		System.out.println("NEW EXPERIMENT 4.2");
+
 		return SUCCESS;
 	}
 
