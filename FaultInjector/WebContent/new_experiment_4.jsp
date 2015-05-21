@@ -228,7 +228,7 @@
     			    
      				$.ajax({
      					method: "POST",
-     					url: "createexperiment41.action",
+     					url: "createexperiment40.action",
      					data: { fids : fids },
      					traditional: true,
      					success:
@@ -236,7 +236,7 @@
      						{
 //      					    	alert("FIDS -> "+fids);
 //      					    	alert("FIDS [0] -> "+fids[0]);
-     							window.location = "createexperiment41.action";
+     							window.location = "createexperiment40.action";
      						}
      				});
      			});

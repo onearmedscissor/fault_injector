@@ -54,7 +54,7 @@ public class CreateExperiment41Action extends ActionSupport implements SessionAw
 		//
 		// this.getExperimentService().createExperiment(experiment);
 		//
-		System.out.println("NEW EXPERIMENT 4-------------------------------");
+		System.out.println("NEW EXPERIMENT 4.1-------------------------------");
 		System.out.println("BEAN");
 		System.out.println("New experiment NAME = " + experimentBean.getName());
 		System.out.println("New experiment DESCRIPTION = " + experimentBean.getDescription());
