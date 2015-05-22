@@ -132,7 +132,7 @@ footer {
 							<label for="creatorname" class="all-20 align-right">Creator name</label>
 							<div class="control all-50">
 								<!-- <input type="text" id="creatorname" name="creatorName"> -->
-								<s:textfield id="creatorname" name="creatorName" value="%{experiment.user.name}" />
+								<s:textfield id="creatorname" name="creatorName" value="%{experiment.user.name}" disabled="true"/>
 							</div>
 							<div class="all-30"></div>
 						</div>
@@ -190,7 +190,7 @@ footer {
 											<label for="outputfilename" class="all-20 align-right">Output filename</label>
 											<div class="control all-50">
 												<!-- <input type="text" id="outputfilename" name="outputFilename"> -->
-												<s:textfield id="outputfilename" name="outputFilename" value="%{output_filename}" />
+												<s:textfield id="outputfilename" name="outputFilename" value="%{output_filename}" disabled="true" />
 											</div>
 											<div class="all-30"></div>
 										</div>

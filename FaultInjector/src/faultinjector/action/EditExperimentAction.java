@@ -104,6 +104,11 @@ public class EditExperimentAction extends ActionSupport implements SessionAware
 		return faultloads;
 	}
 
+	public List<Injection_Run> getInjectionRuns()
+	{
+		return injectionRuns;
+	}
+
 	@Override
 	public void setSession(Map<String, Object> session)
 	{

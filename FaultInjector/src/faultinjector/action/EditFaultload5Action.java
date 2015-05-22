@@ -32,8 +32,10 @@ public class EditFaultload5Action extends ActionSupport implements SessionAware
 	public String execute()
 	{
 		faultload = (Faultload) session.get("editFaultload");
-		em = (EntityManager) session.get("em");
-		et = (EntityTransaction) session.get("et");
+
+		em = this.getExperimentService().getEntityManager();
+		et = em.getTransaction();
+		et.begin();
 
 		faults = faultload.getFaults();
 
