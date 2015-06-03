@@ -119,7 +119,7 @@ footer {
 		<div class="column-group">
 			<div class="all-100">
 				<form action="createworkload" class="ink-form all-100 small-100 tiny-100" method="post">
-					<fieldset>
+					<fieldset id="newworkload">
 						<div class="control-group column-group gutters required">
 							<label for="name" class="all-20 align-right">Name</label>
 							<div class="control all-50">
@@ -128,7 +128,7 @@ footer {
 							<div class="all-30"></div>
 						</div>
 
-						<div class="control-group column-group gutters required">
+						<div id="textbox1" class="control-group column-group gutters required">
 							<label for="app1name" class="all-20 align-right">Application #1</label>
 							<div class="control all-50">
 								<s:textfield id="app1name" name="app1Name" value="%{app1Name}" />
@@ -136,23 +136,14 @@ footer {
 							<div class="all-30"></div>
 						</div>
 
-						<div class="control-group column-group gutters">
-							<label for="app2name" class="all-20 align-right">Application #2</label>
-							<div class="control all-50">
-								<s:textfield id="app2name" name="app2Name" value="%{app2Name}" />
-								<div class="all-30"></div>
-							</div>
-						</div>
-
-						<div class="control-group column-group gutters">
-							<label for="app3name" class="all-20 align-right">Application #3</label>
-							<div class="control all-50">
-								<s:textfield id="app3name" name="app3Name" value="%{app3Name}" />
-							</div>
-							<div class="all-30"></div>
-						</div>
-
 						<div class="column-group gutters">
+							<div class="all-20"></div>
+							<div class="all-80">
+								<button class="ink-button all-20" id="addapplication">+ Add new application...</button>
+							</div>
+						</div>
+
+						<div class="column-group gutters double-top-space">
 							<div class="all-20"></div>
 							<div class="all-80">
 								<button class="ink-button all-25" type="submit">Submit</button>
@@ -177,17 +168,51 @@ footer {
 	<script src="js/jquery/jquery-1.11.2.js"></script>
 	<script src="js/my-jquery.js"></script>
 
-	<script>
-		Ink.requireModules([ 'Ink.UI.FormValidator_1', 'Ink.Dom.Event_1' ], function(FormValidator, InkEvent)
+	<script type="text/javascript">
+		$(document).ready(function()
 		{
-			var myForm = Ink.i('workloadform');
-			var myInput = Ink.i('name');
-
-			InkEvent.on(myInput, 'keyup', function(event)
+			var max_fields      = 10; //maximum input boxes allowed
+		    var wrapper         = $("#textbox1"); //Fields wrapper
+		    var add_button      = $("#addapplication"); //Add button ID
+		   
+		    var x = 1; //initlal text box count
+		    
+		    $("#newworkload").on("click", "#addapplication",function(e)
+		    {
+		        e.preventDefault();
+		        if(x < max_fields)
+		        { //max input box allowed
+		            x++; //text box increment
+		            
+		            //alert("ADD 1 -> "+x+" WRAPPER -> "+wrapper.attr("id"));
+		            
+		            //add input box
+		            $(wrapper).after('<div id="textbox'+x+'" class="control-group column-group gutters required">'
+		            					+ '<label for="app'+x+'name" class="all-20 align-right">Application #'+x+'</label>'
+		            					+ '<div class="control all-50">'
+		            						+ '<s:textfield id="app'+x+'name" name="app'+x+'Name" value="%{app'+x+'Name}" />'
+		            					+ '</div>'
+		            					+ '<div class="all-5"><a href="#" class="remove_field">remove</a></div>'
+		            					+ '<div class="all-25"></div>'
+		            				+'</div>');
+		            
+		            wrapper = $("#textbox"+x);
+		            
+		            //alert("ADD 2 -> "+x+" WRAPPER -> "+wrapper.attr("id"));
+		        }
+		    });
+	
+			$("#newworkload").on("click",".remove_field", function(e) //user click on remove text
 			{
-				var isValid = FormValidator.validate(myForm);
-			});
+				e.preventDefault();
+				$(this).parent('div').parent('div').remove();
+				x--;
+				wrapper = $("#textbox"+x);
+				//alert("REMOVE -> "+x);
+	    	});
 		});
 	</script>
+	
+
 </body>
 </html>

@@ -2,6 +2,9 @@ package faultinjector.action;
 
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,8 +18,8 @@ public class EditFaultload21Action extends ActionSupport implements SessionAware
 
 	private Map<String, Object> session;
 	private Faultload faultload;
-	// private EntityManager em;
-	// private EntityTransaction et;
+	private EntityManager em;
+	private EntityTransaction et;
 
 	private String id, name, description;
 	private int timeInterval;
@@ -31,12 +34,12 @@ public class EditFaultload21Action extends ActionSupport implements SessionAware
 		}
 		else
 		{
-			// em = this.getExperimentService().getEntityManager();
-			// et = em.getTransaction();
-			// et.begin();
-			//
-			// this.session.put("em", em);
-			// this.session.put("et", et);
+			em = this.getExperimentService().getEntityManager();
+			et = em.getTransaction();
+			et.begin();
+
+			this.session.put("em", em);
+			this.session.put("et", et);
 			faultload = (Faultload) session.get("editFaultload");
 		}
 

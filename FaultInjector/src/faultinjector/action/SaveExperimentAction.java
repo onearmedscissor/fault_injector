@@ -57,7 +57,8 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 		experiment.setName(name);
 
 		// if(!creatorName.isEmpty())
-		experiment.getUser().setName(creatorName);
+		// experiment.getUser().setName(creatorName); //descomentar só quando
+		// existirem contas de utilizador
 
 		// experiment.setCreationDate(creationDate);
 
@@ -75,7 +76,7 @@ public class SaveExperimentAction extends ActionSupport implements SessionAware
 				injectionRun = injectionRuns.get(0);
 				injectionRun.getWorkload().setName(workloadName);
 
-				injectionRun.setOutput_filename(outputFilename);
+				// injectionRun.setOutput_filename(outputFilename);
 			}
 
 			faultload.setName(faultloadName);

@@ -296,7 +296,7 @@ footer {
 							<div class="all-50">
 								<div class="column-group">
 									<div class="all-50 align-left">
-										<a href="createfaultload22" class="ink-button all-95">&lt; Previous</a>
+										<a href="editfaultload32" class="ink-button all-95">&lt; Previous</a>
 									</div>
 									<div class="all-50 align-right">
 										<button class="ink-button all-95" type="submit" id="finish" disabled>Finish</button>

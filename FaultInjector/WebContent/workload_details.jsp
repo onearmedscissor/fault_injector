@@ -125,22 +125,12 @@ footer {
 							<td class="all-25 align-right fw-400">Workload name</td>
 							<td class="all-75 fw-300"><s:property value="workload.name" /></td>
 						</tr>
-						<tr>
-							<td class="all-25 align-right fw-400">Application #1</td>
-							<td class="all-75 fw-300"><s:property value="workload.app_1_name" /></td>
-						</tr>
-						<s:if test="workload.app_2_name!=null && workload.app_2_name.length() > 0">
+						<s:iterator value="applications" status="appCounter">
 							<tr>
-								<td class="all-25 align-right fw-400">Application #2</td>
-								<td class="all-75 fw-300"><s:property value="workload.app_2_name" /></td>
+								<td class="all-25 align-right fw-400">Application #<s:property value="%{#appCounter.count}" /></td>
+								<td class="all-75 fw-300"><s:property value="name" /></td>
 							</tr>
-						</s:if>
-						<s:if test="workload.app_3_name!=null && workload.app_3_name.length() > 0">
-							<tr>
-								<td class="all-25 align-right fw-400">Application #3</td>
-								<td class="all-75 fw-300"><s:property value="workload.app_3_name" /></td>
-							</tr>
-						</s:if>
+						</s:iterator>
 					</tbody>
 				</table>
 

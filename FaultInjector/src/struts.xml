@@ -117,12 +117,10 @@
 
 		<action name="createexperiment3" class="faultinjector.action.CreateExperiment3Action" method="execute">
 			<result name="success" type="redirectAction">loadfaultloads</result>
-			<!-- <result name="input">/new_experiment_3.jsp</result> -->
 		</action>
 		
 		<action name="createexperiment40" class="faultinjector.action.CreateExperiment41Action" method="execute">
 			<result name="success">loadworkloads</result>
-			<!-- <result name="input">/new_experiment_3.jsp</result> -->
 		</action>
 
 		<action name="loadfaultloads" class="faultinjector.action.LoadFaultloadsAction" method="execute">
@@ -211,7 +209,6 @@
 		</action>
 
 		<action name="createfaultload31" class="faultinjector.action.CreateFaultload31Action" method="execute">
-			<!-- <result name="success">/new_faultload_4.jsp</result> -->
 			<result name="success" type="redirectAction">createfaultload32</result>
 			<result name="input">/new_faultload_3.jsp</result>
 		</action>
@@ -222,18 +219,15 @@
 
 		<action name="createfaultload4" class="faultinjector.action.CreateFaultload4Action" method="execute">
 			<result name="success" type="redirectAction">loadfaultloads</result>
-<!-- 			<result name="input">/new_faultload_4.jsp</result> -->
 			<result name="input" type="redirectAction">createfaultload32</result>
 		</action>
 
 		<action name="createexperiment41" class="faultinjector.action.CreateExperiment41Action" method="execute">
 			<result name="success" type="redirectAction">createexperiment42</result>
-			<!-- <result name="input">/new_experiment_3.jsp</result> -->
 		</action>
 		
 		<action name="createexperiment42" class="faultinjector.action.CreateExperiment42Action" method="execute">
 			<result name="success" type="redirectAction">loadexperiments</result>
-			<!-- <result name="input">/new_experiment_3.jsp</result> -->
 		</action>
 
 	</package>

@@ -98,7 +98,7 @@ public class SaveTargetAction extends ActionSupport implements SessionAware
 		return id;
 	}
 
-	public boolean isI386Arch()
+	public boolean getI386Arch()
 	{
 		return i386Arch;
 	}
@@ -145,9 +145,9 @@ public class SaveTargetAction extends ActionSupport implements SessionAware
 
 	public void setI386Arch(String arch)
 	{
-		if (arch.equals("32 Bit"))
+		if (arch.equals("Intel 32 Bit"))
 			this.i386Arch = true;
-		else if (arch.equals("64 Bit"))
+		else if (arch.equals("Intel 64 Bit"))
 			this.i386Arch = false;
 	}
 

@@ -14,6 +14,7 @@
 		<class>faultinjector.entity.Workload</class>
 		<class>faultinjector.entity.Faultload</class>
 		<class>faultinjector.entity.Register</class>
+		<class>faultinjector.entity.Application</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fault_injector" />

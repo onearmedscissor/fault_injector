@@ -42,7 +42,8 @@ public class CreateFaultload1Action extends ActionSupport implements SessionAwar
 		{
 			this.faultloadBean = new FaultloadBean();
 			session.put("faultloadBean", faultloadBean);
-		} else
+		}
+		else
 			faultloadBean = (FaultloadBean) session.get("faultloadBean");
 
 		faultloadBean.setName(name);

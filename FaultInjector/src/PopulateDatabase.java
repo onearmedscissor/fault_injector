@@ -139,8 +139,8 @@ public class PopulateDatabase
 
 		Workload workload = new Workload();
 		workload.setName("CentOS + YSCB");
-		workload.setApp_1_name("CentOS 6.5 32 bit");
-		workload.setApp_2_name("Yahoo Cloud Service Benchmark");
+		// workload.setApp_1_name("CentOS 6.5 32 bit");
+		// workload.setApp_2_name("Yahoo Cloud Service Benchmark");
 
 		// workload.setTarget(target);
 		target.addWorkload(workload);
@@ -220,9 +220,9 @@ public class PopulateDatabase
 
 		Workload workload = new Workload();
 		workload.setName("Elementary + VirtualBox + YSCB");
-		workload.setApp_1_name("Elementary OS 64 bit");
-		workload.setApp_2_name("VirtualBox");
-		workload.setApp_3_name("Yahoo Cloud Service Benchmark");
+		// workload.setApp_1_name("Elementary OS 64 bit");
+		// workload.setApp_2_name("VirtualBox");
+		// workload.setApp_3_name("Yahoo Cloud Service Benchmark");
 
 		// workload.setTarget(target);
 		target.addWorkload(workload);

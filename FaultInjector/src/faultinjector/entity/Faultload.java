@@ -171,13 +171,13 @@ public class Faultload implements Serializable
 		this.registers = registers;
 	}
 
-	public Register addRegister(Register register)
-	{
-		getRegisters().add(register);
-		register.addFaultload(this);
-
-		return register;
-	}
+	// public Register addRegister(Register register)
+	// {
+	// getRegisters().add(register);
+	// register.addFaultload(this);
+	//
+	// return register;
+	// }
 
 	public boolean containsRegisterId(int id)
 	{

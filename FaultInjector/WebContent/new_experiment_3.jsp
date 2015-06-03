@@ -127,10 +127,10 @@ footer {
 								<s:else>
 									<tr id="<s:property value="wl_id"/>" class="all-100 column-group">
 								</s:else>
-								<td class="all-70 quarter-top-space"><a href="<s:url action="showworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="large all-100"><s:property value="name" /></a></td>
-								<td class="all-15"><a href="<s:url action="editworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
-								<td class="all-15"><a href="<s:url action="deleteworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
-								<td class="all-5"><a href="#" class="help all-100">?</a></td>
+									<td class="all-70 quarter-top-space"><a href="<s:url action="showworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="large all-100"><s:property value="name" /></a></td>
+									<td class="all-15"><a href="<s:url action="editworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">edit</a></td>
+									<td class="all-15"><a href="<s:url action="deleteworkload"><s:param name="id"><s:property value="wl_id"/></s:param></s:url>" class="ink-button all-100">delete</a></td>
+									<td class="all-5"><a href="#" class="help all-100">?</a></td>
 								</tr>
 							</s:iterator>
 						</s:if>
@@ -147,7 +147,7 @@ footer {
 
 				<a href="new_workload.jsp" class="ink-button all-20" id="newworkload">Create new workload...</a>
 				<div class="column-group push-center">
-					<a href="loadtargets" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
+					<a href="loadtargets.action" class="ink-button double-vertical-space all-25" id="previous">&lt; Previous</a>
 					<button class="ink-button double-vertical-space all-25 dynamicButton" id="next" disabled>Next &gt;</button>
 				</div>
 			</div>
@@ -201,7 +201,7 @@ footer {
 				success : function()
 				{
 					//alert("WID -> "+wid);
-					window.location = "loadfaultloads.action";
+					window.location = "loadtargets.action";
 				}
 			});
 		});

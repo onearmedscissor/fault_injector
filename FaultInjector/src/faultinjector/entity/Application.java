@@ -17,36 +17,36 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "Register")
-@NamedQuery(name = "Register.findAll", query = "SELECT r FROM Register r")
-public class Register implements Serializable
+@Table(name = "Application")
+@NamedQuery(name = "Application.findAll", query = "SELECT a FROM Application a")
+public class Application implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Reg_id")
-	private int reg_id;
+	@Column(name = "App_id")
+	private int app_id;
 
 	@Column(name = "Name")
 	private String name;
 
 	// bi-directional many-to-many association to Faultload
-	@ManyToMany(mappedBy = "registers")
-	private List<Faultload> faultloads;
+	@ManyToMany(mappedBy = "applications")
+	private List<Workload> workloads;
 
-	public Register()
+	public Application()
 	{
 	}
 
-	public int getReg_id()
+	public int getApp_id()
 	{
-		return this.reg_id;
+		return this.app_id;
 	}
 
-	public void setReg_id(int reg_id)
+	public void setApp_id(int app_id)
 	{
-		this.reg_id = reg_id;
+		this.app_id = app_id;
 	}
 
 	public String getName()
@@ -59,22 +59,13 @@ public class Register implements Serializable
 		this.name = name;
 	}
 
-	public List<Faultload> getFaultloads()
+	public List<Workload> getWorkloads()
 	{
-		return this.faultloads;
+		return this.workloads;
 	}
 
-	public void setFaultloads(List<Faultload> faultloads)
+	public void setWorkloads(List<Workload> workloads)
 	{
-		this.faultloads = faultloads;
+		this.workloads = workloads;
 	}
-
-	// public Faultload addFaultload(Faultload faultload)
-	// {
-	// getFaultloads().add(faultload);
-	// faultload.addRegister(this);
-	//
-	// return faultload;
-	// }
-
 }

@@ -46,7 +46,7 @@ public class CreateExperiment42Action extends ActionSupport implements SessionAw
 		et.begin();
 
 		if (experimentBean.getId() != -1) // if the experiment has already been
-											// created when creating a new
+											// created by creating a new
 											// faultload
 		{
 			experiment = this.getExperimentService().findExperiment(experimentBean.getId());
